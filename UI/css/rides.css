@@ -1,0 +1,192 @@
+/* ----------------------------------------------- */
+
+/* Rides page */
+
+/* ----------------------------------------------- */
+
+.wall {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.32), rgba(0, 0, 0, 0.52)), url(../images/cabbie-2.jpg);
+  width: 100%;
+  height: 300px;
+  background-size: 100% 200px;
+  z-index: -1;
+  opacity: 1;
+  /* Center and scale the image nicely */
+  background-position: center 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.heading {
+  font-size: initial;
+  text-align: center;
+  padding-top: 70px;
+  position: relative;
+}
+
+.heading h2 {
+  color: #fff;
+  letter-spacing: 5px;
+  position: relative;
+  font-weight: 300;
+  font-family: 'Fredoka One', cursive, sans-serif;
+  font-size: 2.0rem;
+  text-shadow: 3px 3px 1px #181818;
+}
+
+.heading p {
+  color: #fff;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  position: relative;
+  text-shadow: 3px 3px 1px #181818;
+}
+
+.contain {
+  margin: 0 auto;
+  padding: 0 10px;
+  max-width: 80%;
+}
+
+.rows::before,
+.rows::after {
+  display: table;
+  content: " ";
+  clear: both;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  padding-top: 3rem;
+}
+
+.search {
+  margin: 50px auto;
+  position: relative;
+  width: 100%;
+}
+.searchTerm {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box; 
+  height: 40px;
+  border-radius: 5px;
+  outline: none;
+  padding: 5px 45px 5px 5px;
+}
+.searchButton,
+.searchIcon {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  font-family: 'FontAwesome';
+  background: #362130;
+  text-align: center;
+  color: #fff;
+  border-radius: 5px;
+  -webkit-font-smoothing: subpixel-antialiased;
+  cursor: pointer;
+}
+.searchButton {
+  opacity: 0;
+  z-index: 1;
+}
+.searchIcon:before {
+  content: '\f002';
+}
+
+.band {
+  width: 90%;
+  max-width: 1240px;
+  margin: 0 auto;
+  
+  display: grid;
+  
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  grid-gap: 20px;
+  
+  @media (min-width: 30em) {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  @media (min-width: 60em) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.card {
+  background: white;
+  text-decoration: none;
+  color: #444;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  
+  // sets up hover state
+  position: relative;
+  top: 0;
+  transition: all .1s ease-in;
+    
+  &:hover {
+    top: -2px;
+    box-shadow: 0 4px 5px rgba(0,0,0,0.2);
+  }
+  
+  article {
+    padding: 20px;
+    flex: 1;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  h1 {
+    font-size: 20px;
+    margin: 0;
+    color: #333;
+  }
+  
+  p {
+    flex: 1;
+    line-height: 1.4;
+  }
+  
+  span {
+    font-size: 12px;
+    font-weight: bold;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    margin: 2em 0 0 0;
+  }
+  
+  .thumb {
+    padding-bottom: 60%;
+    background-size: cover;
+    background-position: center center;
+  }
+}
+
+.item-1 {
+  @media (min-width: 60em) {
+    grid-column: 1 / span 2;
+    
+    h1 {
+      font-size: 24px;
+    }
+  }
+}
