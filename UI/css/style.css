@@ -87,6 +87,7 @@ nav.nav-bar ul li {
 }
 
 .landing {
+  font-size: initial;
   text-align: center;
   padding-top: 130px;
 }
