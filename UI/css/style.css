@@ -9,12 +9,17 @@
   box-sizing: border-box;
 }
 
+body {
+  display: flex;
+  flex-direction: column;
+}
+
 body,
 html {
+  font-size: 14px;
   font-family: 'Lato', sans-serif;
   line-height: 1.4;
   background: #eeeeee;
-  font-size: 14px;
   height: 100%;
   text-rendering: optimizeLegibility;
 }
@@ -253,6 +258,7 @@ footer p {
 .card-form {
   background-color: rgba(72, 84, 85, 0.57);
   max-width: 600px;
+  padding-top: 1.6rem;
   padding-bottom: 1.6rem;
 }
 
