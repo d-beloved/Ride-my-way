@@ -24,6 +24,11 @@ a {
   color: #362130;
 }
 
+.content {
+  flex: 1 0 auto;
+  font-size: 1.6rem;
+}
+
 .bg {
   background-attachment: fixed;
   background-image: linear-gradient(rgba(0, 0, 0, 0.32), rgba(0, 0, 0, 0.52)), url(../images/cabbieadj.jpg);
@@ -49,6 +54,12 @@ header {
   min-height: 50px;
 }
 
+.header-logo {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
 .brand {
   text-transform: uppercase;
   font-size: 26px;
@@ -56,6 +67,11 @@ header {
   font-family: 'Ubuntu', sans-serif;
   font-weight: 900;
   border-bottom: 1px solid #6aa1c4;
+}
+
+.logo {
+  padding-top: 0.5rem;
+  width: auto;
 }
 
 nav.nav-bar ul li {
@@ -71,6 +87,7 @@ nav.nav-bar ul li {
 }
 
 .landing {
+  font-size: initial;
   text-align: center;
   padding-top: 130px;
 }
@@ -108,6 +125,99 @@ nav.nav-bar ul li {
   color: white;
 }
 
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 100%;
+}
+
+.row {
+  margin: 0 auto;
+}
+
+nav .row {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.nav-toggle .mdi-view-sequential {
+  background: #D1CBCB;
+  border: 1px solid #ddf3ff;
+  color: #ddf3ff;
+  font-size: 2.5rem;
+}
+
+.main-nav {
+  display: none;
+  flex-direction: column;
+  justify-content: space-evenly;
+  list-style: none;
+  margin: 2.8rem auto 0;
+  width: 20.0rem;
+}
+
+.main-nav li {
+  margin: 0 auto 2.3rem;
+  width: fit-content;
+}
+
+.main-nav li a:link,
+.main-nav li a:visited {
+  border-bottom: 2px solid transparent;
+  color: #fff;
+  padding: 8px 0;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: border-bottom 0.2s;
+}
+
+.main-nav li a.active {
+  border-bottom: 2px solid #99dcff;
+}
+
+.main-nav li a:hover,
+.main-nav li a:active {
+  border-bottom: 2px solid #e1b12c;
+}
+
+.navbar-show {
+  display: block;
+}
+
+.btn,
+input[type=submit],
+input[type=button] {
+  color: #fff;
+  display: inline-block;
+  font-weight: 300;
+  padding: 10px 30px;
+  transition: background-color 0.2s, border 0.2s, color 0.2s;
+}
+
+input[type=submit] {
+  background-color: #363851;
+  border: 1px solid #363851;
+}
+
+input[type=submit]:hover,
+input[type=submit]:active {
+  background-color: #363851;
+}
+
+
+input[type=button] {
+  background-color: #bb3615;
+  border: 1px solid #bb3615;
+}
+
+input[type=button]:hover,
+input[type=button]:active {
+  background-color: #882810;
+}
+
 footer {
   background: #363851;
   width: 100%;
@@ -118,6 +228,79 @@ footer p {
   color: #fff;
   padding: 10px;
   font-size: 11px;
+}
+
+/* ----------------------------------------------- */
+/* Forms */
+/* ----------------------------------------------- */
+.section-form {
+  margin-bottom: 5.0rem;
+  font-size: initial;
+  margin-top: 7.0rem;
+}
+
+.signup-form {
+  padding: 1.6rem;
+  width: 100%;
+}
+
+.signup-form .form-group {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2.3rem;
+}
+
+.card-form {
+  background-color: rgba(72, 84, 85, 0.57);
+  max-width: 600px;
+  padding-bottom: 1.6rem;
+}
+
+.form-title {
+  color: #fff;
+  margin-bottom: 4.0rem;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.form-group label {
+  color: #fff;
+  font-size: 1.4rem;
+  font-weight: 400;
+  padding-bottom: 0.9rem;
+}
+
+.form-control
+ {
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    width: 100%;
+    padding: 10px;
+}
+
+.signup-form .submit-btn {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2.6rem;
+}
+
+textarea {
+  resize: none;
+}
+
+.form-info {
+  align-self: center;
+  color: #fff;
+  margin-top: 1.0rem;
+}
+
+.form-info  a {
+  color: #e1b12c;
+  margin-top: 1.0rem;
+}
+
+.update-btn input[type=button]{
+  margin-top: 1.6rem;
 }
 
 footer a {
@@ -148,6 +331,62 @@ footer a {
   nav.nav-bar ul li {
     float: right;
     padding: 40px 20px 40px 0;
+  }
+  nav .row {
+    flex-direction: row;
+  }
+  nav .main-nav {
+    display: flex;
+    flex-direction: row;
+    font-weight: 400;
+    font-size: 1.3rem;
+    margin-left: 0;
+    margin-right: 0; 
+  }
+  .nav-toggle {
+    display: none;
+  }
+  .main-nav {
+    width: 25.0rem;
+  }
+  
+  .request-form {
+    margin-top: 10.0rem;
+  }
+
+  .section-details {
+    margin-top: 8.5rem;
+  }
+
+  .user-requests {
+    margin-top: 14.6rem;
+  }
+
+  .signup-form .form-group {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .signup-form .submit-btn {
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+
+  .update-btn input[type=button]{
+    margin-top: 0;
+    margin-left: 5.9rem;
+  }
+
+  .signup-form .create-btn {
+    justify-content: center;
+  }
+
+  .form-control {
+    width: 70%;
+  }
+
+  .signup-form .form-info {
+    margin-left: 1.6rem;
   }
   footer p {
     font-size: 14px;
