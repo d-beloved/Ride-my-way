@@ -1,0 +1,155 @@
+/* Mobile first styles go here */
+
+@import url('https://fonts.googleapis.com/css?family=Lato:400,900|Ubuntu:400,700');
+@import url('https://fonts.googleapis.com/css?family=Fredoka+One|Kaushan+Script|Permanent+Marker');
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body,
+html {
+  font-family: 'Lato', sans-serif;
+  line-height: 1.4;
+  background: #eeeeee;
+  font-size: 14px;
+  height: 100%;
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  text-decoration: none;
+  color: #362130;
+}
+
+.bg {
+  background-attachment: fixed;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.32), rgba(0, 0, 0, 0.52)), url(../images/cabbieadj.jpg);
+  background-position: center 0;
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+.wrapper {
+  width: 70%;
+  margin: 0 auto;
+  min-height: 100vh;
+  position: relative;
+}
+
+header {
+  background: rgba(255, 255, 255, 0.76);
+  display: block;
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px solid #362130;
+  min-height: 50px;
+}
+
+.brand {
+  text-transform: uppercase;
+  font-size: 26px;
+  letter-spacing: 5px;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 900;
+  border-bottom: 1px solid #6aa1c4;
+}
+
+nav.nav-bar ul li {
+  list-style: none;
+  padding: 20px 0;
+}
+
+.wrapper {
+  width: 70%;
+  margin: 0 auto;
+  min-height: 100vh;
+  position: relative;
+}
+
+.landing {
+  text-align: center;
+  padding-top: 130px;
+}
+
+.landing h1 {
+  color: #fff;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  font-weight: 900;
+  font-family: 'Fredoka One', cursive, sans-serif;
+  font-size: 3.25rem;
+  text-shadow: 3px 3px 1px #181818;
+}
+
+.landing p {
+  color: #fff;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  text-shadow: 3px 3px 1px #181818;
+}
+
+.btn-default {
+  border: 1px solid #363851;
+}
+
+.btn {
+  border-radius: 10px;
+  background: transparent;
+  padding: 0.2rem 0.85rem;
+  color: #363851;
+}
+
+.btn-landing {
+  border: 1px solid #fff;
+  color: white;
+}
+
+footer {
+  background: #363851;
+  width: 100%;
+}
+
+footer p {
+  text-align: center;
+  color: #fff;
+  padding: 10px;
+  font-size: 11px;
+}
+
+footer a {
+  color: white;
+}
+
+/** Media queries **/
+
+@media only screen and (max-width: 900px) {
+  .landing h1 {
+    font-size: 2.85rem;
+  }
+  .wrapper {
+    width: 90%;
+  }
+}
+
+@media only screen and (min-width: 900px) {
+  header {
+    display: inline-block;
+    text-align: left;
+  }
+  .brand {
+    padding: 30px 60px;
+    border: none;
+    float: left;
+  }
+  nav.nav-bar ul li {
+    float: right;
+    padding: 40px 20px 40px 0;
+  }
+  footer p {
+    font-size: 14px;
+  }
+}
