@@ -226,6 +226,7 @@ input[type=button]:active {
 footer {
   background: #363851;
   width: 100%;
+  bottom: 0;
 }
 
 footer p {
@@ -311,6 +312,32 @@ textarea {
 
 footer a {
   color: white;
+}
+
+/* ********************* */
+/*      Pagination       */
+/* ********************* */
+.pagination {
+  text-align: center;
+  margin-bottom: 5.0rem; 
+  margin-top: 5.0rem; 
+}
+
+.pagination a {
+  color: #363851;
+  padding: 8px 12px;
+  text-decoration: none;
+  transition: background-color .3s;
+}
+
+.pagination a.active {
+  background-color: #363851;
+  color: white;
+}
+
+.pagination a:hover:not(.active) {
+  background-color: #ddd;
+  color: #555;
 }
 
 /** Media queries **/
