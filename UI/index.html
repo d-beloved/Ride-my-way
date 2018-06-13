@@ -5,33 +5,49 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ride-My-Way</title>
+  <link rel="stylesheet" type="text/css" href="vendors/css/normalize.css">
+  <link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.3.54/css/materialdesignicons.min.css" type="text/css">
   <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
 <body>
-  <div class="bg">
-    <header>
+  <div class="content">
+    <div class="bg">
+      <header>
+        <nav class="container">
+          <div class="row">
+            <div class="header-logo">
+              <a class="brand logo" href="#">Ride-My-Way</a>
+              <button type="button" id="navbar-toggler" class="nav-toggle"><i class="mdi mdi-view-sequential"></i></button>
+            </div>
+            <ul class="main-nav" id="navbar-collapse">
+              <li><a href="view-rides.html">Ride offers</a></li>
+              <li><a href="sign-up.html" class="active">SignUp</a></li>
+              <li><a href="sign-in.html">Login</a></li>
+            </ul>
+          </div>
+        </nav>
+      </header>
 
-      <a class="brand" href="#">Ride-My-Way</a>
-      <nav class="nav-bar">
-        <ul>
-          <li><a class="btn btn-default" href="sign-up.html">Let's Go!</a></li>
-        </ul>
-      </nav>
-    </header>
-    
-    <div class="wrapper">
-      <div class="landing">
-        <h1>Ride My Way</h1>
-        <p>...getting your Next Ride just got Super-easy</p><br>
-        <a class="btn btn-landing" href="sign-up.html"> Let's Go!</a>
+      <div class="wrapper">
+        <div class="landing">
+          <h1>Ride My Way</h1>
+          <p>...getting your Next Ride just got Super-easy</p><br>
+          <a class="btn btn-landing" href="sign-up.html"> Let's Go!</a>
+        </div>
       </div>
+      <!--End of wrapper-->
+      <footer>
+        <p>&copy;2018 <a href="https://github.com/d-beloved">D-Beloved</a></p>
+      </footer>
     </div>
     <!--End of wrapper-->
     <footer>
       <p>&copy;2018 <a target="_blank" href="https://github.com/d-beloved">D-Beloved</a></p>
     </footer>
   </div>
+
+  <script src="js/main.js"></script>
 </body>
 
 </html>
