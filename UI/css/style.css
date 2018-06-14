@@ -36,7 +36,7 @@ a {
 
 .bg {
   background-attachment: fixed;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.32), rgba(0, 0, 0, 0.52)), url(../images/cabbieadj.jpg);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.32), rgba(0, 0, 0, 0.52)), url(../images/cabbie.jpg);
   background-position: center 0;
   background-size: cover;
   background-attachment: fixed;
@@ -142,6 +142,11 @@ nav.nav-bar ul li {
   margin: 0 auto;
 }
 
+.col-1 .col-1-2 {
+  width: 100%;
+  padding-top: 15px;
+}
+
 nav .row {
   display: flex;
   flex-direction: column;
@@ -172,7 +177,7 @@ nav .row {
 .main-nav li a:link,
 .main-nav li a:visited {
   border-bottom: 2px solid transparent;
-  color: #fff;
+  color: black;
   padding: 8px 0;
   text-decoration: none;
   text-transform: uppercase;
@@ -340,6 +345,79 @@ footer a {
   color: #555;
 }
 
+/**/
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.card {
+  background: #fff;
+  padding: 10px;
+  /* border-top: 3px solid #CB3438; */
+  border: 1px solid rgb(160, 160, 160);
+  box-shadow: 0 2px 6px 0 hsla(0,0%,0%,0.2);
+  border-radius: 5px;
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.card_content
+{
+  /**/
+  padding-top: 15px;
+}
+.card_content a button
+{
+  border: 2px solid rgb(99, 125, 193);
+  /**/
+  background-color: rgb(99, 125, 193);
+  color: #ffffff;
+}
+.card_content a button:hover
+{
+  border: 2px solid #4CAF50;
+  /**/
+  background-color: #4CAF50;
+  color: #ffffff;
+}
+.card_content a button.danger:hover
+{
+  border: 2px solid #CB3438;
+  /**/
+  background-color: #CB3438;
+  color: #ffffff;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+h3 {
+  padding-top: 40px;
+}
+
+table {
+  font-size: 1.2rem;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
 /** Media queries **/
 
 @media only screen and (max-width: 900px) {
@@ -348,6 +426,9 @@ footer a {
   }
   .wrapper {
     width: 90%;
+  }
+  .table-res {
+    overflow-x: auto;
   }
 }
 
@@ -423,5 +504,29 @@ footer a {
   }
   footer p {
     font-size: 14px;
+  }
+  .col {
+    float: left;
+    padding: 10px;
+  }
+  .col-1 {
+    width: 100%;
+  }
+  .col-1 .col-1-2 {  
+    width: calc((100% / 2) - 5%);
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .card_image
+  {
+    position: relative;
+    float: left;
+    width:  100%;
+    height: 200px;
+    background-position: 50% 50%;
+    background-repeat:   no-repeat;
+    background-size:     cover;
+    overflow: hidden;
   }
 }
