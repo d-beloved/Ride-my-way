@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ride-My-Way | create-rides</title>
+  <link rel="stylesheet" type="text/css" href="vendors/css/normalize.css">
+  <link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.3.54/css/materialdesignicons.min.css" type="text/css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body>
+  <div class="content">
+    <div class="bg">
+      <header>
+        <nav class="container">
+          <div class="row">
+            <div class="header-logo">
+              <a class="brand logo" href="index.html">Ride-My-Way</a>
+              <button type="button" id="navbar-toggler" class="nav-toggle"><i class="mdi mdi-view-sequential"></i></button>
+            </div>
+            <ul class="main-nav" id="navbar-collapse">
+              <li><a href="profile.html">profile</a></li>
+              <li><a href="view-rides.html">Ride Offers</a></li>
+              <li><a href="index.html">Logout</a></li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+
+      <section class="section-form container">
+          <div class="row card-form">
+            <form method="post" class="signup-form" id="my-form">
+              <h2 class="form-title">Create a ride offer</h2>
+              <div class="form-group">
+                <label for="title">Title</label>
+                <input class="form-control" type="text" name="title" id="username" placeholder="A catchy summary of your offer" required>
+              </div>
+              <div class="form-group">
+                  <label for="driver">Driver</label>
+                  <input class="form-control" type="text" name="driver" id="username" placeholder="name of company or driver offering" required>
+                </div>
+                <div class="form-group">
+                    <label for="destination">Destination</label>
+                    <input class="form-control" type="text" name="destination" id="username" placeholder="e.g. Benin, Nigeria" required>
+                  </div>
+                  <div class="form-group">
+                      <label for="depart">Departure</label>
+                      <input class="form-control" type="text" name="depart" id="username" placeholder="Departure terminal" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="depart-date">Date</label>
+                        <input class="form-control" type="date" name="depart-date" id="username" placeholder="departure date" required>
+                      </div>
+                      <div class="form-group">
+                          <label for="Price">Fee</label>
+                          <input class="form-control" value="NGN 18,000" disabled>
+                        </div>
+  
+              <div class="submit-btn">
+                <input type="submit" value="request">
+              </div>
+            </form>
+          </div>
+        </section>
+  <footer>
+    <p>&copy;2018 <a target="_blank" href="https://github.com/d-beloved">D-Beloved</a></p>
+  </footer>
+</div>
+</div>
+  <script src="js/main.js"></script>
+</body>
+
+</html>
