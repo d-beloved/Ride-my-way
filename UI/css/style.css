@@ -91,6 +91,33 @@ nav.nav-bar ul li {
   position: relative;
 }
 
+.list {
+  margin: 3em;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+h3 {
+  text-transform: uppercase;
+  color: #363851;
+  border-bottom: 1px solid #d8bfd8;
+  margin: 5px;
+  padding: 15px 0;
+  font-size: 20px;
+  text-align: center;
+}
+
+label {
+  display: inline-block;
+  font-weight: 200;
+  letter-spacing: 1px;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 15px;
+}
+
+.filter {
+  font-size: 10px;
+}
+
 .landing {
   font-size: initial;
   text-align: center;
@@ -128,6 +155,29 @@ nav.nav-bar ul li {
 .btn-landing {
   border: 1px solid #fff;
   color: white;
+}
+
+.btn-sm {
+  border: 1px solid #111;
+  border-radius: 3px;
+  padding: 0.1rem 0.75rem;
+  color: #363851;
+  font-size: 11px;
+}
+
+.btn-primary {
+  background: #363851;
+  color: white;
+}
+
+.btn-edit {
+  background: #f6ff6c;
+  color: #111;
+}
+
+.btn-delete {
+  color: white;
+  background: #ff4f4f;
 }
 
 .container {
@@ -195,6 +245,21 @@ nav .row {
 
 .navbar-show {
   display: block;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+textarea, select {
+    font-size: 15px;
+    margin: 10px 0;
+    border: none;
+    background: transparent;
+    border-bottom: 1px solid #D6D6D6;
+    padding: 8px 5px;
+    text-align: center;
+    font-family: 'Ubuntu', sans-serif;
+    letter-spacing: 2px;
 }
 
 .btn,
@@ -329,7 +394,7 @@ footer a {
 }
 
 .pagination a {
-  color: #363851;
+  color: white;
   padding: 8px 12px;
   text-decoration: none;
   transition: background-color .3s;
