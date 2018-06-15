@@ -4,19 +4,6 @@
 
 /* ----------------------------------------------- */
 
-.wall {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.32), rgba(0, 0, 0, 0.52)), url(../images/cabbie-2.jpg);
-  width: 100%;
-  height: 300px;
-  background-size: 100% 200px;
-  z-index: -1;
-  opacity: 1;
-  /* Center and scale the image nicely */
-  background-position: center 0;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
 .heading {
   font-size: initial;
   text-align: center;
@@ -67,6 +54,7 @@
   margin: 50px auto;
   position: relative;
   width: 100%;
+  padding-bottom: 10px;
 }
 
 .searchTerm {
@@ -112,122 +100,75 @@
   content: '\f002';
 }
 
-/* Todo clean up some crappy code */
-
-.cards {
-  display: -webkit-flex;
-  display: flex;
-  -webkit-justify-content: center;
-  justify-content: center;
-  -webkit-flex-wrap: wrap;
-  flex-wrap: wrap;
-  margin-top: 15px;
-  padding: 1.5%;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-@media only screen and (max-width: 700px) {
-  .card {
-    width: 100%;
-    position: relative;
-    margin-bottom: 20px;
-    padding-bottom: 30px;
-    background: #fefff9;
-    color: #363636;
-    /* the whole content of the card becomes linked, so this will give the text a "normal" appearance */
-    text-decoration: none;
-    box-shadow: (rgba(black, 0.19) 0 0 8px 0);
-    border-radius: (4px);
-    max-width: 320px;
-    margin-right: 20px;
-    margin-bottom: 20px;
-  }
-}
-
-@media only screen and (max-width: 980px) {
-  /* switch to 3 columns */
-  .card {
-    margin-right: 20px;
-    margin-right: 0;
-  }
-  span {
-    display: block;
-  }
-  .card-summary {
-    padding: 5% 5% 3% 5%;
-  }
-  .card-header {
-    position: relative;
-    height: 175px;
-    overflow: hidden;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    background-color: rgba(white, .15);
-    background-blend-mode: overlay;
-    border-radius: (4px 4px 0 0);
-    background-color: rgba(white, 0);
-  }
-  .card-title {
-    background: rgba(157, 187, 63, .85);
-    padding: 3.5% 0 2.5% 0;
-    color: white;
-    font-family: 'Roboto Condensed', sans-serif;
-    text-transform: uppercase;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-  }
-  .card-title h3 {
-    font-size: 1.2em;
-    line-height: 1.2;
-    padding: 0 3.5%;
-    margin: 0;
-  }
-  .card-meta {
-    max-height: 0;
-    overflow: hidden;
-    color: #666;
-    font-size: .78em;
-    text-transform: uppercase;
-    position: absolute;
-    bottom: 5%;
-    padding: 0 5%;
-    transition-property: (max-height);
-    transition-duration: (.4s);
-    transition-timing-function: (ease-in-out);
-  }
-  .card :hover,
-  :focus {
-    background: white;
-    box-shadow: (rgba(black, 0.45) 0px 0px 20px 0px);
-  }
-  .card-title :hover,
-  :focus {
-    background: rgba(157, 187, 63, .95);
-  }
-  .card-meta {
-    max-height: 1em;
-  }
-}
-
 img {
-  max-width: 100%;
-  /* stop images from breaking out of their bounding boxes. */
+	display: block;
+	border: 0;
+	width: 100%;
+	height: auto;
 }
 
-/* * {
-  @include transition-property(
-    background-color,
-    border-color,
-    box-shadow: ,
-    color,
-    opacity,
-    text-shadow,
-    transform
-  );
-  @include transition-duration(0.2s);
-  @include transition-timing-function(linear);
-} */
+
+.card {
+	background: white;
+	margin-bottom: 2em;	
+}
+
+.card a {
+	color: black;
+	text-decoration: none;
+}
+
+.card a:hover {
+	box-shadow: 3px 3px 8px hsl(0, 0%, 80%);
+}
+
+.card-content {
+	padding: 1.4em;
+}
+
+.card-content h2 {
+	margin-top: 0;
+	margin-bottom: .5em;
+	font-weight: bold;
+}
+
+.card-content p {
+	font-size: 80%;
+}
+
+
+@media screen and (min-width: 40em) {
+  .cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+  }
+
+  .card {
+      display: flex;
+      flex: 0 1 calc(50% - .5em);
+      margin-bottom: 1em;
+  }
+}
+
+@media screen and (min-width: 60em) {
+  .cards {
+      margin-top: inherit;
+  }
+  
+  .card {
+      flex: 0 1 calc(25% - 1em);
+      margin-bottom: 2em;
+  }
+}
+
+.centered {
+  margin: 0 auto;
+  padding: 0 1em;
+}
+
+@media screen and (min-width: 52em) {
+  .centered {
+      max-width: 52em;
+  }
+}
