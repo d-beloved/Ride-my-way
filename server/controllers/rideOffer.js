@@ -27,6 +27,25 @@ class rideOfferController {
       error: false
     });
   }
+
+  /**
+   * @description - Get all ride offers
+   * @param{Object} req - api request
+   * @param{Object} res - route response
+   * @return{json} registered ride offer details
+   */
+  static getAllRideOffer(req, res) {
+    if (rideOffer.length < 1) {
+      return res.status(404).json({
+        message: 'No ride Offer found!',
+        error: true
+      });
+    }
+    return res.status(200).json({
+      rideOffer,
+      error: false
+    });
+  }
 }
 
 export default rideOfferController;
