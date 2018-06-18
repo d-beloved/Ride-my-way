@@ -4,7 +4,7 @@
   "description": "A carpooling application that provides drivers with the ability to create ride offers and passengers to join available ride offers",
   "main": "app.js",
   "scripts": {
-    "start": "",
+    "start": "nodemon --watch server --exec babel-node app.js",
     "test": ""
   },
   "repository": {
@@ -25,7 +25,8 @@
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
-    "morgan": "^1.9.0"
+    "morgan": "^1.9.0",
+    "validator": "^10.3.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
