@@ -68,6 +68,29 @@ class rideOfferController {
       error: false
     });
   }
+
+  /**
+   * @description - Deletes a ride offer
+   * @param{Object} req - api request
+   * @param{Object} res - route response
+   * @return{json} a json message
+   */
+  static deleteRideOffer(req, res) {
+    const offerId = parseInt(req.params.rideId, 10);
+    // finds the element index with the parsed id
+    const offer = rideOffer.findIndex(oneRide => oneRide.id === offerId);
+    if (offer === -1) {
+      return res.status(404).json({
+        message: 'Ride Offer not found or deleted already',
+        error: true
+      });
+    }
+    rideOffer.splice(offer, 1);
+    return res.status(200).json({
+      message: 'Ride Offer deleted successfully',
+      error: false
+    });
+  }
 }
 
 export default rideOfferController;

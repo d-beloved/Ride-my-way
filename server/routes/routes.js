@@ -31,6 +31,9 @@ router.get('/rides', rideOfferController.getAllRideOffer);
 // Get one ride offer
 router.get('/rides/:rideId', rideOfferController.getOneRideOffer);
 
+// Deletes a ride offer
+router.delete('/rides/:rideId', rideOfferController.deleteRideOffer);
+
 // 404 route
 router.all('*', (req, res) => {
   res.status(404).send({ message: 'That route does not exist!' });
