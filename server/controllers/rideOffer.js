@@ -91,6 +91,35 @@ class rideOfferController {
       error: false
     });
   }
+
+  /**
+   * @description - Edit a ride offer
+   * @param{Object} req - api request
+   * @param{Object} res - route response
+   * @return{json} a json message
+   */
+  static modifyRideOffer(req, res) {
+    const offerId = parseInt(req.params.rideId, 10);
+    // finds the element index with the parsed id
+    const offer = rideOffer.findIndex(oneRide => oneRide.id === offerId);
+    if (offer === -1) {
+      return res.status(404).json({
+        message: 'Ride Offer not found!',
+        error: true
+      });
+    }
+    // Edits the value of the found ride offer
+    rideOffer[offer].title = req.body.title || rideOffer[offer].title;
+    rideOffer[offer].driverName = req.body.driverName || rideOffer[offer].driverName;
+    rideOffer[offer].destination = req.body.destination || rideOffer[offer].destination;
+    rideOffer[offer].deparTerminal = req.body.deparTerminal || rideOffer[offer].deparTerminal;
+    rideOffer[offer].date = req.body.date || rideOffer[offer].date;
+    rideOffer[offer].fee = req.body.fee || rideOffer[offer].fee;
+    return res.status(200).json({
+      message: 'Ride Offer updated successfully!',
+      error: false
+    });
+  }
 }
 
 export default rideOfferController;
