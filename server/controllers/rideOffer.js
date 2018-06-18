@@ -8,15 +8,25 @@ const { rideOffer } = db;
 class rideOfferController {
   /**
    * @description - Creates a new ride offer
-   *
    * @param{Object} req - api request
-   *
    * @param{Object} res - route response
-   *
-   * @return{json} registered business details
+   * @return{json} registered ride offer details
    */
   static createRideOffer(req, res) {
     rideOffer.push({
-      
-    })
+      id: rideOffer.length + 1,
+      title: req.body.title,
+      driverName: req.body.driverName,
+      destination: req.body.destination,
+      deparTerminal: req.body.deparTerminal,
+      date: req.body.date,
+      fee: req.body.fee
+    });
+    return res.status(201).json({
+      message: 'Ride offer created successfully',
+      error: false
+    });
   }
+}
+
+export default rideOfferController;
