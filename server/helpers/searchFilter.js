@@ -14,21 +14,20 @@ class searchFilter {
    * @return{json} ride offers that matches the search term
    */
   static byDestination(req, res, next) {
-    const destination = req.query;
+    const { destination } = req.query;
     const result = [];
-    for (let i = 0; i < rideOffer.length; i += 1) {
-      if (destination.toString().toLowerCase() ===
-          rideOffer[i].destination.toString().toLowerCase()) {
-        result.push(rideOffer[i]);
+    if (destination) {
+      for (let i = 0; i < rideOffer.length; i += 1) {
+        if (destination.toLowerCase() === rideOffer[i].destination.toLowerCase()) {
+          result.push(rideOffer[i]);
+        }
       }
-    }
-    if (result.length === 0) {
-      return res.status(404).json({
-        message: 'There is no Ride offer with the specified destination',
-        error: true
-      });
-    }
-    if (result.length >= 1) {
+      if (result.length === 0) {
+        return res.status(404).json({
+          message: 'There is no Ride offer with the specified destination',
+          error: true
+        });
+      }
       return res.status(200).json(result);
     }
     next();
