@@ -49,6 +49,9 @@ router.post(
 // Get all the requests for a ride offer
 router.get('/rides/:rideId/requests', requestRideController.getAllRequestsForRide);
 
+// Gets the status of aa requests for a ride offer
+router.get('/rides/:rideId/requests/:requestId/status', requestRideController.checkRequestStatus);
+
 // 404 route
 router.all('*', (req, res) => {
   res.status(404).send({ message: 'That route does not exist!' });
