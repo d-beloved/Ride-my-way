@@ -13,6 +13,17 @@ const router = express.Router();
 router.get('/', (req, res) => {
   const rootMessage = {
     message: 'Welcome to Ride-My-Way app! Your one stop place to get rides to your desired destination at reasonable prices',
+    endpoints: {
+      createRideOffer: 'POST /api/v1/rides',
+      getAllRideOffer: 'GET /api/v1/rides',
+      getOneRideOffer: 'GET /api/v1/rides/:rideId',
+      searchRideByDestination: 'GET /api/v1/rides?destination=<destination>',
+      editRideOffer: 'PUT /api/v1/rides/:rideId',
+      deleteRideOffer: 'DELETE /api/v1/rides/:rideId',
+      makeRequestForRide: 'POST /api/v1//rides/:rideId/requests',
+      getAllRequestsForRide: 'GET /api/v1/rides/:rideId/requests',
+      checkRequestStatus: 'GET /api/v1/rides/:rideId/requests/:requestId/status'
+    }
   };
   res.status(200).json(rootMessage);
 });
@@ -50,7 +61,7 @@ router.post(
 // Get all the requests for a ride offer
 router.get('/rides/:rideId/requests', requestRideController.getAllRequestsForRide);
 
-// Gets the status of aa requests for a ride offer
+// Gets the status of a requests for a ride offer
 router.get('/rides/:rideId/requests/:requestId/status', requestRideController.checkRequestStatus);
 
 // 404 route
