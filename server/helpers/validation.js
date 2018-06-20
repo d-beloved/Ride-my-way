@@ -11,7 +11,7 @@ class Validation {
    * @param{Function} next - next middleware
    * @return{undefined}
    */
-  static trimBodyValues(req, res, next) {
+  static removeWhiteSpaces(req, res, next) {
     // trim body values
     if (req.body) {
       Object.keys(req.body).forEach((k) => {

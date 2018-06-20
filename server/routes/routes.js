@@ -1,6 +1,7 @@
 import express from 'express';
 import validateRequest from '../helpers/validation';
 import rideOfferController from '../controllers/rideOffer';
+import searchFilter from '../helpers/searchFilter';
 
 // using router routes
 const router = express.Router();
@@ -18,7 +19,7 @@ router.get('/', (req, res) => {
 // Create a ride offer
 router.post(
   '/rides',
-  validateRequest.trimBodyValues,
+  validateRequest.removeWhiteSpaces,
   validateRequest.checkBodyContains('title', 'driverName', 'destination', 'deparTerminal', 'date', 'fee'),
   validateRequest.confirmDate,
   validateRequest.confirmFeeType,
@@ -26,7 +27,7 @@ router.post(
 );
 
 // Get all ride offers
-router.get('/rides', rideOfferController.getAllRideOffer);
+router.get('/rides', searchFilter.byDestination, rideOfferController.getAllRideOffer);
 
 // Get one ride offer
 router.get('/rides/:rideId', rideOfferController.getOneRideOffer);
