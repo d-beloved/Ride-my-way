@@ -46,6 +46,9 @@ router.post(
   requestRideController.makeRequestForRide
 );
 
+// Get all the requests for a ride offer
+router.get('/rides/:rideId/requests', requestRideController.getAllRequestsForRide);
+
 // 404 route
 router.all('*', (req, res) => {
   res.status(404).send({ message: 'That route does not exist!' });
