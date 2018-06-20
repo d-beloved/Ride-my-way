@@ -5,7 +5,7 @@ const rideOffer = [
     id: 1,
     title: 'A trip to Zuma rock',
     driverName: 'GUO transport',
-    destination: 'Abuja',
+    destination: 'Abuja, Lagoon',
     deparTerminal: 'Lagos',
     date: '2018-07-21',
     fee: 25000
