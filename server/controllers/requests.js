@@ -32,6 +32,28 @@ class requestRideController {
       error: false
     });
   }
+
+  /**
+   * @description - Get all requests for a ride offer
+   * @param{Object} req - api request
+   * @param{Object} res - route response
+   * @return{json} registered requests for ride offer details
+   */
+  static getAllRequestsForRide(req, res) {
+    const offerId = parseInt(req.params.rideId, 10);
+    // finds the element with the parsed id
+    const offer = rideOffer.findIndex(oneRide => oneRide.id === offerId);
+    if (offer === -1) {
+      return res.status(404).json({
+        message: 'No ride Offer found!',
+        error: true
+      });
+    }
+    return res.status(200).json({
+      request,
+      error: false
+    });
+  }
 }
 
 export default requestRideController;
