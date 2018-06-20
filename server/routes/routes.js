@@ -1,7 +1,7 @@
 import express from 'express';
 import validateRequest from '../helpers/validation';
 import rideOfferController from '../controllers/rideOffer';
-import searchFilter from '../helpers/searchFilter';
+import requestRideController from '../controllers/requests';
 
 // using router routes
 const router = express.Router();
@@ -27,7 +27,7 @@ router.post(
 );
 
 // Get all ride offers
-router.get('/rides', searchFilter.byDestination, rideOfferController.getAllRideOffer);
+router.get('/rides', rideOfferController.getAllRideOffer);
 
 // Get one ride offer
 router.get('/rides/:rideId', rideOfferController.getOneRideOffer);
@@ -37,6 +37,14 @@ router.delete('/rides/:rideId', rideOfferController.deleteRideOffer);
 
 // Edits a ride offer
 router.put('/rides/:rideId', rideOfferController.modifyRideOffer);
+
+// Requests for a ride offer
+router.post(
+  '/rides/:rideId/requests',
+  validateRequest.removeWhiteSpaces,
+  validateRequest.checkBodyContains('requester'),
+  requestRideController.makeRequestForRide
+);
 
 // 404 route
 router.all('*', (req, res) => {
