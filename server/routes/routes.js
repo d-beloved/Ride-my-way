@@ -33,6 +33,7 @@ router.post(
   '/rides',
   validateRequest.removeWhiteSpaces,
   validateRequest.checkBodyContains('title', 'driverName', 'destination', 'deparTerminal', 'date', 'fee'),
+  validateRequest.rideOfferExists,
   validateRequest.confirmDate,
   validateRequest.confirmFeeType,
   rideOfferController.createRideOffer,
