@@ -1,4 +1,7 @@
 import validator from 'validator';
+import db from '../dummyData';
+
+const { rideOffer } = db;
 
 /**
  * @description - This validates all the entries into the app
@@ -77,6 +80,26 @@ class Validation {
       });
     }
     next();
+  }
+
+  /**
+   * @description Checks if a ride offer exists already before creation
+   * @param{Object} req - api request
+   * @param{Object} res - route response
+   * @param{Function} next - next middleware
+   * @return{undefined}
+   */
+  static rideOfferExists(req, res, next) {
+    const driver = req.body.driverName;
+    const destinatn = req.body.destination;
+    const same = rideOffer.findIndex(oneRide => oneRide.driverName === driver &&
+      oneRide.destination === destinatn);
+    if (same === -1) {
+      next();
+    }
+    return res.status(406).json({
+      message: 'A Ride Offer with same detail is found!',
+    });
   }
 }
 

@@ -15,10 +15,10 @@ class rideOfferController {
   static createRideOffer(req, res) {
     rideOffer.push({
       id: rideOffer.length + 1,
-      title: req.body.title,
-      driverName: req.body.driverName,
-      destination: req.body.destination,
-      deparTerminal: req.body.deparTerminal,
+      title: req.body.title.toLowerCase(),
+      driverName: req.body.driverName.toLowerCase(),
+      destination: req.body.destination.toLowerCase(),
+      deparTerminal: req.body.deparTerminal.toLowerCase(),
       date: req.body.date,
       fee: req.body.fee
     });
