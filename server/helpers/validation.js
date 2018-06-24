@@ -12,7 +12,7 @@ class Validation {
    * @param{Object} req - api request
    * @param{Object} res - route response
    * @param{Function} next - next middleware
-   * @return{undefined}
+   * @return{Function} next
    */
   static removeWhiteSpaces(req, res, next) {
     // trim body values
@@ -32,7 +32,7 @@ class Validation {
    * @param{Object} req - api request
    * @param{Object} res - route response
    * @param{Function} next - next middleware
-   * @return{undefined}
+   * @return{Function} next
    */
   static checkBodyContains(...params) {
     return (req, res, next) => {
@@ -53,7 +53,7 @@ class Validation {
    * @param{Object} req - api request
    * @param{Object} res - route response
    * @param{Function} next - next middleware
-   * @return{undefined}
+   * @return{Function} next
    */
   static confirmDate(req, res, next) {
     // checks if the date entered is valid and in the future
@@ -70,7 +70,7 @@ class Validation {
    * @param{Object} req - api request
    * @param{Object} res - route response
    * @param{Function} next - next middleware
-   * @return{undefined}
+   * @return{Function} next
    */
   static confirmFeeType(req, res, next) {
     // checks if the fee entered is a valid currency
@@ -87,7 +87,7 @@ class Validation {
    * @param{Object} req - api request
    * @param{Object} res - route response
    * @param{Function} next - next middleware
-   * @return{undefined}
+   * @return{Function} next
    */
   static rideOfferExists(req, res, next) {
     const driver = req.body.driverName;
