@@ -59,10 +59,10 @@ class Validation {
     // checks if the date entered is valid and in the future
     if (req.body.date && !validator.isAfter(req.body.date)) {
       return res.status(406).send({
-        message: 'Please enter a valid date in this format (YYYY-MM-DD)',
+        message: 'Please enter a valid future date in this format (YYYY-MM-DD)',
       });
     }
-    next();
+    return next();
   }
 
   /**
@@ -79,7 +79,7 @@ class Validation {
         message: 'Please enter a valid amount for the ride',
       });
     }
-    next();
+    return next();
   }
 
   /**
@@ -92,14 +92,15 @@ class Validation {
   static rideOfferExists(req, res, next) {
     const driver = req.body.driverName;
     const destinatn = req.body.destination;
-    const same = rideOffer.findIndex(oneRide => oneRide.driverName === driver &&
-      oneRide.destination === destinatn);
+    const same = rideOffer.findIndex((oneRide => oneRide.driverName === driver) &&
+      (oneRide => oneRide.destination === destinatn));
     if (same === -1) {
       next();
+    } else {
+      return res.status(406).send({
+        message: 'A Ride Offer with same detail is found!',
+      }); 
     }
-    return res.status(406).json({
-      message: 'A Ride Offer with same detail is found!',
-    });
   }
 }
 

@@ -33,10 +33,10 @@ router.post(
   '/rides',
   validateRequest.removeWhiteSpaces,
   validateRequest.checkBodyContains('title', 'driverName', 'destination', 'deparTerminal', 'date', 'fee'),
-  validateRequest.rideOfferExists,
   validateRequest.confirmDate,
   validateRequest.confirmFeeType,
-  rideOfferController.createRideOffer,
+  validateRequest.rideOfferExists,
+  rideOfferController.createRideOffer
 );
 
 // Get all ride offers
@@ -67,7 +67,7 @@ router.get('/rides/:rideId/requests/:requestId/status', requestRideController.ch
 
 // 404 route
 router.all('*', (req, res) => {
-  res.status(404).send({ message: 'That route does not exist!' });
+  res.status(404).json({ message: 'That route does not exist!' });
 });
 
 export default router;

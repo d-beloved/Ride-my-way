@@ -15,7 +15,7 @@ const rideOffer = [
     id: 2,
     title: 'Tour of the EPIC towers',
     driverName: 'EPIC motors',
-    destination: 'Lagos',
+    destination: 'lagos',
     deparTerminal: 'Alagbado, Lagos',
     date: '2018-06-25',
     fee: 3000
