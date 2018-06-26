@@ -45,32 +45,58 @@ the ride leaves, where it is headed e.t.c
 * Drivers can either accept or reject a ride request.
 
 ## Available APIs
-- API route that welcomes users to the application
-  * GET : ```/```
-
-- An API route that allow users to create ride offers
-  * POST : ```/api/v1/rides```
-
-- An API route that allow users to gets all available ride offers in the app
-  * GET : ```/api/v1/rides```
-
-- An API route that allow users to gets one ride offer in the app
-  * GET : ```/api/v1/rides/<rideId>```
-  
-- An API route that allow users to delete a ride offer
-  * DELETE : ```/api/v1/rides/<rideId>```
-
-- An API route that allow users to modify a ride offer
-  * PUT : ```/api/v1/rides/<rideId>```
-
-- An API route that allow users to make a request for a ride offer
-  * POST : ```/api/v1/rides/<rideId>/requests```
-
-- An API route that allow users to get all the requests made for a ride offer
-  * GET : ```/api/v1/rides/<rideId>/requests```
-
-- An API route that allow users to get the status of the requests made for a ride offer
-  * GET : ```/api/v1/rides/<rideId>/requests/<requestId>/status```
+<table>
+  <tr>
+      <th>HTTP REQUEST VERB</th>
+      <th>API ENDPOINT/PATH</th>
+      <th>ACTION</th>
+  </tr>
+  <tr>
+      <td>GET</td>
+      <td>/</td>
+      <td>Welcomes users to the application</td>
+  </tr>
+  <tr>
+      <td>POST</td>
+      <td>/api/v1/rides</td>
+      <td>Allows users to create ride offers</td>
+  </tr>
+  <tr>
+      <td>GET</td>
+      <td>/api/v1/rides</td>
+      <td>Gets all avalaible ride offers in the app</td>
+  </tr>
+  <tr>
+      <td>GET</td>
+      <td>/api/v1/rides/:rideId</td>
+      <td>Gets one ride offer in the app</td>
+  </tr>
+  <tr>
+      <td>DELETE</td>
+      <td>/api/v1/rides/:rideId</td>
+      <td>Deletes a ride offer</td>
+  </tr>
+  <tr>
+      <td>PUT</td>
+      <td>/api/v1/rides/:rideId</td>
+      <td>Modifies a ride offer</td>
+  </tr>
+  <tr>
+      <td>POST</td>
+      <td>/api/v1/rides/:rideId/requests</td>
+      <td>Makes a request for a ride offer</td>
+  </tr>
+  <tr>
+      <td>GET</td>
+      <td>/api/v1/rides/:rideId/requests</td>
+      <td>Get all request for a ride offer</td>
+  </tr>
+  <tr>
+      <td>GET</td>
+      <td>/api/v1/rides/:rideId/requests/:requestId/status</td>
+      <td>Get the status of a request made for a ride offer</td>
+  </tr>
+</table>
 
 
 ## License and Copyright
