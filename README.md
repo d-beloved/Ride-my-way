@@ -13,11 +13,26 @@ The endpoints are hosted on heroku [ here ](https://ayo-ride-my-way-v1.herokuapp
     * HTML for writing the webpage
     * CSS for styling
     * Javascript to add some behaviour
-  
+
   ### Server
-    * Node and express for the endpoints
+    * Nodejs for server-side logic
     * Babel for transpiling
-    * In-memory data for simulating the database without persistence
+    * Express for api routes implementation
+    * Heroku for hosting services
+
+  ### Continuous Integration
+    * Travis CI & Codeclimate for test automation
+    * Coveralls for test coverage report
+  
+  ### Test-Driven Development
+    * Mocha & Chai for api route testing
+
+## Installation.
+  * Install [Nodejs](https://nodejs.org/en/download/)
+  * Clone this repo ``` git clone https://github.com/d-beloved/WEconnect.git ```
+  * Run ```npm install``` to install the required dependencies
+  * Run ```npm test``` to fireup the tests
+  * Navigate to http://localhost:3110/api/v1/
 
 ## Features of the template
 * Users can create an account and log in.
@@ -29,4 +44,39 @@ the ride leaves, where it is headed e.t.c
 * Drivers can view the requests to the ride offer they created.
 * Drivers can either accept or reject a ride request.
 
-*Details of the Server endpoints coming up shortly*
+## Available APIs
+- API route that welcomes users to the application
+  * GET : ```/```
+
+- An API route that allow users to create ride offers
+  * POST : ```/api/v1/rides```
+
+- An API route that allow users to gets all available ride offers in the app
+  * GET : ```/api/v1/rides```
+
+- An API route that allow users to gets one ride offer in the app
+  * GET : ```/api/v1/rides/<rideId>```
+  
+- An API route that allow users to delete a ride offer
+  * DELETE : ```/api/v1/rides/<rideId>```
+
+- An API route that allow users to modify a ride offer
+  * PUT : ```/api/v1/rides/<rideId>```
+
+- An API route that allow users to make a request for a ride offer
+  * POST : ```/api/v1/rides/<rideId>/requests```
+
+- An API route that allow users to get all the requests made for a ride offer
+  * GET : ```/api/v1/rides/<rideId>/requests```
+
+- An API route that allow users to get the status of the requests made for a ride offer
+  * GET : ```/api/v1/rides/<rideId>/requests/<requestId>/status```
+
+
+## License and Copyright
+&copy; Ayodeji Moronkeji
+
+Licensed under the [MIT License](LICENSE).
+
+
+More details coming in soon...
