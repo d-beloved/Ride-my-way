@@ -18,13 +18,16 @@ class rideOfferController {
       title: req.body.title.toLowerCase(),
       driverName: req.body.driverName.toLowerCase(),
       destination: req.body.destination.toLowerCase(),
-      deparTerminal: req.body.deparTerminal.toLowerCase(),
+      depart: req.body.depart.toLowerCase(),
       date: req.body.date,
       fee: req.body.fee
     });
+    const offerId = rideOffer.length;
+    const offer = rideOffer.find(oneRide => oneRide.id === offerId);
     return res.status(201).json({
       message: 'Ride offer created successfully',
-      error: false
+      offer,
+      success: true
     });
   }
 
@@ -36,14 +39,14 @@ class rideOfferController {
    */
   static getAllRideOffer(req, res) {
     if (rideOffer.length < 1) {
-      return res.status(404).json({
+      return res.status(200).json({
         message: 'No ride Offer found!',
-        error: true
+        success: true
       });
     }
     return res.status(200).json({
       rideOffer,
-      error: false
+      success: true
     });
   }
 
@@ -60,12 +63,12 @@ class rideOfferController {
     if (offer === undefined) {
       return res.status(404).json({
         message: 'Ride Offer not found!',
-        error: true
+        success: false
       });
     }
     return res.status(200).json({
       offer,
-      error: false
+      success: true
     });
   }
 
@@ -82,13 +85,13 @@ class rideOfferController {
     if (offer === -1) {
       return res.status(404).json({
         message: 'Ride Offer not found or deleted already',
-        error: true
+        success: false
       });
     }
     rideOffer.splice(offer, 1);
     return res.status(200).json({
       message: 'Ride Offer deleted successfully',
-      error: false
+      success: true
     });
   }
 
@@ -105,19 +108,21 @@ class rideOfferController {
     if (offer === -1) {
       return res.status(404).json({
         message: 'Ride Offer not found!',
-        error: true
+        success: false
       });
     }
+    const offerEdited = rideOffer.find(oneRide => oneRide.id === offerId);
     // Edits the value of the found ride offer
     rideOffer[offer].title = req.body.title || rideOffer[offer].title;
     rideOffer[offer].driverName = req.body.driverName || rideOffer[offer].driverName;
     rideOffer[offer].destination = req.body.destination || rideOffer[offer].destination;
-    rideOffer[offer].deparTerminal = req.body.deparTerminal || rideOffer[offer].deparTerminal;
+    rideOffer[offer].depart = req.body.depart || rideOffer[offer].depart;
     rideOffer[offer].date = req.body.date || rideOffer[offer].date;
     rideOffer[offer].fee = req.body.fee || rideOffer[offer].fee;
     return res.status(200).json({
       message: 'Ride Offer updated successfully!',
-      error: false
+      offerEdited,
+      success: true
     });
   }
 }

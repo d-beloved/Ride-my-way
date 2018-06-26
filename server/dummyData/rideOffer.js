@@ -6,9 +6,9 @@ const rideOffer = [
     title: 'A trip to Zuma rock',
     driverName: 'GUO transport',
     destination: 'Abuja, Lagoon',
-    deparTerminal: 'Lagos',
+    depart: 'Lagos',
     date: '2018-07-21',
-    fee: 25000
+    fee: '25000'
   },
 
   {
@@ -16,9 +16,9 @@ const rideOffer = [
     title: 'Tour of the EPIC towers',
     driverName: 'EPIC motors',
     destination: 'lagos',
-    deparTerminal: 'Alagbado, Lagos',
+    depart: 'Alagbado, Lagos',
     date: '2018-06-25',
-    fee: 3000
+    fee: '3000'
   },
 
   {
@@ -26,9 +26,9 @@ const rideOffer = [
     title: 'A glide through the Forest savannah',
     driverName: 'David Khan',
     destination: 'Himalaya Mountain, India',
-    deparTerminal: 'Lagos, Nigeria',
+    depart: 'Lagos, Nigeria',
     date: '2018-10-21',
-    fee: 368910
+    fee: '368910'
   },
 ];
 
