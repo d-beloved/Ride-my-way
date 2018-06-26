@@ -25,7 +25,7 @@ class searchFilter {
       if (result.length === 0) {
         return res.status(404).json({
           message: 'There is no Ride offer with the specified destination',
-          error: true
+          success: false
         });
       }
       return res.status(200).json(result);

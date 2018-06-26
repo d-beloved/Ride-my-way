@@ -75,7 +75,7 @@ class Validation {
   static confirmFeeType(req, res, next) {
     // checks if the fee entered is a valid currency
     if (req.body.fee && !validator.isInt(req.body.fee, { allow_leading_zeroes: false })) {
-      return res.status(406).send({
+      return res.status(400).send({
         message: 'Please enter a valid amount for the ride',
       });
     }
@@ -97,8 +97,8 @@ class Validation {
     if (same === -1) {
       next();
     } else {
-      return res.status(406).send({
-        message: 'A Ride Offer with same detail is found!',
+      return res.status(409).send({
+        message: 'A Ride Offer with same driver Name and destination is found!',
       }); 
     }
   }
