@@ -57,6 +57,24 @@
   padding-bottom: 10px;
 }
 
+@media only screen and (min-width: 760px) {
+  .search {
+    margin: 50px auto;
+    position: relative;
+    width: 70%;
+    padding-bottom: 10px;
+  }
+}
+
+@media only screen and (min-width: 900px) {
+  .search {
+    margin: 50px auto;
+    position: relative;
+    width: 50%;
+    padding-bottom: 10px;
+  }
+}
+
 .searchTerm {
   position: absolute;
   top: 0;
