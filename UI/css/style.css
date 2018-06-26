@@ -36,7 +36,7 @@ a {
 
 .bg {
   background-attachment: fixed;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.32), rgba(0, 0, 0, 0.52)), url(../images/cabbie.jpg);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.32), rgba(0, 0, 0, 0.10)), url(../images/cabbie.jpg);
   background-position: center 0;
   background-size: cover;
   background-attachment: fixed;
@@ -256,7 +256,6 @@ textarea, select {
     border: none;
     border-bottom: 1px solid #D6D6D6;
     padding: 10px;
-    text-align: center;
     font-family: 'Ubuntu', sans-serif;
     letter-spacing: 2px;
 }
@@ -267,6 +266,7 @@ input[type=button] {
   color: #fff;
   display: inline-block;
   font-weight: 300;
+  margin-top: 5px;
   padding: 10px 30px;
   transition: background-color 0.2s, border 0.2s, color 0.2s;
 }
@@ -482,6 +482,10 @@ tr:nth-child(even) {
   background-color: #dddddd;
 }
 
+.view-pending-btn {
+  background-color: #363851;
+  text-align: center;
+}
 /** Media queries **/
 
 @media only screen and (max-width: 900px) {
@@ -545,10 +549,10 @@ tr:nth-child(even) {
     justify-content: space-between;
   }
 
-  .signup-form .submit-btn {
+  /* .signup-form .submit-btn {
     flex-direction: row;
     justify-content: flex-end;
-  }
+  } */
 
   .update-btn input[type=button]{
     margin-top: 0;
@@ -557,10 +561,6 @@ tr:nth-child(even) {
 
   .signup-form .create-btn {
     justify-content: center;
-  }
-
-  .form-control {
-    width: 70%;
   }
 
   .signup-form .form-info {

@@ -31,13 +31,7 @@
       <div class="wrapper">
         <section class="list">
           <div class="list-header">
-            <h3>My Activities</h3>
-            <label for="filter">Filter By:</label>
-            <select id="filter" name="filter">
-                      <option value='1'>All</option>
-                      <option value='2'>Given rides</option>
-                      <option value='3'>Taken rides</option>
-                  </select>
+            <h3>Pending requests</h3>
           </div>
           <div class="table-res">
             <table class="table">
@@ -48,7 +42,8 @@
                   <th>Driver</th>
                   <th>Destination</th>
                   <th>date</th>
-                  <th>Role</th>
+                  <th>Requester</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -58,7 +53,11 @@
                   <td>EPIC Transports</td>
                   <td>Crossriver state, Nigeria</td>
                   <td>27th July, 2017 </td>
-                  <td>Given Ride</td>
+                  <td>Psalm David</td>
+                  <td>
+                      <a href="#" class="btn-sm btn-edit">Accept</a>
+                      <a href="#" class="btn-sm btn-delete">Reject</a>
+                  </td>
                 </tr>
                 <tr>
                   <td>2</td>
@@ -66,13 +65,17 @@
                   <td>EPIC Transports</td>
                   <td>Lagos, Nigeria</td>
                   <td>27th Dec., 2017 </td>
-                  <td>Taken Ride</td>
+                  <td>Warner bros</td>
+                  <td>
+                      <a href="#" class="btn-sm btn-edit">Accept</a>
+                      <a href="#" class="btn-sm btn-delete">Reject</a>
+                  </td>
                 </tr>
               </tbody>
             </table>
           </div>
           <div class="view-pending-btn">
-            <p class="form-info">view the pending requests <a href="pending-requests.html">here</a></p>
+            <p class="form-info">view activities <a href="profile.html">here</a></p>
           </div>
         </section>
         <div class="pagination">
