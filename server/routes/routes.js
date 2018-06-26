@@ -20,7 +20,7 @@ router.get('/', (req, res) => {
       searchRideByDestination: 'GET /api/v1/rides?destination=<destination>',
       editRideOffer: 'PUT /api/v1/rides/:rideId',
       deleteRideOffer: 'DELETE /api/v1/rides/:rideId',
-      makeRequestForRide: 'POST /api/v1//rides/:rideId/requests',
+      makeRequestForRide: 'POST /api/v1/rides/:rideId/requests',
       getAllRequestsForRide: 'GET /api/v1/rides/:rideId/requests',
       checkRequestStatus: 'GET /api/v1/rides/:rideId/requests/:requestId/status'
     }
@@ -32,7 +32,7 @@ router.get('/', (req, res) => {
 router.post(
   '/rides',
   validateRequest.removeWhiteSpaces,
-  validateRequest.checkBodyContains('title', 'driverName', 'destination', 'deparTerminal', 'date', 'fee'),
+  validateRequest.checkBodyContains('title', 'driverName', 'destination', 'depart', 'date', 'fee'),
   validateRequest.confirmDate,
   validateRequest.confirmFeeType,
   validateRequest.rideOfferExists,
@@ -49,7 +49,7 @@ router.get('/rides/:rideId', rideOfferController.getOneRideOffer);
 router.delete('/rides/:rideId', rideOfferController.deleteRideOffer);
 
 // Edits a ride offer
-router.put('/rides/:rideId', rideOfferController.modifyRideOffer);
+router.put('/rides/:rideId', validateRequest.removeWhiteSpaces, rideOfferController.modifyRideOffer);
 
 // Requests for a ride offer
 router.post(

@@ -19,7 +19,7 @@ class requestRideController {
     if (offer === -1) {
       return res.status(404).json({
         message: 'Ride Offer not found!',
-        error: true
+        success: false
       });
     }
     request.push({
@@ -29,7 +29,7 @@ class requestRideController {
     });
     return res.status(201).json({
       message: 'Your request is registered, Pending for acceptance. Thanks a lot!',
-      error: false
+      success: true
     });
   }
 
@@ -46,12 +46,12 @@ class requestRideController {
     if (offer === -1) {
       return res.status(404).json({
         message: 'Ride Offer with the specified Id not found!',
-        error: true
+        success: false
       });
     }
     return res.status(200).json({
       request,
-      error: false
+      success: true
     });
   }
 
@@ -68,7 +68,7 @@ class requestRideController {
     if (offer === -1) {
       return res.status(404).json({
         message: 'The ride Offer is not found!',
-        error: true
+        success: false
       });
     }
     // checks for the specified request
@@ -77,12 +77,12 @@ class requestRideController {
     if (requestId === -1) {
       return res.status(404).json({
         message: 'The request is not found!',
-        error: true
+        success: false
       });
     }
     return res.status(200).json({
       message: `The status of your request for Offer '${rideOffer[offer].title}' is ${request[requestId].status}`,
-      error: false
+      success: true
     });
   }
 }
