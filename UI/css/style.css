@@ -51,7 +51,7 @@ a {
 }
 
 header {
-  background: rgba(255, 255, 255, 0.76);
+  background: #ffffffc2;
   display: block;
   width: 100%;
   text-align: center;
@@ -153,8 +153,8 @@ label {
 }
 
 .btn-landing {
-  border: 1px solid #fff;
-  color: white;
+  border: 1px solid #ffffffc2;
+  background: #ffffffc2;
 }
 
 .btn-sm {
