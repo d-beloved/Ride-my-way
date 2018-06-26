@@ -74,7 +74,7 @@ class Validation {
    */
   static confirmFeeType(req, res, next) {
     // checks if the fee entered is a valid currency
-    if (req.body.fee && !validator.isInt(req.body.fee, { allow_leading_zeroes: false })) {
+    if (!Number.isInteger(req.body.fee)) {
       return res.status(400).send({
         message: 'Please enter a valid amount for the ride',
       });
@@ -92,8 +92,8 @@ class Validation {
   static rideOfferExists(req, res, next) {
     const driver = req.body.driverName;
     const destinatn = req.body.destination;
-    const same = rideOffer.findIndex((oneRide => oneRide.driverName === driver) &&
-      (oneRide => oneRide.destination === destinatn));
+    const same = rideOffer.findIndex((oneRide => oneRide.driverName === driver &&
+    oneRide.destination === destinatn));
     if (same === -1) {
       next();
     } else {

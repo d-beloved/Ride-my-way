@@ -14,7 +14,7 @@ describe('The Ride Offer routes', () => {
           destination: 'Los Angeles',
           depart: 'MMA 2 terminal',
           date: '',
-          fee: '300000'
+          fee: 300000
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
@@ -32,7 +32,7 @@ describe('The Ride Offer routes', () => {
           destination: 'Abuja, Lagoon',
           depart: 'MMA 2 terminal',
           date: '2018-07-25',
-          fee: '300000'
+          fee: 300000
         })
         .end((err, res) => {
           expect(res.status).to.equal(409);
@@ -50,7 +50,7 @@ describe('The Ride Offer routes', () => {
           destination: 'Los Angeles',
           depart: 'MMA 2 terminal',
           date: '2018-06-20',
-          fee: '300000'
+          fee: 300000
         })
         .end((err, res) => {
           expect(res.status).to.equal(406);
@@ -68,7 +68,7 @@ describe('The Ride Offer routes', () => {
           destination: 'Los Angeles',
           depart: 'MMA 2 terminal',
           date: '2018-07-25',
-          fee: '300,000'
+          fee: '300000'
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
@@ -86,7 +86,7 @@ describe('The Ride Offer routes', () => {
           destination: 'Los Angeles',
           depart: 'MMA 2 terminal',
           date: '2018-07-25',
-          fee: '300000'
+          fee: 300000
         })
         .end((err, res) => {
           expect(res.status).to.equal(201);
