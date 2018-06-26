@@ -53,7 +53,7 @@ the ride leaves, where it is headed e.t.c
   </tr>
   <tr>
       <td>GET</td>
-      <td>/</td>
+      <td>/api/v1/</td>
       <td>Welcomes users to the application</td>
   </tr>
   <tr>
