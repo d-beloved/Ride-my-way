@@ -31,12 +31,12 @@ a {
 
 .content {
   flex: 1 0 auto;
-  font-size: 1.6rem;
+  font-size: 1.0rem;
 }
 
 .bg {
   background-attachment: fixed;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.32), rgba(0, 0, 0, 0.52)), url(../images/cabbieadj.jpg);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.32), rgba(0, 0, 0, 0.10)), url(../images/cabbie.jpg);
   background-position: center 0;
   background-size: cover;
   background-attachment: fixed;
@@ -51,7 +51,7 @@ a {
 }
 
 header {
-  background: rgba(255, 255, 255, 0.76);
+  background: #ffffffc2;
   display: block;
   width: 100%;
   text-align: center;
@@ -91,6 +91,33 @@ nav.nav-bar ul li {
   position: relative;
 }
 
+.list {
+  margin: 3em;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+h3 {
+  text-transform: uppercase;
+  color: #363851;
+  border-bottom: 1px solid #d8bfd8;
+  margin: 5px;
+  padding: 15px 0;
+  font-size: 20px;
+  text-align: center;
+}
+
+label {
+  display: inline-block;
+  font-weight: 200;
+  letter-spacing: 1px;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 15px;
+}
+
+.filter {
+  font-size: 10px;
+}
+
 .landing {
   font-size: initial;
   text-align: center;
@@ -126,8 +153,31 @@ nav.nav-bar ul li {
 }
 
 .btn-landing {
-  border: 1px solid #fff;
+  border: 1px solid #ffffffc2;
+  background: #ffffffc2;
+}
+
+.btn-sm {
+  border: 1px solid #111;
+  border-radius: 3px;
+  padding: 0.1rem 0.75rem;
+  color: #363851;
+  font-size: 11px;
+}
+
+.btn-primary {
+  background: #363851;
   color: white;
+}
+
+.btn-edit {
+  background: #f6ff6c;
+  color: #111;
+}
+
+.btn-delete {
+  color: white;
+  background: #ff4f4f;
 }
 
 .container {
@@ -140,6 +190,11 @@ nav.nav-bar ul li {
 
 .row {
   margin: 0 auto;
+}
+
+.col-1 .col-1-2 {
+  width: 100%;
+  padding-top: 15px;
 }
 
 nav .row {
@@ -172,7 +227,7 @@ nav .row {
 .main-nav li a:link,
 .main-nav li a:visited {
   border-bottom: 2px solid transparent;
-  color: #fff;
+  color: black;
   padding: 8px 0;
   text-decoration: none;
   text-transform: uppercase;
@@ -192,12 +247,26 @@ nav .row {
   display: block;
 }
 
+input[type="text"],
+input[type="password"],
+input[type="email"],
+textarea, select {
+    font-size: 15px;
+    margin: 10px 0;
+    border: none;
+    border-bottom: 1px solid #D6D6D6;
+    padding: 10px;
+    font-family: 'Ubuntu', sans-serif;
+    letter-spacing: 2px;
+}
+
 .btn,
 input[type=submit],
 input[type=button] {
   color: #fff;
   display: inline-block;
   font-weight: 300;
+  margin-top: 5px;
   padding: 10px 30px;
   transition: background-color 0.2s, border 0.2s, color 0.2s;
 }
@@ -226,6 +295,7 @@ input[type=button]:active {
 footer {
   background: #363851;
   width: 100%;
+  bottom: 0;
 }
 
 footer p {
@@ -313,6 +383,109 @@ footer a {
   color: white;
 }
 
+/* ********************* */
+/*      Pagination       */
+/* ********************* */
+.pagination {
+  text-align: center;
+  margin-bottom: 5.0rem; 
+  margin-top: 5.0rem; 
+}
+
+.pagination a {
+  color: white;
+  padding: 8px 12px;
+  text-decoration: none;
+  transition: background-color .3s;
+}
+
+.pagination a.active {
+  background-color: #363851;
+  color: white;
+}
+
+.pagination a:hover:not(.active) {
+  background-color: #ddd;
+  color: #555;
+}
+
+/**/
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.card {
+  background: #fff;
+  padding: 10px;
+  /* border-top: 3px solid #CB3438; */
+  border: 1px solid rgb(160, 160, 160);
+  box-shadow: 0 2px 6px 0 hsla(0,0%,0%,0.2);
+  border-radius: 5px;
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.card_content
+{
+  /**/
+  padding-top: 15px;
+}
+.card_content a button
+{
+  border: 2px solid rgb(99, 125, 193);
+  /**/
+  background-color: rgb(99, 125, 193);
+  color: #ffffff;
+}
+.card_content a button:hover
+{
+  border: 2px solid #4CAF50;
+  /**/
+  background-color: #4CAF50;
+  color: #ffffff;
+}
+.card_content a button.danger:hover
+{
+  border: 2px solid #CB3438;
+  /**/
+  background-color: #CB3438;
+  color: #ffffff;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+h3 {
+  padding-top: 40px;
+}
+
+table {
+  font-size: 1.2rem;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+.view-pending-btn {
+  background-color: #363851;
+  text-align: center;
+}
 /** Media queries **/
 
 @media only screen and (max-width: 900px) {
@@ -321,6 +494,9 @@ footer a {
   }
   .wrapper {
     width: 90%;
+  }
+  .table-res {
+    overflow-x: auto;
   }
 }
 
@@ -373,10 +549,10 @@ footer a {
     justify-content: space-between;
   }
 
-  .signup-form .submit-btn {
+  /* .signup-form .submit-btn {
     flex-direction: row;
     justify-content: flex-end;
-  }
+  } */
 
   .update-btn input[type=button]{
     margin-top: 0;
@@ -387,14 +563,34 @@ footer a {
     justify-content: center;
   }
 
-  .form-control {
-    width: 70%;
-  }
-
   .signup-form .form-info {
     margin-left: 1.6rem;
   }
   footer p {
     font-size: 14px;
+  }
+  .col {
+    float: left;
+    padding: 10px;
+  }
+  .col-1 {
+    width: 100%;
+  }
+  .col-1 .col-1-2 {  
+    width: calc((100% / 2) - 5%);
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .card_image
+  {
+    position: relative;
+    float: left;
+    width:  100%;
+    height: 200px;
+    background-position: 50% 50%;
+    background-repeat:   no-repeat;
+    background-size:     cover;
+    overflow: hidden;
   }
 }
