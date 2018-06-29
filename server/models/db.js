@@ -1,14 +1,14 @@
 /* eslint-disable import/no-mutable-exports */
-import { Pool } from 'pg';
 import dotenv from 'dotenv';
+import { Pool } from 'pg';
 import config from '../config/config';
+
+dotenv.config();
 
 const env = process.env.NODE_ENV || 'development';
 const envVariables = config[env];
 
 const connectionString = process.env.DATABASE_URL;
-
-dotenv.config();
 
 let db;
 if (process.env.NODE_ENV === 'production') {
