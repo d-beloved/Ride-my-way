@@ -6,7 +6,6 @@
   "scripts": {
     "start": "babel-node app.js",
     "start:dev": "nodemon --watch server --exec babel-node app.js",
-    "lint": "eslint ./ || true",
     "test": "nyc mocha server/tests/routes/*.test.js --exit --compilers js:babel-register && nyc report",
     "test2": "mocha server/tests/routes/*.test.js --exit --compilers js:babel-register",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
