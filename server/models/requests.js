@@ -1,16 +1,5 @@
-import { Pool } from 'pg';
-
-const request = new Pool({
-  username: 'D_BELOVED',
-  password: null,
-  database: 'ride-my-way-dev',
-  host: '127.0.0.1',
-  port: 5432,
-});
-
-const queryString = `
+const requestModel = `
   DROP TABLE IF EXISTS Requests;
-
   DROP TYPE IF EXISTS status_allowed;
   CREATE TYPE status_allowed AS ENUM (
     'accepted',
@@ -27,6 +16,6 @@ const queryString = `
   );
 `;
 
-request.query(queryString)
-  .then(res => res)
-  .catch(e => e.message);
+const requestDb = `${requestModel}`;
+
+export default requestDb;
