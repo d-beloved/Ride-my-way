@@ -1,6 +1,8 @@
-import db from '../dummyData';
+import { Pool } from 'pg';
+import { connectionString } from '../config/config';
 
-const { rideOffer } = db;
+const clientPool = new Pool(connectionString);
+
 
 /**
  * @description - creates the Ride offer components and performs CRUD functions on it
@@ -13,22 +15,41 @@ class rideOfferController {
    * @return{json} registered ride offer details
    */
   static createRideOffer(req, res) {
-    rideOffer.push({
-      id: rideOffer.length + 1,
-      title: req.body.title.toLowerCase(),
-      driverName: req.body.driverName.toLowerCase(),
-      destination: req.body.destination.toLowerCase(),
-      depart: req.body.depart.toLowerCase(),
-      date: req.body.date,
-      fee: req.body.fee
-    });
-    const offerId = rideOffer.length;
-    const offer = rideOffer.find(oneRide => oneRide.id === offerId);
-    return res.status(201).json({
-      message: 'Ride offer created successfully',
-      offer,
-      success: true
-    });
+    const createRide = `INSERT INTO Ride_offers (userId, message, destination, 
+                        depart, time, date, seats)
+                        VALUES ($1, $2, $3, $4, $5, $6, $7)
+                        RETURNING *`;
+    clientPool.connect()
+      .then((client) => {
+        client.query({
+          text: createRide,
+          values: [req.userData, req.body.message, req.body.destination, req.body.depart,
+            req.body.time, req.body.date, req.body.cost, req.body.seats
+          ]
+        })
+          .then((createdRide) => {
+            client.release();
+            res.status(201).json({
+              message: 'Your ride offer is created successfully',
+              data: {
+                rideId: createdRide.rows[0].rideId,
+                message: createdRide.rows[0].message,
+                destination: createdRide.rows[0].destination,
+                departureLocation: createdRide.rows[0].depart,
+                time: createdRide.rows[0].time,
+                date: createdRide.rows[0].date,
+                seats: createdRide.rows[0].seats,
+                userId: createdRide.rows[0].userId,
+              },
+            });
+          })
+          .catch((err) => {
+            client.release();
+            res.status(400).send({
+              message: err.errors ? err.errors[0].message : err.message
+            });
+          });
+      });
   }
 
   /**

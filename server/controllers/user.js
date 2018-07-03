@@ -40,13 +40,16 @@ class userController {
             values: [req.body.username, req.body.email, hashPassword]
           })
             .then((createdUser) => {
+              const {
+                userid
+              } = createdUser.rows[0];
               // create the token after all the inputs are certified ok
-              const authToken = createToken.token(createdUser.rows[0], secretKey);
+              const authToken = createToken.token({ userid }, secretKey);
               client.release();
               res.status(201).json({
                 message: 'User created successfully',
                 data: {
-                  userId: createdUser.rows[0].id,
+                  userId: createdUser.rows[0].userid,
                   username: createdUser.rows[0].username,
                   email: createdUser.rows[0].email,
                   token: authToken,
@@ -83,17 +86,22 @@ class userController {
             client.release();
             if (user.rows[0]) { // If the user exists
               // check if the password is correct
-              const signedInUser = user.rows[0].id;
+              const signedInUser = user.rows[0].username;
               bcrypt.compare(req.body.password, user.rows[0].password).then((check) => {
                 if (!check) { // If the password does not match
                   res.status(401).send({ message: 'wrong password!' });
                 } else {
                   // creates a token that lasts for 24 hours
-                  const authToken = createToken.token(user.rows[0], secretKey);
+                  const {
+                    userid
+                  } = user.rows[0];
+                  const authToken = createToken.token({ userid }, secretKey);
                   res.status(200).send({ message: 'You are logged in!', authToken, signedInUser });
                 }
               })
-                .catch(error => res.status(500).json(error));
+                .catch(err => res.status(400).json({
+                  message: err.errors ? err.errors[0].message : err.message
+                }));
             } else {
               res.status(404).json({
                 message: 'User not registered or wrong email',

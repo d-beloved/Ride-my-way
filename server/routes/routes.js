@@ -1,4 +1,5 @@
 import express from 'express';
+import auth from '../helpers/auth';
 import validateRequest from '../helpers/validation';
 import userController from '../controllers/user';
 import rideOfferController from '../controllers/rideOffer';
@@ -49,12 +50,13 @@ router.post(
 
 // Create a ride offer
 router.post(
-  '/rides',
+  '/users/rides',
+  // auth.authenticate,
   validateRequest.removeWhiteSpaces,
-  validateRequest.checkBodyContains('title', 'driverName', 'destination', 'depart', 'date', 'fee'),
-  validateRequest.confirmDate,
-  validateRequest.confirmFeeType,
-  validateRequest.rideOfferExists,
+  validateRequest.checkBodyContains('message', 'destination', 'depart', 'time', 'date', 'cost', 'seats'),
+  // validateRequest.confirmDate,
+  // validateRequest.confirmFeeType,
+  // validateRequest.rideOfferExists,
   rideOfferController.createRideOffer
 );
 
