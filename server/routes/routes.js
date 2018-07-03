@@ -1,5 +1,6 @@
 import express from 'express';
 import validateRequest from '../helpers/validation';
+import userController from '../controllers/user';
 import rideOfferController from '../controllers/rideOffer';
 import requestRideController from '../controllers/requests';
 import searchFilter from '../helpers/searchFilter';
@@ -27,6 +28,24 @@ router.get('/', (req, res) => {
   };
   res.status(200).json(rootMessage);
 });
+
+
+// signs up a user
+router.post(
+  '/auth/signup',
+  validateRequest.removeWhiteSpaces,
+  validateRequest.checkBodyContains('username', 'email', 'password'),
+  userController.createUser
+);
+
+// logs in a user
+router.post(
+  '/auth/login',
+  validateRequest.removeWhiteSpaces,
+  validateRequest.checkBodyContains('email', 'password'),
+  userController.loginUser
+);
+
 
 // Create a ride offer
 router.post(

@@ -1,25 +1,14 @@
-/* eslint-disable import/no-mutable-exports */
-import dotenv from 'dotenv';
-import { Pool } from 'pg';
-import config from '../config/config';
+import { Client } from 'pg';
+import { connectionString } from '../config/config';
+import userDb from './users';
+import rideDb from './rideOffers';
+import requestDb from './requests';
 
-dotenv.config();
-
-const env = process.env.NODE_ENV || 'development';
-const envVariables = config[env];
-
-const connectionString = process.env.DATABASE_URL;
-
-let db;
-if (process.env.NODE_ENV === 'production') {
-  db = new Pool({ connectionString });
-} else {
-  db = new Pool({
-    database: envVariables.database,
-    user: envVariables.username,
-    password: envVariables.password,
-    envVariables,
-  });
-}
-
-export default db;
+const makeQuery = (query) => {
+  const client = new Client(connectionString);
+  client.connect();
+  client.query(query)
+    .then(() => client.end())
+    .catch(() => client.end());
+};
+makeQuery(`${userDb}${rideDb}${requestDb}`);
