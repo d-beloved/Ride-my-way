@@ -30,6 +30,7 @@ class userController {
     } else {
       // Hash password to save in the database
       const hashPassword = bcrypt.hashSync(req.body.password, 10);
+      const email = req.body.email.trim().toLowerCase();
       const createUser = `INSERT INTO Users (username, email, password)
                             VALUES ($1, $2, $3)
                             RETURNING username, email, userId`;
@@ -37,7 +38,7 @@ class userController {
         .then((client) => {
           client.query({
             text: createUser,
-            values: [req.body.username, req.body.email, hashPassword]
+            values: [req.body.username, email, hashPassword]
           })
             .then((createdUser) => {
               const {
