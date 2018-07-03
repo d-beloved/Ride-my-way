@@ -60,31 +60,31 @@ router.post(
   rideOfferController.createRideOffer
 );
 
-// // Get all ride offers
-// router.get('/rides', searchFilter.byDestination, rideOfferController.getAllRideOffer);
+// Get all ride offers
+router.get('/rides', searchFilter.byDestination, rideOfferController.getAllRideOffer);
 
-// // Get one ride offer
-// router.get('/rides/:rideId', rideOfferController.getOneRideOffer);
+// Get one ride offer
+router.get('/rides/:rideId', rideOfferController.getOneRideOffer);
 
-// // Deletes a ride offer
-// router.delete('/rides/:rideId', rideOfferController.deleteRideOffer);
+// Deletes a ride offer
+router.delete('/rides/:rideId', rideOfferController.deleteRideOffer);
 
-// // Edits a ride offer
-// router.put('/rides/:rideId', validateRequest.removeWhiteSpaces, rideOfferController.modifyRideOffer);
+// Edits a ride offer
+router.put('/rides/:rideId', validateRequest.removeWhiteSpaces, rideOfferController.modifyRideOffer);
 
-// // Requests for a ride offer
-// router.post(
-//   '/rides/:rideId/requests',
-//   validateRequest.removeWhiteSpaces,
-//   validateRequest.checkBodyContains('requester'),
-//   requestRideController.makeRequestForRide
-// );
+// Requests for a ride offer
+router.post(
+  '/rides/:rideId/requests',
+  validateRequest.removeWhiteSpaces,
+  validateRequest.checkBodyContains('requester'),
+  requestRideController.makeRequestForRide
+);
 
-// // Get all the requests for a ride offer
-// router.get('/rides/:rideId/requests', requestRideController.getAllRequestsForRide);
+// Get all the requests for a ride offer
+router.get('/rides/:rideId/requests', requestRideController.getAllRequestsForRide);
 
-// // Gets the status of a requests for a ride offer
-// router.get('/rides/:rideId/requests/:requestId/status', requestRideController.checkRequestStatus);
+// Gets the status of a requests for a ride offer
+router.get('/rides/:rideId/requests/:requestId/status', requestRideController.checkRequestStatus);
 
 // 404 route
 router.all('*', (req, res) => {

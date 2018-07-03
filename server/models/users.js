@@ -1,6 +1,6 @@
 const userModel = `
   DROP TABLE IF EXISTS Users CASCADE;
-  CREATE TABLE Users1234 (
+  CREATE TABLE Users (
       userId serial PRIMARY KEY,
       username VARCHAR(255) UNIQUE NOT NULL,
       email VARCHAR(255) UNIQUE NOT NULL,
