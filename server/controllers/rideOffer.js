@@ -59,16 +59,30 @@ class rideOfferController {
    * @return{json} registered ride offer details
    */
   static getAllRideOffer(req, res) {
-    if (rideOffer.length < 1) {
-      return res.status(200).json({
-        message: 'No ride Offer found!',
-        success: true
+    const getAll = 'SELECT * from Ride_offers';
+    clientPool.connect()
+      .then((client) => {
+        client.query({
+          text: getAll
+        })
+          .then((result) => {
+            client.release();
+            if (result.rows.length === 0) {
+              return res.status(200).json({
+                message: 'We don\'t have any ride offers yet, check back later please',
+              });
+            }
+            return res.status(200).json({
+              data: result.rows
+            });
+          })
+          .catch((err) => {
+            client.release();
+            res.status(500).json({
+              message: err.errors ? err.errors[0].message : err.message
+            });
+          });
       });
-    }
-    return res.status(200).json({
-      rideOffer,
-      success: true
-    });
   }
 
   /**
