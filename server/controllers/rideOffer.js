@@ -92,19 +92,27 @@ class rideOfferController {
    * @return{json} registered ride offer details
    */
   static getOneRideOffer(req, res) {
-    const offerId = parseInt(req.params.rideId, 10);
-    // finds the element with the parsed id
-    const offer = rideOffer.find(oneRide => oneRide.id === offerId);
-    if (offer === undefined) {
-      return res.status(404).json({
-        message: 'Ride Offer not found!',
-        success: false
+    const rideOfferId = parseInt(req.params.rideId, 10);
+    const getOne = `select *  from Ride_offers 
+                    where rideId=$1`;
+    clientPool.connect()
+      .then((client) => {
+        client.query({
+          text: getOne,
+          values: [rideOfferId]
+        })
+          .then((result) => {
+            client.release();
+            if (!result.rows[0]) {
+              return res.status(404).json({
+                message: 'Ride Offer not found!'
+              });
+            }
+            return res.status(200).json({
+              data: result.rows[0]
+            });
+          });
       });
-    }
-    return res.status(200).json({
-      offer,
-      success: true
-    });
   }
 
   /**
