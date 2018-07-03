@@ -51,9 +51,9 @@ router.post(
 // Create a ride offer
 router.post(
   '/users/rides',
-  // auth.authenticate,
+  auth.authenticate,
   validateRequest.removeWhiteSpaces,
-  validateRequest.checkBodyContains('message', 'destination', 'depart', 'time', 'date', 'cost', 'seats'),
+  validateRequest.checkBodyContains('message', 'destination', 'depart', 'time', 'date', 'seats'),
   // validateRequest.confirmDate,
   // validateRequest.confirmFeeType,
   // validateRequest.rideOfferExists,

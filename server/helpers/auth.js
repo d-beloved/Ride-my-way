@@ -15,12 +15,12 @@ export default {
       res.status(401).send({ message: 'token is required!' });
     } else {
       // checks if token matches the one provided at login
-      const rightToken = token.split(' ')[0]; // Splits the token to reveal the user
+      const rightToken = token.split(' ')[1]; // Splits the token to reveal the user
       jwt.verify(rightToken, process.env.JWT_SECRET, (err, decoded) => {
         if (err) {
           res.status(401).send({ message: 'Authentication failed! Token is Invalid or expired. Please Login again' });
         } else {
-          req.userData = decoded;
+          req.userData = decoded.userid;
           next();
         }
       });

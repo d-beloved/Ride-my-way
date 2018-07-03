@@ -24,7 +24,7 @@ class rideOfferController {
         client.query({
           text: createRide,
           values: [req.userData, req.body.message, req.body.destination, req.body.depart,
-            req.body.time, req.body.date, req.body.cost, req.body.seats
+            req.body.time, req.body.date, req.body.seats
           ]
         })
           .then((createdRide) => {
