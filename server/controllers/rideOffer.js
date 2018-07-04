@@ -111,6 +111,12 @@ class rideOfferController {
             return res.status(200).json({
               data: result.rows[0]
             });
+          })
+          .catch((err) => {
+            client.release();
+            res.status(500).json({
+              message: err.errors ? err.errors[0].message : err.message
+            });
           });
       });
   }

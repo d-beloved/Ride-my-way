@@ -1,6 +1,7 @@
-import db from '../dummyData';
+import { Pool } from 'pg';
+import { connectionString } from '../config/config';
 
-const { request, rideOffer } = db;
+const clientPool = new Pool(connectionString);
 
 /**
  * @description - creates the request to join a Ride offer components
@@ -13,24 +14,49 @@ class requestRideController {
    * @return{json} message and status code
    */
   static makeRequestForRide(req, res) {
-    const offerId = parseInt(req.params.rideId, 10);
-    // finds the element with the parsed id
-    const offer = rideOffer.findIndex(oneRide => oneRide.id === offerId);
-    if (offer === -1) {
-      return res.status(404).json({
-        message: 'Ride Offer not found!',
-        success: false
+    const getOne = `select *  from Ride_offers 
+                    where rideid=$1`;
+    const requestRide = `INSERT INTO Requests (userId, rideId,
+                          status)
+                          VALUES ($1, $2, $3)`;
+    clientPool.connect()
+      .then((client1) => {
+        client1.query({
+          text: getOne,
+          values: [parseInt(req.params.rideId, 10)]
+        })
+          .then((foundRide) => {
+            client1.release();
+            if (!foundRide.rows[0]) {
+              return res.status(404).json({
+                message: 'The ride Offer is not found!',
+              });
+            }
+            clientPool.connect()
+              .then((client) => {
+                client.query({
+                  text: requestRide,
+                  values: [req.userData, parseInt(req.params.rideId, 10), 'pending']
+                })
+                  .then(() => {
+                    client.release();
+                    return res.status(201).json({
+                      message: 'Your request for this ride is registered, Pending for acceptance. Thanks a lot!'
+                    });
+                  })
+                  .catch((err) => {
+                    res.status(400).json({
+                      message: err.errors ? err.errors[0].message : err.message
+                    });
+                  });
+              });
+          })
+          .catch((err) => {
+            res.status(400).json({
+              message: err.errors ? err.errors[0].message : err.message
+            });
+          });
       });
-    }
-    request.push({
-      id: request.length + 1,
-      requester: req.body.requester,
-      status: 'pending'
-    });
-    return res.status(201).json({
-      message: 'Your request is registered, Pending for acceptance. Thanks a lot!',
-      success: true
-    });
   }
 
   /**
