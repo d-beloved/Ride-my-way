@@ -75,8 +75,8 @@ router.put('/rides/:rideId', validateRequest.removeWhiteSpaces, rideOfferControl
 // Requests for a ride offer
 router.post(
   '/rides/:rideId/requests',
+  auth.authenticate,
   validateRequest.removeWhiteSpaces,
-  validateRequest.checkBodyContains('requester'),
   requestRideController.makeRequestForRide
 );
 
