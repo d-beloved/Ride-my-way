@@ -61,7 +61,7 @@ router.post(
 );
 
 // Get all ride offers
-router.get('/rides', searchFilter.byDestination, rideOfferController.getAllRideOffer);
+router.get('/rides', rideOfferController.getAllRideOffer);
 
 // Get one ride offer
 router.get('/rides/:rideId', rideOfferController.getOneRideOffer);
