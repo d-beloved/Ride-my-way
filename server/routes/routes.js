@@ -83,6 +83,9 @@ router.post(
 // Get all the requests for a ride offer
 router.get('/users/rides/:rideId/requests', auth.authenticate, requestRideController.getAllRequestsForRide);
 
+// Accepts or rejects a ride offer
+router.put('/users/rides/:rideId/requests/:requestId', auth.authenticate, requestRideController.updateRequestStatus);
+
 // Gets the status of a requests for a ride offer
 router.get('/rides/:rideId/requests/:requestId/status', requestRideController.checkRequestStatus);
 
