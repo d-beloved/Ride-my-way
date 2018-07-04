@@ -79,7 +79,7 @@ class requestRideController {
           .then((isOwner) => {
             client.release();
             if (!isOwner.rows[0]) {
-              return res.status(404).json({
+              return res.status(403).json({
                 message: 'You are not allowed to view the requests for this ride'
               });
             }
@@ -115,6 +115,61 @@ class requestRideController {
           });
       });
   }
+
+  /**
+   * @description - Update the status of requests for a ride offer
+   * @param{Object} req - api request
+   * @param{Object} res - route response
+   * @return{json} New status assigned for ride offer
+   */
+  static updateRequestStatus(req, res) {
+    const offerId = parseInt(req.params.rideId, 10);
+    const reqId = parseInt(req.params.requestId, 10);
+    const checkOwner = `SELECT * FROM Ride_offers
+                        WHERE userId=$1 AND rideId=$2`;
+    const updateRequests = `UPDATE requests 
+                            SET status=$1
+                            WHERE requestId=$2`;
+    clientPool.connect()
+      .then((client) => {
+        client.query({
+          text: checkOwner,
+          values: [req.userData, offerId]
+        })
+          .then((isOwner) => {
+            client.release();
+            if (!isOwner.rows[0]) {
+              return res.status(403).json({
+                message: 'The ride and/or request does not exist or you are not allowed to update the status of this request'
+              });
+            }
+            clientPool.connect()
+              .then((client1) => {
+                client1.query({
+                  text: updateRequests,
+                  values: [req.body.status, reqId]
+                })
+                  .then(() => {
+                    client1.release();
+                    return res.status(202).json({
+                      message: 'The status of the request has been updated successfully'
+                    });
+                  })
+                  .catch((err) => {
+                    res.status(406).json({
+                      message: err.errors ? err.errors[0].message : err.message
+                    });
+                  });
+              });
+          })
+          .catch((err) => {
+            res.status(400).json({
+              message: err.errors ? err.errors[0].message : err.message
+            });
+          });
+      });
+  }
+
 
   /**
    * @description - Get the status of requests for a ride offer

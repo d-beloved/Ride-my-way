@@ -8,7 +8,6 @@ const rideModel = `
       depart VARCHAR(255) NOT NULL,
       time TIME NOT NULL,
       date DATE NOT NULL,
-      seats SMALLINT NOT NULL,
       createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
   );
 `;
