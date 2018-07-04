@@ -64,7 +64,7 @@ router.post(
 router.get('/rides', rideOfferController.getAllRideOffer);
 
 // Get one ride offer
-router.get('/rides/:rideId', rideOfferController.getOneRideOffer);
+router.get('/rides/:rideId', auth.authenticate, rideOfferController.getOneRideOffer);
 
 // Deletes a ride offer
 router.delete('/rides/:rideId', rideOfferController.deleteRideOffer);
