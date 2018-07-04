@@ -67,18 +67,53 @@ class requestRideController {
    */
   static getAllRequestsForRide(req, res) {
     const offerId = parseInt(req.params.rideId, 10);
-    // finds the element with the parsed id
-    const offer = rideOffer.findIndex(oneRide => oneRide.id === offerId);
-    if (offer === -1) {
-      return res.status(404).json({
-        message: 'Ride Offer with the specified Id not found!',
-        success: false
+    const checkOwner = `SELECT * FROM Ride_offers
+                        WHERE userId=$1 AND rideId=$2`;
+    const checkRequests = 'SELECT *  FROM requests WHERE rideId=$1';
+    clientPool.connect()
+      .then((client) => {
+        client.query({
+          text: checkOwner,
+          values: [req.userData, offerId]
+        })
+          .then((isOwner) => {
+            client.release();
+            if (!isOwner.rows[0]) {
+              return res.status(404).json({
+                message: 'You are not allowed to view the requests for this ride'
+              });
+            }
+            clientPool.connect()
+              .then((client1) => {
+                client1.query({
+                  text: checkRequests,
+                  values: [offerId]
+                })
+                  .then((foundRequests) => {
+                    client1.release();
+                    if (foundRequests.rows.length === 0) {
+                      return res.status(200).json({
+                        message: 'No one has requested for your ride offer yet, check back later'
+                      });
+                    }
+                    return res.status(200).json({
+                      message: 'Your ride has been requested by:',
+                      data: foundRequests.rows
+                    });
+                  })
+                  .catch((err) => {
+                    res.status(400).json({
+                      message: err.errors ? err.errors[0].message : err.message
+                    });
+                  });
+              });
+          })
+          .catch((err) => {
+            res.status(400).json({
+              message: err.errors ? err.errors[0].message : err.message
+            });
+          });
       });
-    }
-    return res.status(200).json({
-      request,
-      success: true
-    });
   }
 
   /**
