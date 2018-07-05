@@ -4,7 +4,9 @@ import validateRequest from '../helpers/validation';
 import userController from '../controllers/user';
 import rideOfferController from '../controllers/rideOffer';
 import requestRideController from '../controllers/requests';
-import searchFilter from '../helpers/searchFilter';
+import ifUserExist from '../helpers/isUserExists';
+import ifRideOfferExists from '../helpers/isRideExists';
+import idValidator from '../helpers/isIdValid';
 
 // using router routes
 const router = express.Router();
@@ -16,15 +18,14 @@ router.get('/', (req, res) => {
   const rootMessage = {
     message: 'Welcome to Ride-My-Way app! Your one stop place to get rides to your desired destination at reasonable prices',
     endpoints: {
-      createRideOffer: 'POST /api/v1/rides',
+      signup: 'POST /api/v1/auth/signup',
+      login: 'POST /api/v1/auth/login',
       getAllRideOffer: 'GET /api/v1/rides',
       getOneRideOffer: 'GET /api/v1/rides/:rideId',
-      searchRideByDestination: 'GET /api/v1/rides?destination=<destination>',
-      editRideOffer: 'PUT /api/v1/rides/:rideId',
-      deleteRideOffer: 'DELETE /api/v1/rides/:rideId',
       makeRequestForRide: 'POST /api/v1/rides/:rideId/requests',
-      getAllRequestsForRide: 'GET /api/v1/rides/:rideId/requests',
-      checkRequestStatus: 'GET /api/v1/rides/:rideId/requests/:requestId/status'
+      createRideOffer: 'POST /api/v1/users/rides',
+      getAllRequestsForRide: 'GET /api/v1/GET /users/rides/:rideId/requests',
+      acceptRejectRequests: 'PUT /api/v1//users/rides/:rideId/requests/:requestId'
     }
   };
   res.status(200).json(rootMessage);
@@ -34,8 +35,11 @@ router.get('/', (req, res) => {
 // signs up a user
 router.post(
   '/auth/signup',
-  validateRequest.removeWhiteSpaces,
+  validateRequest.trimsRequestBody,
   validateRequest.checkBodyContains('username', 'email', 'password'),
+  validateRequest.isString,
+  validateRequest.confirmEmail,
+  ifUserExist,
   userController.createUser
 );
 
@@ -44,6 +48,8 @@ router.post(
   '/auth/login',
   validateRequest.removeWhiteSpaces,
   validateRequest.checkBodyContains('email', 'password'),
+  validateRequest.isString,
+  validateRequest.confirmEmail,
   userController.loginUser
 );
 
@@ -53,10 +59,9 @@ router.post(
   '/users/rides',
   auth.authenticate,
   validateRequest.removeWhiteSpaces,
-  validateRequest.checkBodyContains('message', 'destination', 'depart', 'time', 'date', 'seats'),
-  // validateRequest.confirmDate,
-  // validateRequest.confirmFeeType,
-  // validateRequest.rideOfferExists,
+  validateRequest.checkBodyContains('message', 'destination', 'depart', 'date'),
+  validateRequest.isString,
+  ifRideOfferExists,
   rideOfferController.createRideOffer
 );
 
@@ -64,30 +69,37 @@ router.post(
 router.get('/rides', rideOfferController.getAllRideOffer);
 
 // Get one ride offer
-router.get('/rides/:rideId', auth.authenticate, rideOfferController.getOneRideOffer);
-
-// Deletes a ride offer
-router.delete('/rides/:rideId', rideOfferController.deleteRideOffer);
-
-// Edits a ride offer
-router.put('/rides/:rideId', validateRequest.removeWhiteSpaces, rideOfferController.modifyRideOffer);
+router.get(
+  '/rides/:rideId',
+  idValidator,
+  auth.authenticate,
+  rideOfferController.getOneRideOffer
+);
 
 // Requests for a ride offer
 router.post(
   '/rides/:rideId/requests',
+  idValidator,
   auth.authenticate,
-  validateRequest.removeWhiteSpaces,
   requestRideController.makeRequestForRide
 );
 
 // Get all the requests for a ride offer
-router.get('/users/rides/:rideId/requests', auth.authenticate, requestRideController.getAllRequestsForRide);
+router.get(
+  '/users/rides/:rideId/requests',
+  idValidator,
+  auth.authenticate,
+  requestRideController.getAllRequestsForRide
+);
 
 // Accepts or rejects a ride offer
-router.put('/users/rides/:rideId/requests/:requestId', auth.authenticate, requestRideController.updateRequestStatus);
-
-// Gets the status of a requests for a ride offer
-router.get('/rides/:rideId/requests/:requestId/status', requestRideController.checkRequestStatus);
+router.put(
+  '/users/rides/:rideId/requests/:requestId',
+  idValidator,
+  auth.authenticate,
+  validateRequest.checkBodyContains('status'),
+  requestRideController.updateRequestStatus
+);
 
 // 404 route
 router.all('*', (req, res) => {

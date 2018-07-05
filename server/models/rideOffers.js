@@ -6,7 +6,6 @@ const rideModel = `
       message TEXT NOT NULL,
       destination VARCHAR(255) NOT NULL,
       depart VARCHAR(255) NOT NULL,
-      time TIME NOT NULL,
       date DATE NOT NULL,
       createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
   );

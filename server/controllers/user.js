@@ -1,4 +1,5 @@
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 import { Pool } from 'pg';
 import createToken from '../helpers/createToken';
 import { connectionString } from '../config/config';
@@ -77,6 +78,21 @@ class userController {
     const email = req.body.email.trim().toLowerCase();
     const findOneUser = `SELECT * FROM Users
                           WHERE email = $1`;
+    // checks if a token was passed into the request header
+    if (req.headers.authorization) {
+      try {
+        const token = req.headers.authorization.split(' ')[1];
+        const decoded = jwt.verify(token, secretKey);
+        req.userData = decoded.userid;
+        if (req.userData !== null) {
+          return res.status(200).json({ message: 'You are already logged in' });
+        }
+      } catch (error) {
+        return res.status(401)
+          .json({ message: 'Token is invalid or has expired, Please re-login' });
+      }
+    }
+
     clientPool.connect()
       .then((client) => {
         client.query({

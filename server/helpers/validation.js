@@ -1,8 +1,3 @@
-import validator from 'validator';
-import db from '../dummyData';
-
-const { rideOffer } = db;
-
 /**
  * @description - This validates all the entries into the app
  */
@@ -14,7 +9,7 @@ class Validation {
    * @param{Function} next - next middleware
    * @return{Function} next
    */
-  static removeWhiteSpaces(req, res, next) {
+  static trimsRequestBody(req, res, next) {
     // trim body values
     if (req.body) {
       Object.keys(req.body).forEach((k) => {
@@ -25,6 +20,27 @@ class Validation {
       });
     }
     next();
+  }
+
+  /**
+   * @description Checks if value is a string
+   * @param{Object} req - api request
+   * @param{Object} res - route response
+   * @param{Function} next - next middleware
+   * @return{Function} next
+   */
+  static isString(...params) {
+    return (req, res, next) => {
+      /* eslint-disable no-restricted-syntax */
+      for (const p of params) {
+        if (typeof req.body[p] !== 'string') {
+          return res.status(400).send({
+            message: `field ${p} should be a string, Re-enter the value please`
+          });
+        }
+      }
+      next();
+    };
   }
 
   /**
@@ -49,58 +65,20 @@ class Validation {
   }
 
   /**
-   * @description Confirms entered date
+   * @description Confirms that the email is valid
    * @param{Object} req - api request
    * @param{Object} res - route response
    * @param{Function} next - next middleware
    * @return{Function} next
    */
-  static confirmDate(req, res, next) {
-    // checks if the date entered is valid and in the future
-    if (req.body.date && !validator.isAfter(req.body.date)) {
+  static confirmEmail(req, res, next) {
+    // checks if the email entered is valid
+    if (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(req.body.email) === false) {
       return res.status(406).send({
-        message: 'Please enter a valid future date in this format (YYYY-MM-DD)',
+        message: 'Please enter a valid email',
       });
     }
     return next();
-  }
-
-  /**
-   * @description Checks if fee is an integer
-   * @param{Object} req - api request
-   * @param{Object} res - route response
-   * @param{Function} next - next middleware
-   * @return{Function} next
-   */
-  static confirmFeeType(req, res, next) {
-    // checks if the fee entered is a valid currency
-    if (!Number.isInteger(req.body.fee)) {
-      return res.status(400).send({
-        message: 'Please enter a valid amount for the ride',
-      });
-    }
-    return next();
-  }
-
-  /**
-   * @description Checks if a ride offer exists already before creation
-   * @param{Object} req - api request
-   * @param{Object} res - route response
-   * @param{Function} next - next middleware
-   * @return{Function} next
-   */
-  static rideOfferExists(req, res, next) {
-    const driver = req.body.driverName;
-    const destinatn = req.body.destination;
-    const same = rideOffer.findIndex((oneRide => oneRide.driverName === driver &&
-    oneRide.destination === destinatn));
-    if (same === -1) {
-      next();
-    } else {
-      return res.status(409).send({
-        message: 'A Ride Offer with same driver Name and destination is found!',
-      }); 
-    }
   }
 }
 

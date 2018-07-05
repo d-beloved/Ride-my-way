@@ -125,6 +125,7 @@ class requestRideController {
   static updateRequestStatus(req, res) {
     const offerId = parseInt(req.params.rideId, 10);
     const reqId = parseInt(req.params.requestId, 10);
+    const newStatus = req.body.status.toLowerCase();
     const checkOwner = `SELECT * FROM Ride_offers
                         WHERE userId=$1 AND rideId=$2`;
     const updateRequests = `UPDATE requests 
@@ -147,10 +148,15 @@ class requestRideController {
               .then((client1) => {
                 client1.query({
                   text: updateRequests,
-                  values: [req.body.status, reqId]
+                  values: [newStatus, reqId]
                 })
                   .then(() => {
                     client1.release();
+                    if (newStatus !== 'accepted' || newStatus !== 'rejected') {
+                      return res.status(406).json({
+                        message: 'You are entering a wrong value, it\'s either accepted or rejected (as a string)'
+                      });
+                    }
                     return res.status(202).json({
                       message: 'The status of the request has been updated successfully'
                     });
@@ -168,38 +174,6 @@ class requestRideController {
             });
           });
       });
-  }
-
-
-  /**
-   * @description - Get the status of requests for a ride offer
-   * @param{Object} req - api request
-   * @param{Object} res - route response
-   * @return{json} registered requests status for ride offer details
-   */
-  static checkRequestStatus(req, res) {
-    // checks the specified ride offer
-    const offerId = parseInt(req.params.rideId, 10);
-    const offer = rideOffer.findIndex(oneRide => oneRide.id === offerId);
-    if (offer === -1) {
-      return res.status(404).json({
-        message: 'The ride Offer is not found!',
-        success: false
-      });
-    }
-    // checks for the specified request
-    const reqId = parseInt(req.params.requestId, 10);
-    const requestId = request.findIndex(oneReq => oneReq.id === reqId);
-    if (requestId === -1) {
-      return res.status(404).json({
-        message: 'The request is not found!',
-        success: false
-      });
-    }
-    return res.status(200).json({
-      message: `The status of your request for Offer '${rideOffer[offer].title}' is ${request[requestId].status}`,
-      success: true
-    });
   }
 }
 
