@@ -2,13 +2,16 @@
   "name": "ride-my-way",
   "version": "1.0.0",
   "description": "A carpooling application that provides drivers with the ability to create ride offers and passengers to join available ride offers",
-  "main": "app.js",
+  "main": "./server/app.js",
   "scripts": {
-    "start": "npm run prod-migrate && babel-node app.js",
-    "start:dev": "nodemon --watch server --exec babel-node app.js",
+    "postinstall": "npm run build:prod",
+    "start": "node dist/app.js",
+    "clean:dist": "rimraf ./dist",
+    "build:prod": "npm run clean:dist && npm run prod-migrate && babel ./server --out-dir dist",
+    "start:dev": "nodemon --watch server --exec babel-node ./server/app.js",
     "test": "nyc mocha server/tests/routes/*.test.js --exit --compilers js:babel-register && nyc report",
     "test2": "mocha server/tests/routes/*.test.js --exit --compilers js:babel-register",
-    "prod-migrate": "npm run db-migrate",
+    "prod-migrate": "npm run db-migrate --env production",
     "pretest": "set NODE_ENV=test&& npm run db-migrate",
     "db-migrate": "babel-node ./server/models/db.js",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
@@ -42,7 +45,8 @@
     "jsonwebtoken": "^8.3.0",
     "jwt-decode": "^2.2.0",
     "morgan": "^1.9.0",
-    "pg": "^7.4.3"
+    "pg": "^7.4.3",
+    "rimraf": "^2.6.2"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

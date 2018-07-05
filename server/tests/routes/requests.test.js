@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import request from 'supertest';
-import server from '../../../app';
+import server from '../../app';
 
 describe('The request for ride routes', () => {
   describe('Request for a ride offer', () => {

@@ -1,6 +1,6 @@
 import request from 'supertest';
 import { expect } from 'chai';
-import server from '../../../app';
+import server from '../../app';
 
 describe('GET: / Tests for index or unregistered routes', () => {
   it('should return status code 404 when user visit an unregistered route', (done) => {
