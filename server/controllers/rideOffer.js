@@ -44,10 +44,11 @@ class rideOfferController {
             });
           })
           .catch((err) => {
-            client.release();
-            res.status(400).send({
-              message: err.errors ? err.errors[0].message : err.message
-            });
+            if (err) {
+              res.status(400).send({
+                message: 'You are creating a duplicate ride offer',
+              });
+            }
           });
       });
   }
@@ -78,9 +79,11 @@ class rideOfferController {
           })
           .catch((err) => {
             client.release();
-            res.status(500).json({
-              message: err.errors ? err.errors[0].message : err.message
-            });
+            if (err) {
+              res.status(500).json({
+                message: 'You are not sending the right request',
+              });
+            }
           });
       });
   }
@@ -114,9 +117,11 @@ class rideOfferController {
           })
           .catch((err) => {
             client.release();
-            res.status(500).json({
-              message: err.errors ? err.errors[0].message : err.message
-            });
+            if (err) {
+              res.status(500).json({
+                message: ''
+              });
+            }
           });
       });
   }

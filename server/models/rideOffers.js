@@ -8,6 +8,7 @@ const rideModel = `
       depart VARCHAR(255) NOT NULL,
       date DATE NOT NULL,
       createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+      UNIQUE(destination,date,userId)
   );
 `;
 

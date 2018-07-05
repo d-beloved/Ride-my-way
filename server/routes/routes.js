@@ -60,8 +60,7 @@ router.post(
   auth.authenticate,
   validateRequest.trimsRequestBody,
   validateRequest.checkBodyContains('message', 'destination', 'depart', 'date'),
-  validateRequest.isString,
-  ifRideOfferExists,
+  // validateRequest.isString,
   rideOfferController.createRideOffer
 );
 
