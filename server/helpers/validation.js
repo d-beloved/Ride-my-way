@@ -23,27 +23,6 @@ class Validation {
   }
 
   /**
-   * @description Checks if value is a string
-   * @param{Object} req - api request
-   * @param{Object} res - route response
-   * @param{Function} next - next middleware
-   * @return{Function} next
-   */
-  static isString(...params) {
-    return (req, res, next) => {
-      /* eslint-disable no-restricted-syntax */
-      for (const p of params) {
-        if (typeof req.body[p] !== 'string') {
-          return res.status(400).send({
-            message: `field ${p} should be a string, Re-enter the value please`
-          });
-        }
-      }
-      next();
-    };
-  }
-
-  /**
    * @description Checks if request body contains required keys
    * @param{Object} req - api request
    * @param{Object} res - route response
@@ -57,6 +36,27 @@ class Validation {
         if (req.body[p] === undefined || req.body[p] === '') {
           return res.status(400).send({
             message: `${p} cannot be missing in the body!`
+          });
+        }
+      }
+      next();
+    };
+  }
+
+  /**
+   * @description Checks if value is a string
+   * @param{Object} req - api request
+   * @param{Object} res - route response
+   * @param{Function} next - next middleware
+   * @return{Function} next
+   */
+  static isString(...params) {
+    return (req, res, next) => {
+      /* eslint-disable no-restricted-syntax */
+      for (const p of params) {
+        if (typeof req.body[p] !== 'string') {
+          return res.status(400).send({
+            message: `field ${p} should be a string, Re-enter the value please`
           });
         }
       }

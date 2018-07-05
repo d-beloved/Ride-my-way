@@ -37,9 +37,9 @@ router.post(
   '/auth/signup',
   validateRequest.trimsRequestBody,
   validateRequest.checkBodyContains('username', 'email', 'password'),
-  validateRequest.isString,
+  // validateRequest.isString,
   validateRequest.confirmEmail,
-  ifUserExist,
+  // ifUserExist,
   userController.createUser
 );
 
@@ -48,7 +48,7 @@ router.post(
   '/auth/login',
   validateRequest.trimsRequestBody,
   validateRequest.checkBodyContains('email', 'password'),
-  validateRequest.isString,
+  // validateRequest.isString,
   validateRequest.confirmEmail,
   userController.loginUser
 );

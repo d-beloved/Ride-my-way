@@ -25,47 +25,46 @@ class userController {
       req.body.password === null ||
       req.body.password.length < 6
     ) {
-      res.status(400).send({
+      return res.status(400).send({
         message: 'The password is too short! - make sure it is at least 6 characters long',
       });
-    } else {
-      // Hash password to save in the database
-      const hashPassword = bcrypt.hashSync(req.body.password, 10);
-      const email = req.body.email.trim().toLowerCase();
-      const createUser = `INSERT INTO Users (username, email, password)
+    }
+    // Hash password to save in the database
+    const hashPassword = bcrypt.hashSync(req.body.password, 10);
+    const email = req.body.email.trim().toLowerCase();
+    const createUser = `INSERT INTO Users (username, email, password)
                             VALUES ($1, $2, $3)
                             RETURNING username, email, userId`;
-      clientPool.connect()
-        .then((client) => {
-          client.query({
-            text: createUser,
-            values: [req.body.username, email, hashPassword]
-          })
-            .then((createdUser) => {
-              const {
-                userid
-              } = createdUser.rows[0];
+    clientPool.connect()
+      .then((client) => {
+        client.query({
+          text: createUser,
+          values: [req.body.username, email, hashPassword]
+        })
+          .then((createdUser) => {
+            const {
+              userid
+            } = createdUser.rows[0];
               // create the token after all the inputs are certified ok
-              const authToken = createToken.token({ userid }, secretKey);
-              client.release();
-              res.status(201).json({
-                message: 'User created successfully',
-                data: {
-                  userId: createdUser.rows[0].userid,
-                  username: createdUser.rows[0].username,
-                  email: createdUser.rows[0].email,
-                  token: authToken,
-                },
-              });
-            })
-            .catch((err) => {
-              client.release();
-              res.status(400).send({
-                message: err.errors ? err.errors[0].message : err.message
-              });
+            const authToken = createToken.token({ userid }, secretKey);
+            client.release();
+            res.status(201).json({
+              message: 'User created successfully',
+              data: {
+                userId: createdUser.rows[0].userid,
+                username: createdUser.rows[0].username,
+                email: createdUser.rows[0].email,
+                token: authToken,
+              },
             });
-        });
-    }
+          })
+          .catch((err) => {
+            client.release();
+            res.status(400).send({
+              message: err.errors ? err.errors[0].message : err.message
+            });
+          });
+      });
   }
 
   /**
