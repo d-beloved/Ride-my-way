@@ -4,7 +4,7 @@
   "description": "A carpooling application that provides drivers with the ability to create ride offers and passengers to join available ride offers",
   "main": "app.js",
   "scripts": {
-    "start": "set NODE_ENV=production&& npm run prod-migrate && babel-node app.js",
+    "start": "set NODE_ENV=production && babel-node app.js",
     "start:dev": "nodemon --watch server --exec babel-node app.js",
     "test": "nyc mocha server/tests/routes/*.test.js --exit --compilers js:babel-register && nyc report",
     "test2": "mocha server/tests/routes/*.test.js --exit --compilers js:babel-register",
