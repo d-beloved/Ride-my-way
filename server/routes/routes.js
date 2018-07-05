@@ -46,7 +46,7 @@ router.post(
 // logs in a user
 router.post(
   '/auth/login',
-  validateRequest.removeWhiteSpaces,
+  validateRequest.trimsRequestBody,
   validateRequest.checkBodyContains('email', 'password'),
   validateRequest.isString,
   validateRequest.confirmEmail,
@@ -58,7 +58,7 @@ router.post(
 router.post(
   '/users/rides',
   auth.authenticate,
-  validateRequest.removeWhiteSpaces,
+  validateRequest.trimsRequestBody,
   validateRequest.checkBodyContains('message', 'destination', 'depart', 'date'),
   validateRequest.isString,
   ifRideOfferExists,
