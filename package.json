@@ -4,11 +4,12 @@
   "description": "A carpooling application that provides drivers with the ability to create ride offers and passengers to join available ride offers",
   "main": "app.js",
   "scripts": {
-    "start": "babel-node app.js",
+    "start": "set NODE_ENV=production&& npm run prod-migrate && babel-node app.js",
     "start:dev": "nodemon --watch server --exec babel-node app.js",
     "test": "nyc mocha server/tests/routes/*.test.js --exit --compilers js:babel-register && nyc report",
     "test2": "mocha server/tests/routes/*.test.js --exit --compilers js:babel-register",
-    "pretest": "cross-env NODE_ENV=test npm run db-migrate",
+    "prod-migrate": "npm run db-migrate --env production",
+    "pretest": "set NODE_ENV=test&& npm run db-migrate",
     "db-migrate": "babel-node ./server/models/db.js",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "report-coverage": "cat ./coverage/lcov.info | coveralls",
@@ -32,14 +33,12 @@
   "dependencies": {
     "bcrypt": "^2.0.1",
     "body-parser": "^1.18.3",
-    "cross-env": "^5.2.0",
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
     "jsonwebtoken": "^8.3.0",
     "jwt-decode": "^2.2.0",
     "morgan": "^1.9.0",
-    "pg": "^7.4.3",
-    "validator": "^10.3.0"
+    "pg": "^7.4.3"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
