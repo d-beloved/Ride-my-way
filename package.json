@@ -26,6 +26,10 @@
   ],
   "author": "D-beloved",
   "license": "MIT",
+  "engines": {
+    "node": "8.9.1",
+    "npm": "6.0.0"
+  },
   "bugs": {
     "url": "https://github.com/d-beloved/Ride-my-way/issues"
   },
