@@ -54,11 +54,13 @@ class Validation {
     return (req, res, next) => {
       /* eslint-disable no-restricted-syntax */
       for (const p of params) {
-        if (typeof req.body[p] !== 'string') {
-          return res.status(400).send({
-            message: `field ${p} should be a string, Re-enter the value please`
-          });
-        }
+        Object.keys(req.body[p]).forEach((k) => {
+          const value = req.body[k];
+          // trim value if body exist
+          if (typeof value !== 'string') {
+            req.body[k] = req.body[k].trim();
+          }
+        });
       }
       next();
     };

@@ -25,7 +25,7 @@ class userController {
       req.body.password === null ||
       req.body.password.length < 6
     ) {
-      return res.status(400).send({
+      return res.status(406).send({
         message: 'The password is too short! - make sure it is at least 6 characters long',
         success: false
       });
@@ -35,7 +35,7 @@ class userController {
       req.body.phoneno.length < 11
     ) {
       return res.status(400).send({
-        message: 'The phoneno is too short! - make sure it is at least 11 characters long',
+        message: 'The phoneno is too short! - make sure it is at least 10 characters long',
         success: false
       });
     }
@@ -75,7 +75,7 @@ class userController {
               res.status(400).send({
                 message: 'Check your input and try again pls, you might be entering a wrong input or this user already exists',
                 success: false
-              })
+              });
             }
           });
       });
@@ -137,7 +137,8 @@ class userController {
                 .catch((err) => {
                   if (err) {
                     res.status(400).send({ message: 'An error occured', success: false });
-                  }});
+                  }
+                });
             } else {
               res.status(404).json({
                 message: 'User not registered or wrong email',

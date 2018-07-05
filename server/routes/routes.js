@@ -36,7 +36,6 @@ router.post(
   '/auth/signup',
   validateRequest.trimsRequestBody,
   validateRequest.checkBodyContains('firstname', 'lastname', 'phoneno', 'username', 'email', 'password'),
-  // validateRequest.isString,
   validateRequest.confirmEmail,
   userController.createUser
 );
@@ -46,7 +45,6 @@ router.post(
   '/auth/login',
   validateRequest.trimsRequestBody,
   validateRequest.checkBodyContains('email', 'password'),
-  // validateRequest.isString,
   validateRequest.confirmEmail,
   userController.loginUser
 );
@@ -58,7 +56,6 @@ router.post(
   auth.authenticate,
   validateRequest.trimsRequestBody,
   validateRequest.checkBodyContains('message', 'destination', 'depart', 'date'),
-  // validateRequest.isString,
   rideOfferController.createRideOffer
 );
 
@@ -100,7 +97,7 @@ router.put(
 
 // 404 route
 router.all('*', (req, res) => {
-  res.status(404).json({
+  const errorMessage = {
     message: 'You are hitting a wrong route, find the valid routes below',
     endpoints: {
       signup: 'POST /api/v1/auth/signup',
@@ -113,7 +110,9 @@ router.all('*', (req, res) => {
       acceptRejectRequests: 'PUT /api/v1//users/rides/:rideId/requests/:requestId'
     },
     success: false
-  });
+  };
+  res.status(404).json(errorMessage);
 });
 
 export default router;
+
