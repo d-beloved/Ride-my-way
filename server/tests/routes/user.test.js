@@ -120,11 +120,11 @@ describe('The User route', () => {
       request(server)
         .post('/api/v1/auth/signup')
         .send({
-          firstname: 'Morayo',
+          firstname: 'Morayode',
           lastname: 'Daniel',
-          username: 'Godisgood',
           phoneno: 7053495259,
-          email: 'morayji@gmail.com',
+          username: 'Godisgoodl',
+          email: 'morayoji@gmail.com',
           password: '1234556'
         })
         .end((err, res) => {
@@ -191,21 +191,6 @@ describe('The User route', () => {
           expect(res.status).to.equal(200);
           expect(res.body).to.be.an('object');
           expect(res.body.message).to.equal('You are logged in!');
-          done();
-        });
-    });
-    it('Should return 401 if token is invalid', (done) => {
-      request(server)
-        .post('/api/v1/auth/login')
-        .send({
-          Authorization: nonsenseToken,
-          email: 'morayji@gmail.com',
-          password: '1234556'
-        })
-        .end((err, res) => {
-          expect(res.status).to.equal(401);
-          expect(res.body).to.be.an('object');
-          expect(res.body.message).to.equal('Token is invalid or has expired, Please re-login');
           done();
         });
     });
