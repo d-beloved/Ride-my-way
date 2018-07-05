@@ -4,8 +4,6 @@ import validateRequest from '../helpers/validation';
 import userController from '../controllers/user';
 import rideOfferController from '../controllers/rideOffer';
 import requestRideController from '../controllers/requests';
-import ifUserExist from '../helpers/isUserExists';
-import ifRideOfferExists from '../helpers/isRideExists';
 import idValidator from '../helpers/isIdValid';
 
 // using router routes
@@ -17,16 +15,7 @@ const router = express.Router();
 router.get('/', (req, res) => {
   const rootMessage = {
     message: 'Welcome to Ride-My-Way app! Your one stop place to get rides to your desired destination at reasonable prices',
-    endpoints: {
-      signup: 'POST /api/v1/auth/signup',
-      login: 'POST /api/v1/auth/login',
-      getAllRideOffer: 'GET /api/v1/rides',
-      getOneRideOffer: 'GET /api/v1/rides/:rideId',
-      makeRequestForRide: 'POST /api/v1/rides/:rideId/requests',
-      createRideOffer: 'POST /api/v1/users/rides',
-      getAllRequestsForRide: 'GET /api/v1/GET /users/rides/:rideId/requests',
-      acceptRejectRequests: 'PUT /api/v1//users/rides/:rideId/requests/:requestId'
-    }
+    success: true
   };
   res.status(200).json(rootMessage);
 });
@@ -36,10 +25,9 @@ router.get('/', (req, res) => {
 router.post(
   '/auth/signup',
   validateRequest.trimsRequestBody,
-  validateRequest.checkBodyContains('username', 'email', 'password'),
+  validateRequest.checkBodyContains('firstname', 'lastname', 'phoneno', 'username', 'email', 'password'),
   // validateRequest.isString,
   validateRequest.confirmEmail,
-  // ifUserExist,
   userController.createUser
 );
 
@@ -102,7 +90,20 @@ router.put(
 
 // 404 route
 router.all('*', (req, res) => {
-  res.status(404).json({ message: 'That route does not exist!' });
+  res.status(404).json({
+    message: 'You are hitting a wrong route, find the valid routes below',
+    endpoints: {
+      signup: 'POST /api/v1/auth/signup',
+      login: 'POST /api/v1/auth/login',
+      getAllRideOffer: 'GET /api/v1/rides',
+      getOneRideOffer: 'GET /api/v1/rides/:rideId',
+      makeRequestForRide: 'POST /api/v1/rides/:rideId/requests',
+      createRideOffer: 'POST /api/v1/users/rides',
+      getAllRequestsForRide: 'GET /api/v1/GET /users/rides/:rideId/requests',
+      acceptRejectRequests: 'PUT /api/v1//users/rides/:rideId/requests/:requestId'
+    },
+    success: true
+  });
 });
 
 export default router;

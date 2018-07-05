@@ -4,28 +4,28 @@ import { connectionString } from '../config/config';
 
 const hashedPassword = bcrypt.hashSync('ispassword', 10);
 
-const seedUserData = {
-  text: 'INSERT INTO users (firstname, lastname, email, password, role) VALUES($1, $2,$3,$4,$5)',
-  values: ['Sinmi', 'John', 'sinmiloluwasunday@yahoo.com', hashedPassword, 'admin']
+const seedUserData1 = {
+  text: 'INSERT INTO Users (username, email, password) VALUES($1,$2,$3)',
+  values: ['David', 'morayodeji@gmail.com', hashedPassword]
 };
-const seedRequestData1 = `INSERT INTO requests (title, description, category, image, status, dated, userId) VALUES
-('Damaged Chair', 'we have a fault', 'electrical', '', 'approved', '2018-12-13', 1);`;
-const seedRequestData2 = `INSERT INTO requests (title, description, category, image, status, dated, userId) VALUES
-('Faulty AC', 'we have a fault', 'electrical', '', 'approved', '2018-12-13', 1);`;
-const seedRequestData3 = `INSERT INTO requests (title, description, category, image, status, dated, userId) VALUES
-('Machine Fault', 'we have a fault', 'electrical', '', 'disapproved', '2018-12-13', 1);`;
-const seedRequestData4 = `INSERT INTO requests (title, description, category, image, status, dated, userId) VALUES
-('Electronic Fault', 'we have a fault', 'electrical', '', 'disapproved', '2018-12-13', 1);`;
-const seedRequestData5 = `INSERT INTO requests (title, description, category, image, status, dated, userId) VALUES
-('Damaged door', 'we have a fault', 'electrical', '', 'resolved', '2018-12-13', 1);`;
-const seedRequestData6 = `INSERT INTO requests (title, description, category, image, status, dated, userId) VALUES
-('Broken Window', 'we have a fault', 'electrical', '', 'resolved', '2018-12-13', 1);`;
+const seedUserData2 = {
+  text: 'INSERT INTO Users (username, email, password) VALUES($1,$2,$3)',
+  values: ['Deji', 'davewritchie@gmail.com', hashedPassword]
+};
+const seedRideOffer1 = `INSERT INTO Ride_offer (userId, message, destination, depart, date) VALUES
+(1, 'Let us excape to the Bahamas', 'Bahamas', 'Lagos', '2018-07-27');`;
+const seedRideOffer2 = `INSERT INTO Ride_offer (userId, message, destination, depart, date) VALUES
+(2, 'Abuja is Hot, Lagos is hotter', 'Lagos', 'Abuja', '2018-09-02');`;
+const seedRequest1 = `INSERT INTO Requests (userId, rideId, status) VALUES
+(1, 2, pending);`;
+const seedRequest2 = `INSERT INTO Requests (userId, rideId, status) VALUES
+(2, 1, pending);`;
 
-const query = `${seedRequestData1}${seedRequestData2}${seedRequestData3}${seedRequestData4}${seedRequestData5}${seedRequestData6}`;
+const query = `${seedUserData1}${seedUserData2}${seedRideOffer1}${seedRideOffer2}${seedRequest1}${seedRequest2}`;
 
 const client = new Client(connectionString);
 client.connect();
-client.query(seedUserData)
+client.query(seedUserData1)
   .then(() => {
     client.end();
     const client1 = new Client(connectionString);
