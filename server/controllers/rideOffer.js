@@ -41,12 +41,14 @@ class rideOfferController {
                 seats: createdRide.rows[0].seats,
                 userId: createdRide.rows[0].userId,
               },
+              success: true
             });
           })
           .catch((err) => {
             if (err) {
               res.status(400).send({
                 message: 'You are creating a duplicate ride offer',
+                success: false
               });
             }
           });
@@ -71,10 +73,12 @@ class rideOfferController {
             if (result.rows.length === 0) {
               return res.status(200).json({
                 message: 'We don\'t have any ride offers yet, check back later please',
+                success: true
               });
             }
             return res.status(200).json({
-              data: result.rows
+              data: result.rows,
+              success: true
             });
           })
           .catch((err) => {
@@ -82,6 +86,7 @@ class rideOfferController {
             if (err) {
               res.status(500).json({
                 message: 'You are not sending the right request',
+                success: false
               });
             }
           });
@@ -108,18 +113,21 @@ class rideOfferController {
             client.release();
             if (!result.rows[0]) {
               return res.status(404).json({
-                message: 'Ride Offer not found!'
+                message: 'Ride Offer not found!',
+                success: false
               });
             }
             return res.status(200).json({
-              data: result.rows[0]
+              data: result.rows[0],
+              success: true
             });
           })
           .catch((err) => {
             client.release();
             if (err) {
               res.status(500).json({
-                message: ''
+                message: '',
+                success: false
               });
             }
           });

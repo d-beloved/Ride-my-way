@@ -30,6 +30,7 @@ class requestRideController {
             if (!foundRide.rows[0]) {
               return res.status(404).json({
                 message: 'The ride Offer is not found!',
+                success: false
               });
             }
             clientPool.connect()
@@ -41,19 +42,22 @@ class requestRideController {
                   .then(() => {
                     client.release();
                     return res.status(201).json({
-                      message: 'Your request for this ride is registered, Pending for acceptance. Thanks a lot!'
+                      message: 'Your request for this ride is registered, Pending for acceptance. Thanks a lot!',
+                      success: true
                     });
                   })
                   .catch((err) => {
                     res.status(400).json({
-                      message: err.errors ? err.errors[0].message : err.message
+                      message: err.errors ? err.errors[0].message : err.message,
+                      success: false
                     });
                   });
               });
           })
           .catch((err) => {
             res.status(400).json({
-              message: err.errors ? err.errors[0].message : err.message
+              message: err.errors ? err.errors[0].message : err.message,
+              success: false
             });
           });
       });
@@ -80,7 +84,8 @@ class requestRideController {
             client.release();
             if (!isOwner.rows[0]) {
               return res.status(403).json({
-                message: 'You are not allowed to view the requests for this ride'
+                message: 'You are not allowed to view the requests for this ride',
+                success: false
               });
             }
             clientPool.connect()
@@ -93,24 +98,28 @@ class requestRideController {
                     client1.release();
                     if (foundRequests.rows.length === 0) {
                       return res.status(200).json({
-                        message: 'No one has requested for your ride offer yet, check back later'
+                        message: 'No one has requested for your ride offer yet, check back later',
+                        success: true
                       });
                     }
                     return res.status(200).json({
                       message: 'Your ride has been requested by:',
-                      data: foundRequests.rows
+                      data: foundRequests.rows,
+                      success: true
                     });
                   })
                   .catch((err) => {
                     res.status(400).json({
-                      message: err.errors ? err.errors[0].message : err.message
+                      message: err.errors ? err.errors[0].message : err.message,
+                      success: false
                     });
                   });
               });
           })
           .catch((err) => {
             res.status(400).json({
-              message: err.errors ? err.errors[0].message : err.message
+              message: err.errors ? err.errors[0].message : err.message,
+              success: false
             });
           });
       });
@@ -141,7 +150,8 @@ class requestRideController {
             client.release();
             if (!isOwner.rows[0]) {
               return res.status(403).json({
-                message: 'The ride and/or request does not exist or you are not allowed to update the status of this request'
+                message: 'The ride and/or request does not exist or you are not allowed to update the status of this request',
+                success: true
               });
             }
             clientPool.connect()
@@ -154,23 +164,27 @@ class requestRideController {
                     client1.release();
                     if (newStatus !== 'accepted' || newStatus !== 'rejected') {
                       return res.status(406).json({
-                        message: 'You are entering a wrong value, it\'s either accepted or rejected (as a string)'
+                        message: 'You are entering a wrong value, it\'s either accepted or rejected (as a string)',
+                        success: false
                       });
                     }
                     return res.status(202).json({
-                      message: 'The status of the request has been updated successfully'
+                      message: 'The status of the request has been updated successfully',
+                      success: true
                     });
                   })
                   .catch((err) => {
                     res.status(406).json({
-                      message: err.errors ? err.errors[0].message : err.message
+                      message: err.errors ? err.errors[0].message : err.message,
+                      success: false
                     });
                   });
               });
           })
           .catch((err) => {
             res.status(400).json({
-              message: err.errors ? err.errors[0].message : err.message
+              message: err.errors ? err.errors[0].message : err.message,
+              success: false
             });
           });
       });

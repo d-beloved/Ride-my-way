@@ -35,32 +35,10 @@ class Validation {
       for (const p of params) {
         if (req.body[p] === undefined || req.body[p] === '') {
           return res.status(400).send({
-            message: `${p} cannot be missing in the body!`
+            message: `${p} cannot be missing in the body!`,
+            success: false
           });
         }
-      }
-      next();
-    };
-  }
-
-  /**
-   * @description Checks if value is a string
-   * @param{Object} req - api request
-   * @param{Object} res - route response
-   * @param{Function} next - next middleware
-   * @return{Function} next
-   */
-  static isString(...params) {
-    return (req, res, next) => {
-      /* eslint-disable no-restricted-syntax */
-      for (const p of params) {
-        Object.keys(req.body[p]).forEach((k) => {
-          const value = req.body[k];
-          // trim value if body exist
-          if (typeof value !== 'string') {
-            req.body[k] = req.body[k].trim();
-          }
-        });
       }
       next();
     };
@@ -78,6 +56,7 @@ class Validation {
     if (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(req.body.email) === false) {
       return res.status(406).send({
         message: 'Please enter a valid email',
+        success: false
       });
     }
     return next();
