@@ -169,13 +169,13 @@ img {
   }
 }
 
-@media screen and (min-width: 60em) {
+@media screen and (min-width: 50em) {
   .cards {
       margin-top: inherit;
   }
   
   .card {
-      flex: 0 1 calc(25% - 1em);
+      flex: 0 1 calc(33.33% - 1em);
       margin-bottom: 2em;
   }
 }
@@ -189,4 +189,20 @@ img {
   .centered {
       max-width: 52em;
   }
+}
+
+@media screen and (min-width: 70em) {
+  .cards {
+      margin-top: inherit;
+  }
+  
+  .card {
+      flex: 0 1 calc(25% - 1em);
+      margin-bottom: 2em;
+  }
+}
+
+.centered {
+  margin: 0 auto;
+  padding: 0 1em;
 }
