@@ -29,12 +29,12 @@ describe('The User route', () => {
       request(server)
         .post('/api/v1/auth/signup')
         .send({
-          firstname: 'Morayo',
+          firstname: '1236',
           lastname: 'Daniel',
           phoneno: 7065349529,
-          username: 12345,
+          username: '12345',
           email: 'mountainview@gmail.com',
-          password: '1234567'
+          password: 1234567
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);

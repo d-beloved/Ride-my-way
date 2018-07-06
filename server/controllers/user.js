@@ -78,6 +78,14 @@ class userController {
               });
             }
           });
+      })
+      .catch((err) => {
+        if (err) {
+          res.status(400).send({
+            message: 'Check your input and try again pls, you might be entering a wrong input or this user already exists',
+            success: false
+          });
+        }
       });
   }
 

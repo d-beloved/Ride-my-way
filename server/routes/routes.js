@@ -2,9 +2,12 @@ import express from 'express';
 import auth from '../helpers/auth';
 import validateRequest from '../helpers/validation';
 import userController from '../controllers/user';
+import ifRideOfferExists from '../helpers/isRideExists';
 import rideOfferController from '../controllers/rideOffer';
 import requestRideController from '../controllers/requests';
 import idValidator from '../helpers/isIdValid';
+import ifRequestExist from '../helpers/requestExist';
+import ifUserExist from '../helpers/isUserExists';
 
 // using router routes
 const router = express.Router();
@@ -37,6 +40,7 @@ router.post(
   validateRequest.trimsRequestBody,
   validateRequest.checkBodyContains('firstname', 'lastname', 'phoneno', 'username', 'email', 'password'),
   validateRequest.confirmEmail,
+  ifUserExist,
   userController.createUser
 );
 
@@ -55,7 +59,8 @@ router.post(
   '/users/rides',
   auth.authenticate,
   validateRequest.trimsRequestBody,
-  validateRequest.checkBodyContains('message', 'destination', 'depart', 'date'),
+  validateRequest.checkBodyContains('message', 'destination', 'departurelocation', 'date'),
+  ifRideOfferExists,
   rideOfferController.createRideOffer
 );
 
@@ -75,6 +80,7 @@ router.post(
   '/rides/:rideId/requests',
   idValidator,
   auth.authenticate,
+  ifRequestExist,
   requestRideController.makeRequestForRide
 );
 

@@ -32,6 +32,11 @@ class requestRideController {
                 message: 'The ride Offer is not found!',
                 success: false
               });
+            } else if (foundRide.rows[0].userId === req.userData) {
+              return res.status(406).json({
+                message: 'You cannot request for your ride, calm down',
+                success: false
+              })
             }
             clientPool.connect()
               .then((client) => {
