@@ -25,21 +25,32 @@ class userController {
       req.body.password === null ||
       req.body.password.length < 6
     ) {
-      return res.status(400).send({
+      return res.status(406).send({
         message: 'The password is too short! - make sure it is at least 6 characters long',
+        success: false
+      });
+    } else if (
+      req.body.phoneno === undefined ||
+      req.body.phoneno === null ||
+      req.body.phoneno.length < 11
+    ) {
+      return res.status(400).send({
+        message: 'The phoneno is too short! - make sure it is at least 10 characters long',
+        success: false
       });
     }
     // Hash password to save in the database
     const hashPassword = bcrypt.hashSync(req.body.password, 10);
     const email = req.body.email.trim().toLowerCase();
-    const createUser = `INSERT INTO Users (username, email, password)
-                            VALUES ($1, $2, $3)
+    const createUser = `INSERT INTO Users (firstname, lastname, phoneno, username, email, password)
+                            VALUES ($1, $2, $3, $4, $5, $6)
                             RETURNING username, email, userId`;
     clientPool.connect()
       .then((client) => {
         client.query({
           text: createUser,
-          values: [req.body.username, email, hashPassword]
+          values: [req.body.firstname, req.body.lastname, req.body.phoneno,
+            req.body.username, email, hashPassword]
         })
           .then((createdUser) => {
             const {
@@ -56,14 +67,25 @@ class userController {
                 email: createdUser.rows[0].email,
                 token: authToken,
               },
+              success: true
             });
           })
           .catch((err) => {
-            client.release();
-            res.status(400).send({
-              message: err.errors ? err.errors[0].message : err.message
-            });
+            if (err) {
+              res.status(400).send({
+                message: 'Check your input and try again pls, you might be entering a wrong input or this user already exists',
+                success: false
+              });
+            }
           });
+      })
+      .catch((err) => {
+        if (err) {
+          res.status(400).send({
+            message: 'Check your input and try again pls, you might be entering a wrong input or this user already exists',
+            success: false
+          });
+        }
       });
   }
 
@@ -84,11 +106,11 @@ class userController {
         const decoded = jwt.verify(token, secretKey);
         req.userData = decoded.userid;
         if (req.userData !== null) {
-          return res.status(200).json({ message: 'You are already logged in' });
+          return res.status(200).json({ message: 'You are already logged in', success: true });
         }
       } catch (error) {
         return res.status(401)
-          .json({ message: 'Token is invalid or has expired, Please re-login' });
+          .json({ message: 'Token is invalid or has expired, Please re-login', success: false });
       }
     }
 
@@ -105,19 +127,26 @@ class userController {
               const signedInUser = user.rows[0].username;
               bcrypt.compare(req.body.password, user.rows[0].password).then((check) => {
                 if (!check) { // If the password does not match
-                  res.status(401).send({ message: 'wrong password!' });
+                  res.status(401).send({ message: 'wrong password!', success: false });
                 } else {
                   // creates a token that lasts for 24 hours
                   const {
                     userid
                   } = user.rows[0];
                   const authToken = createToken.token({ userid }, secretKey);
-                  res.status(200).send({ message: 'You are logged in!', authToken, signedInUser });
+                  res.status(200).send({
+                    message: 'You are logged in!',
+                    authToken,
+                    signedInUser,
+                    success: true
+                  });
                 }
               })
-                .catch(err => res.status(400).json({
-                  message: err.errors ? err.errors[0].message : err.message
-                }));
+                .catch((err) => {
+                  if (err) {
+                    res.status(400).send({ message: 'An error occured', success: false });
+                  }
+                });
             } else {
               res.status(404).json({
                 message: 'User not registered or wrong email',
@@ -126,7 +155,9 @@ class userController {
             }
           })
           .catch((err) => {
-            res.status(400).send({ message: err.errors ? err.errors[0].message : err.message });
+            if (err) {
+              res.status(400).send({ message: 'An error occured', success: false });
+            }
           });
       });
   }

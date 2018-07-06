@@ -2,11 +2,12 @@ import express from 'express';
 import auth from '../helpers/auth';
 import validateRequest from '../helpers/validation';
 import userController from '../controllers/user';
+import ifRideOfferExists from '../helpers/isRideExists';
 import rideOfferController from '../controllers/rideOffer';
 import requestRideController from '../controllers/requests';
-import ifUserExist from '../helpers/isUserExists';
-import ifRideOfferExists from '../helpers/isRideExists';
 import idValidator from '../helpers/isIdValid';
+import ifRequestExist from '../helpers/requestExist';
+import ifUserExist from '../helpers/isUserExists';
 
 // using router routes
 const router = express.Router();
@@ -26,7 +27,8 @@ router.get('/', (req, res) => {
       createRideOffer: 'POST /api/v1/users/rides',
       getAllRequestsForRide: 'GET /api/v1/GET /users/rides/:rideId/requests',
       acceptRejectRequests: 'PUT /api/v1//users/rides/:rideId/requests/:requestId'
-    }
+    },
+    success: true
   };
   res.status(200).json(rootMessage);
 });
@@ -36,10 +38,9 @@ router.get('/', (req, res) => {
 router.post(
   '/auth/signup',
   validateRequest.trimsRequestBody,
-  validateRequest.checkBodyContains('username', 'email', 'password'),
-  // validateRequest.isString,
+  validateRequest.checkBodyContains('firstname', 'lastname', 'phoneno', 'username', 'email', 'password'),
   validateRequest.confirmEmail,
-  // ifUserExist,
+  ifUserExist,
   userController.createUser
 );
 
@@ -48,7 +49,6 @@ router.post(
   '/auth/login',
   validateRequest.trimsRequestBody,
   validateRequest.checkBodyContains('email', 'password'),
-  // validateRequest.isString,
   validateRequest.confirmEmail,
   userController.loginUser
 );
@@ -59,8 +59,8 @@ router.post(
   '/users/rides',
   auth.authenticate,
   validateRequest.trimsRequestBody,
-  validateRequest.checkBodyContains('message', 'destination', 'depart', 'date'),
-  // validateRequest.isString,
+  validateRequest.checkBodyContains('message', 'destination', 'departurelocation', 'date'),
+  ifRideOfferExists,
   rideOfferController.createRideOffer
 );
 
@@ -80,6 +80,7 @@ router.post(
   '/rides/:rideId/requests',
   idValidator,
   auth.authenticate,
+  ifRequestExist,
   requestRideController.makeRequestForRide
 );
 
@@ -102,7 +103,22 @@ router.put(
 
 // 404 route
 router.all('*', (req, res) => {
-  res.status(404).json({ message: 'That route does not exist!' });
+  const errorMessage = {
+    message: 'You are hitting a wrong route, find the valid routes below',
+    endpoints: {
+      signup: 'POST /api/v1/auth/signup',
+      login: 'POST /api/v1/auth/login',
+      getAllRideOffer: 'GET /api/v1/rides',
+      getOneRideOffer: 'GET /api/v1/rides/:rideId',
+      makeRequestForRide: 'POST /api/v1/rides/:rideId/requests',
+      createRideOffer: 'POST /api/v1/users/rides',
+      getAllRequestsForRide: 'GET /api/v1/GET /users/rides/:rideId/requests',
+      acceptRejectRequests: 'PUT /api/v1//users/rides/:rideId/requests/:requestId'
+    },
+    success: false
+  };
+  res.status(404).json(errorMessage);
 });
 
 export default router;
+

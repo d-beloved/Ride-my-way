@@ -22,7 +22,7 @@ const ifUserExist = (req, res, next) => {
         .then((foundMatch) => {
           client.release();
           if (!foundMatch.rows[0]) {
-            next();
+            return next();
           }
           return res.status(409).json({
             message: 'A user with same username and/or email is already registered',

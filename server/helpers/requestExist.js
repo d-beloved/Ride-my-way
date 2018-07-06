@@ -22,7 +22,7 @@ const ifRequestExist = (req, res, next) => {
         .then((foundRequest) => {
           client.release();
           if (!foundRequest.rows[0]) {
-            next();
+            return next();
           }
           return res.status(409).json({
             message: 'You have requested for this ride before, be patient for the reply by the ride owner',

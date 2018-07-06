@@ -12,3 +12,4 @@ const makeQuery = (query) => {
     .catch(() => client.end());
 };
 makeQuery(`${userDb}${rideDb}${requestDb}`);
+

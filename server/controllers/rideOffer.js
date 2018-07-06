@@ -16,15 +16,15 @@ class rideOfferController {
    */
   static createRideOffer(req, res) {
     const createRide = `INSERT INTO Ride_offers (userId, message, destination, 
-                        depart, date)
+                        departurelocation, date)
                         VALUES ($1, $2, $3, $4, $5)
                         RETURNING *`;
     clientPool.connect()
       .then((client) => {
         client.query({
           text: createRide,
-          values: [req.userData, req.body.message, req.body.destination, req.body.depart,
-            req.body.time, req.body.date, req.body.seats
+          values: [req.userData, req.body.message, req.body.destination, req.body.departurelocation,
+            req.body.date
           ]
         })
           .then((createdRide) => {
@@ -37,16 +37,16 @@ class rideOfferController {
                 destination: createdRide.rows[0].destination,
                 departureLocation: createdRide.rows[0].depart,
                 time: createdRide.rows[0].time,
-                date: createdRide.rows[0].date,
-                seats: createdRide.rows[0].seats,
                 userId: createdRide.rows[0].userId,
               },
+              success: true
             });
           })
           .catch((err) => {
             if (err) {
               res.status(400).send({
-                message: 'You are creating a duplicate ride offer',
+                message: 'Wrong input detected',
+                success: false
               });
             }
           });
@@ -71,10 +71,13 @@ class rideOfferController {
             if (result.rows.length === 0) {
               return res.status(200).json({
                 message: 'We don\'t have any ride offers yet, check back later please',
+                success: true
               });
             }
             return res.status(200).json({
-              data: result.rows
+              message: 'These are the ride offers we have',
+              data: result.rows,
+              success: true
             });
           })
           .catch((err) => {
@@ -82,6 +85,7 @@ class rideOfferController {
             if (err) {
               res.status(500).json({
                 message: 'You are not sending the right request',
+                success: false
               });
             }
           });
@@ -108,18 +112,22 @@ class rideOfferController {
             client.release();
             if (!result.rows[0]) {
               return res.status(404).json({
-                message: 'Ride Offer not found!'
+                message: 'Ride Offer not found!',
+                success: false
               });
             }
             return res.status(200).json({
-              data: result.rows[0]
+              message: 'Ride offer delivered',
+              data: result.rows[0],
+              success: true
             });
           })
           .catch((err) => {
             client.release();
             if (err) {
               res.status(500).json({
-                message: ''
+                message: '',
+                success: false
               });
             }
           });

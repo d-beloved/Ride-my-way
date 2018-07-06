@@ -22,14 +22,20 @@ const ifRideOfferExists = (req, res, next) => {
         .then((foundRide) => {
           client.release();
           if (!foundRide.rows[0]) {
-            next();
+            return next();
           }
           return res.status(409).json({
             message: 'You have created this ride before',
+            success: false
           });
         })
         .catch((err) => {
-          res.status(400).json({ message: err.errors ? err.errors[0].message : err.message });
+          if (err) {
+            res.status(500).send({
+              message: 'An error occured',
+              success: false
+            });
+          }
         });
     });
 };

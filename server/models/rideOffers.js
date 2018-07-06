@@ -5,9 +5,9 @@ const rideModel = `
       userId INTEGER REFERENCES Users(userid),
       message TEXT NOT NULL,
       destination VARCHAR(255) NOT NULL,
-      depart VARCHAR(255) NOT NULL,
+      departurelocation VARCHAR(255) NOT NULL,
       date DATE NOT NULL,
-      createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+      createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
       UNIQUE(destination,date,userId)
   );
 `;
