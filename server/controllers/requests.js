@@ -52,10 +52,12 @@ class requestRideController {
                     });
                   })
                   .catch((err) => {
-                    res.status(400).json({
-                      message: err.errors ? err.errors[0].message : err.message,
-                      success: false
-                    });
+                    if (err) {
+                      res.status(400).send({
+                        message: 'An error occured',
+                        success: false
+                      });
+                    }
                   });
               });
           })

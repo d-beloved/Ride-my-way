@@ -23,6 +23,29 @@ class Validation {
   }
 
   /**
+   * @description Checks if its string that is entered
+   * @param{Object} req - api request
+   * @param{Object} res - route response
+   * @param{Function} next - next middleware
+   * @return{Function} next
+   */
+  static checkIfString(...params) {
+    return (req, res, next) => {
+    /* eslint-disable no-restricted-syntax */
+      for (const p of params) {
+        const value = req.body[p];
+        if (typeof value !== 'string') {
+          return res.status(400).send({
+            message: `${p} must be a string value!`,
+            success: false
+          });
+        }
+      }
+      next();
+    };
+  }
+
+  /**
    * @description Checks if request body contains required keys
    * @param{Object} req - api request
    * @param{Object} res - route response

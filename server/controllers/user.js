@@ -20,25 +20,20 @@ class userController {
    */
   static createUser(req, res) {
     // checks the length of the password and its validity
-    if (
-      req.body.password === undefined ||
-      req.body.password === null ||
-      req.body.password.length < 6
-    ) {
+    if (req.body.password.length < 6) {
       return res.status(406).send({
         message: 'The password is too short! - make sure it is at least 6 characters long',
         success: false
       });
-    } else if (
-      req.body.phoneno === undefined ||
-      req.body.phoneno === null ||
-      req.body.phoneno.length < 11
-    ) {
+    };
+
+    if (req.body.phoneno.toString().length < 10 || !Number.isInteger(req.body.phoneno)) {
       return res.status(400).send({
-        message: 'The phoneno is too short! - make sure it is at least 10 characters long',
+        message: 'The phoneno is too short! - make sure it is at least 10 characters long or you are not entering an integer',
         success: false
       });
-    }
+    };
+
     // Hash password to save in the database
     const hashPassword = bcrypt.hashSync(req.body.password, 10);
     const email = req.body.email.trim().toLowerCase();
@@ -73,7 +68,7 @@ class userController {
           .catch((err) => {
             if (err) {
               res.status(400).send({
-                message: 'Check your input and try again pls, you might be entering a wrong input or this user already exists',
+                message: 'Check your input and try again pls, you might be entering a wrong input',
                 success: false
               });
             }
@@ -82,7 +77,7 @@ class userController {
       .catch((err) => {
         if (err) {
           res.status(400).send({
-            message: 'Check your input and try again pls, you might be entering a wrong input or this user already exists',
+            message: 'Check your input and try again pls, you might be entering a wrong input',
             success: false
           });
         }

@@ -3,7 +3,9 @@ import request from 'supertest';
 import { expect } from 'chai';
 import server from '../../app';
 
-const authToken = jwt.sign({ userid: 3 }, process.env.JWT_SECRET);
+const wrongtoken = 'wrong secret';
+const authToken = jwt.sign(3, process.env.JWT_SECRET);
+const token = `Bearer ${authToken}`;
 
 describe('The User route', () => {
   describe('The Signup route', () => {
@@ -39,7 +41,7 @@ describe('The User route', () => {
         .end((err, res) => {
           expect(res.status).to.equal(400);
           expect(res.body).to.be.an('object');
-          expect(res.body.message).to.equal('Check your input and try again pls, you might be entering a wrong input or this user already exists');
+          expect(res.body.message).to.equal('password must be a string value!');
           done();
         });
     });
@@ -93,25 +95,7 @@ describe('The User route', () => {
         .end((err, res) => {
           expect(res.status).to.equal(400);
           expect(res.body).to.be.an('object');
-          expect(res.body.message).to.equal('Check your input and try again pls, you might be entering a wrong input or this user already exists');
-          done();
-        });
-    });
-    it('Should return 400 for any other wrong input', (done) => {
-      request(server)
-        .post('/api/v1/auth/signup')
-        .send({
-          firstname: 'Morayo',
-          lastname: 'Daniel',
-          phoneno: 706534952,
-          username: '12345',
-          email: 'morayodeji@gmail.com',
-          password: '123456'
-        })
-        .end((err, res) => {
-          expect(res.status).to.equal(400);
-          expect(res.body).to.be.an('object');
-          expect(res.body.message).to.equal('Check your input and try again pls, you might be entering a wrong input or this user already exists');
+          expect(res.body.message).to.equal('The phoneno is too short! - make sure it is at least 10 characters long or you are not entering an integer');
           done();
         });
     });
@@ -160,7 +144,7 @@ describe('The User route', () => {
         .end((err, res) => {
           expect(res.status).to.equal(400);
           expect(res.body).to.be.an('object');
-          expect(res.body.message).to.equal('An error occured');
+          expect(res.body.message).to.equal('password must be a string value!');
           done();
         });
     });
@@ -178,18 +162,18 @@ describe('The User route', () => {
           done();
         });
     });
-    it('Should return 200 if user is already logged in', (done) => {
+    it('Should return 401 if token is invalid or expired', (done) => {
       request(server)
         .post('/api/v1/auth/login')
+        .set({ authorization: wrongtoken })
         .send({
-          Authorization: authToken,
-          email: 'morayji@gmail.com',
+          email: 'morayoji@gmail.com',
           password: '1234556'
         })
         .end((err, res) => {
-          expect(res.status).to.equal(200);
+          expect(res.status).to.equal(401);
           expect(res.body).to.be.an('object');
-          expect(res.body.message).to.equal('You are logged in!');
+          expect(res.body.message).to.equal('Token is invalid or has expired, Please re-login');
           done();
         });
     });
@@ -197,7 +181,7 @@ describe('The User route', () => {
       request(server)
         .post('/api/v1/auth/login')
         .send({
-          email: 'morayji@gmail.com',
+          email: 'morayoji@gmail.com',
           password: '123456'
         })
         .end((err, res) => {
@@ -207,7 +191,7 @@ describe('The User route', () => {
           done();
         });
     });
-    it('Should return 404 if the user doen\'t exist', (done) => {
+    it('Should return 404 if the user doesn\'t exist', (done) => {
       request(server)
         .post('/api/v1/auth/login')
         .send({
@@ -225,13 +209,28 @@ describe('The User route', () => {
       request(server)
         .post('/api/v1/auth/login')
         .send({
-          email: 'morayji@gmail.com',
+          email: 'morayoji@gmail.com',
           password: '1234556'
         })
         .end((err, res) => {
           expect(res.status).to.equal(200);
           expect(res.body).to.be.an('object');
           expect(res.body.message).to.equal('You are logged in!');
+          done();
+        });
+    });
+    it('Should return 200 if user is already logged in', (done) => {
+      request(server)
+        .post('/api/v1/auth/login')
+        .set({ authorization: token })
+        .send({
+          email: 'morayoji@gmail.com',
+          password: '1234556'
+        })
+        .end((err, res) => {
+          expect(res.status).to.equal(200);
+          expect(res.body).to.be.an('object');
+          expect(res.body.message).to.equal('You are already logged in');
           done();
         });
     });
