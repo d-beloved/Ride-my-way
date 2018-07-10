@@ -40,6 +40,7 @@ router.post(
   validateRequest.trimsRequestBody,
   validateRequest.checkBodyContains('firstname', 'lastname', 'phoneno', 'username', 'email', 'password'),
   validateRequest.confirmEmail,
+  validateRequest.checkIfString('firstname', 'lastname', 'username', 'email', 'password'),
   ifUserExist,
   userController.createUser
 );
@@ -50,6 +51,7 @@ router.post(
   validateRequest.trimsRequestBody,
   validateRequest.checkBodyContains('email', 'password'),
   validateRequest.confirmEmail,
+  validateRequest.checkIfString('email', 'password'),
   userController.loginUser
 );
 
@@ -60,6 +62,7 @@ router.post(
   auth.authenticate,
   validateRequest.trimsRequestBody,
   validateRequest.checkBodyContains('message', 'destination', 'departurelocation', 'date'),
+  validateRequest.checkIfString('message', 'destination', 'departurelocation', 'date'),
   ifRideOfferExists,
   rideOfferController.createRideOffer
 );
