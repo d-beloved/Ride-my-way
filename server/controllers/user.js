@@ -51,7 +51,7 @@ class userController {
             const {
               userid
             } = createdUser.rows[0];
-              // create the token after all the inputs are certified ok
+            // create the token after all the inputs are certified ok
             const authToken = createToken.token({ userid }, secretKey);
             client.release();
             res.status(201).json({

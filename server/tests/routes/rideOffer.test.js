@@ -4,8 +4,8 @@ import { expect } from 'chai';
 import server from '../../app';
 
 const wrongtoken = 'wrong secret';
-const authToken1 = jwt.sign(1, process.env.JWT_SECRET);
-const token1 = `Bearer ${authToken1}`;
+const authToken1 = jwt.sign({ userid: 3 }, process.env.JWT_SECRET);
+const token = `Bearer ${authToken1}`;
 
 describe('The Ride Offer routes', () => {
   describe('A user is authenticated with a token', () => {
@@ -50,7 +50,7 @@ describe('The Ride Offer routes', () => {
     it('Should return 400 for missing required fields', (done) => {
       request(server)
         .post('/api/v1/users/rides')
-        .set({ authorization: token1 })
+        .set({ authorization: token })
         .send({
           message: 'Dave travels',
           destination: 'Los Angeles',
@@ -67,7 +67,7 @@ describe('The Ride Offer routes', () => {
     it('Should return 400 for entering a wrong type where there should be string', (done) => {
       request(server)
         .post('/api/v1/users/rides')
-        .set({ authorization: token1 })
+        .set({ authorization: token })
         .send({
           message: 'Dave travels',
           destination: 112,
@@ -84,7 +84,7 @@ describe('The Ride Offer routes', () => {
     it('Should return status 201 when ride offer is created', (done) => {
       request(server)
         .post('/api/v1/users/rides')
-        .set({ authorization: token1 })
+        .set({ authorization: token })
         .send({
           message: 'Dave travels',
           destination: 'Los Angeles',
@@ -95,6 +95,23 @@ describe('The Ride Offer routes', () => {
           expect(res.status).to.equal(201);
           expect(res.body).to.be.an('object');
           expect(res.body.message).to.equal('Your ride offer is created successfully');
+          done();
+        });
+    });
+    it('Should return status 409 when ride offer exists', (done) => {
+      request(server)
+        .post('/api/v1/users/rides')
+        .set({ authorization: token })
+        .send({
+          message: 'Dave travels',
+          destination: 'Los Angeles',
+          departurelocation: 'MMA 2 terminal',
+          date: '27-07-2018'
+        })
+        .end((err, res) => {
+          expect(res.status).to.equal(409);
+          expect(res.body).to.be.an('object');
+          expect(res.body.message).to.equal('You have created this ride before');
           done();
         });
     });
@@ -118,7 +135,7 @@ describe('The Ride Offer routes', () => {
     it('Should return 400 if an invalid ID is entered in the parameter', (done) => {
       request(server)
         .get('/api/v1/rides/a')
-        .set({ authorization: token1 })
+        .set({ authorization: token })
         .end((err, res) => {
           expect(res.status).to.equal(400);
           expect(res.body).to.be.an('object');
@@ -129,7 +146,7 @@ describe('The Ride Offer routes', () => {
     it('Should return 200 if ride offer was found', (done) => {
       request(server)
         .get('/api/v1/rides/1')
-        .set({ authorization: token1 })
+        .set({ authorization: token })
         .end((err, res) => {
           expect(res.status).to.equal(200);
           expect(res.body).to.be.an('object');
@@ -140,7 +157,7 @@ describe('The Ride Offer routes', () => {
     it('Should return 404 if ride offer was not found', (done) => {
       request(server)
         .get('/api/v1/rides/7')
-        .set({ authorization: token1 })
+        .set({ authorization: token })
         .end((err, res) => {
           expect(res.status).to.equal(404);
           expect(res.body).to.be.an('object');
