@@ -12,7 +12,7 @@ const data1 = ['ayodeji', 'moronkeji', 70563224566, 'david', 'morayodeji@gmail.c
 
 const data2 = ['gwen', 'gbenga', 90975434567, 'deji', 'davewritchie@gmail.com', hashedPassword];
 
-const data3 = [1, 'Let\'s take a trip to the Bahamas', 'Bahamas', 'Lagos', '27-07-2018'];
+const data3 = [1, 'Let\'s take a trip to the Bahamas', 'Bahamas', 'Lagos', '2018-07-27'];
 
 const client = new Client(connectionString);
 const client2 = new Client(connectionString);

@@ -17,7 +17,7 @@ describe('The Ride Offer routes', () => {
           message: 'Dave travels',
           destination: 'Los Angeles',
           departurelocation: 'MMA 2 terminal',
-          date: '27-07-2018'
+          date: '2018-07-27'
         })
         .end((err, res) => {
           expect(res.status).to.equal(401);
@@ -34,7 +34,7 @@ describe('The Ride Offer routes', () => {
           message: 'Dave travels',
           destination: 'Los Angeles',
           departurelocation: 'MMA 2 terminal',
-          date: '27-07-2018'
+          date: '2018-07-27'
         })
         .end((err, res) => {
           expect(res.status).to.equal(401);
@@ -72,7 +72,7 @@ describe('The Ride Offer routes', () => {
           message: 'Dave travels',
           destination: 112,
           departurelocation: 'MMA 2 terminal',
-          date: '27-07-2018'
+          date: '2018-07-27'
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
@@ -89,7 +89,7 @@ describe('The Ride Offer routes', () => {
           message: 'Dave travels',
           destination: 'Los Angeles',
           departurelocation: 'MMA 2 terminal',
-          date: '27-07-2018'
+          date: '2018-07-27'
         })
         .end((err, res) => {
           expect(res.status).to.equal(201);
@@ -106,7 +106,7 @@ describe('The Ride Offer routes', () => {
           message: 'Dave travels',
           destination: 'Los Angeles',
           departurelocation: 'MMA 2 terminal',
-          date: '27-07-2018'
+          date: '2018-07-27'
         })
         .end((err, res) => {
           expect(res.status).to.equal(409);
