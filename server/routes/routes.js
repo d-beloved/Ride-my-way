@@ -100,6 +100,7 @@ router.put(
   '/users/rides/:rideId/requests/:requestId',
   idValidator,
   auth.authenticate,
+  validateRequest.trimsRequestBody,
   validateRequest.checkBodyContains('status'),
   requestRideController.updateRequestStatus
 );

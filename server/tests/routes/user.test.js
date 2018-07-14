@@ -4,7 +4,7 @@ import { expect } from 'chai';
 import server from '../../app';
 
 const wrongtoken = 'wrong secret';
-const authToken = jwt.sign(3, process.env.JWT_SECRET);
+const authToken = jwt.sign({ userid: 3 }, process.env.JWT_SECRET);
 const token = `Bearer ${authToken}`;
 
 describe('The User route', () => {

@@ -29,7 +29,12 @@ const ifUserExist = (req, res, next) => {
           });
         })
         .catch((err) => {
-          res.status(400).json({ message: err.errors ? err.errors[0].message : err.message });
+          if (err) {
+            res.status(500).send({
+              message: 'An error occured',
+              success: false
+            });
+          }
         });
     });
 };
