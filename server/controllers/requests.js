@@ -32,11 +32,12 @@ class requestRideController {
                 message: 'The ride Offer is not found!',
                 success: false
               });
-            } else if (foundRide.rows[0].userId === req.userData) {
+            }
+            if ((foundRide.rows[0]).userid === req.userData) {
               return res.status(406).json({
                 message: 'You cannot request for your ride, calm down',
                 success: false
-              })
+              });
             }
             clientPool.connect()
               .then((client) => {
@@ -62,10 +63,12 @@ class requestRideController {
               });
           })
           .catch((err) => {
-            res.status(400).json({
-              message: err.errors ? err.errors[0].message : err.message,
-              success: false
-            });
+            if (err) {
+              res.status(500).send({
+                message: 'An error occured',
+                success: false
+              });
+            }
           });
       });
   }
@@ -116,18 +119,22 @@ class requestRideController {
                     });
                   })
                   .catch((err) => {
-                    res.status(400).json({
-                      message: err.errors ? err.errors[0].message : err.message,
-                      success: false
-                    });
+                    if (err) {
+                      res.status(400).send({
+                        message: 'An error occured',
+                        success: false
+                      });
+                    }
                   });
               });
           })
           .catch((err) => {
-            res.status(400).json({
-              message: err.errors ? err.errors[0].message : err.message,
-              success: false
-            });
+            if (err) {
+              res.status(500).send({
+                message: 'An error occured',
+                success: false
+              });
+            }
           });
       });
   }
@@ -169,30 +176,20 @@ class requestRideController {
                 })
                   .then(() => {
                     client1.release();
-                    if (newStatus !== 'accepted' || newStatus !== 'rejected') {
-                      return res.status(406).json({
-                        message: 'You are entering a wrong value, it\'s either accepted or rejected (as a string)',
-                        success: false
-                      });
-                    }
                     return res.status(202).json({
                       message: 'The status of the request has been updated successfully',
                       success: true
                     });
                   })
                   .catch((err) => {
-                    res.status(406).json({
-                      message: err.errors ? err.errors[0].message : err.message,
-                      success: false
-                    });
+                    if (err) {
+                      res.status(406).send({
+                        message: 'You are entering a wrong value, it\'s either you enter accepted or rejected',
+                        success: false
+                      });
+                    }
                   });
               });
-          })
-          .catch((err) => {
-            res.status(400).json({
-              message: err.errors ? err.errors[0].message : err.message,
-              success: false
-            });
           });
       });
   }
