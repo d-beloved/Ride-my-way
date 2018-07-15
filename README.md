@@ -20,6 +20,7 @@ The endpoints are hosted on heroku [ here ](https://ayo-ride-my-way-v1.herokuapp
     * Babel for transpiling
     * Express for api routes implementation
     * Heroku for hosting services
+    * PostgreSql for the App database
 
   ### Continuous Integration
     * Travis CI & Codeclimate for test automation
@@ -36,12 +37,12 @@ The endpoints are hosted on heroku [ here ](https://ayo-ride-my-way-v1.herokuapp
   * Navigate to http://localhost:3110/api/v1/
 
 ## Features of the template
-* Users can create an account and log in.
+* Users can Signup and log in on the app.
 * Drivers can add ride offers..
 * Passengers can view all available ride offers.
-  * They can also search for available rides based on the ride's destination.
-* Passengers can see the details of a ride offer and request to join the ride. E.g What time
+* Passengers can see the details of a ride offer and request to join the ride. E.g What date
 the ride leaves, where it is headed e.t.c
+* Passengers can make a request for an available ride
 * Drivers can view the requests to the ride offer they created.
 * Drivers can either accept or reject a ride request.
 
@@ -59,7 +60,17 @@ the ride leaves, where it is headed e.t.c
   </tr>
   <tr>
       <td>POST</td>
-      <td>/api/v1/rides</td>
+      <td>/api/v1/auth/signup</td>
+      <td>Registers a new user on the app</td>
+  </tr>
+  <tr>
+      <td>POST</td>
+      <td>/api/v1/auth/login</td>
+      <td>Logs in a registered user</td>
+  </tr>
+  <tr>
+      <td>POST</td>
+      <td>/api/v1/users/rides</td>
       <td>Allows users to create ride offers</td>
   </tr>
   <tr>
@@ -73,37 +84,25 @@ the ride leaves, where it is headed e.t.c
       <td>Gets one ride offer in the app</td>
   </tr>
   <tr>
-      <td>DELETE</td>
-      <td>/api/v1/rides/:rideId</td>
-      <td>Deletes a ride offer</td>
-  </tr>
-  <tr>
-      <td>PUT</td>
-      <td>/api/v1/rides/:rideId</td>
-      <td>Modifies a ride offer</td>
-  </tr>
-  <tr>
       <td>POST</td>
       <td>/api/v1/rides/:rideId/requests</td>
       <td>Makes a request for a ride offer</td>
   </tr>
   <tr>
       <td>GET</td>
-      <td>/api/v1/rides/:rideId/requests</td>
+      <td>/api/v1/users/rides/:rideId/requests</td>
       <td>Get all request for a ride offer</td>
   </tr>
   <tr>
-      <td>GET</td>
-      <td>/api/v1/rides/:rideId/requests/:requestId/status</td>
-      <td>Get the status of a request made for a ride offer</td>
+      <td>PUT</td>
+      <td>/api/v1/users/rides/:rideId/requests/:requestId</td>
+      <td>Accepts or rejects a ride offer</td>
   </tr>
 </table>
 
+For more details on how to use this API, check the **Documentation** out [ here ](https://ayo-ride-my-way-v1.herokuapp.com/documentation).
 
 ## License and Copyright
 &copy; Ayodeji Moronkeji
 
 Licensed under the [MIT License](LICENSE).
-
-
-More details coming in soon...
