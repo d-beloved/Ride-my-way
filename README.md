@@ -100,7 +100,7 @@ the ride leaves, where it is headed e.t.c
   </tr>
 </table>
 
-For more details on how to use this API, check the **Documentation** out [ here ](https://ayo-ride-my-way-v1.herokuapp.com/documentation).
+For more details on how to use this API, check the **Documentation** out [ here ](https://ayo-ride-my-way-v1.herokuapp.com/api-docs).
 
 ## License and Copyright
 &copy; Ayodeji Moronkeji
