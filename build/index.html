@@ -1,0 +1,834 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Ride-My-Way API</title>
+
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .gh {
+  color: #999999;
+}
+.highlight .sr {
+  color: #f6aa11;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .nb {
+  color: #f6aa11;
+}
+.highlight .cm {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #75715e;
+}
+.highlight .c1 {
+  color: #75715e;
+}
+.highlight .cs {
+  color: #75715e;
+}
+.highlight .c, .highlight .cd {
+  color: #75715e;
+}
+.highlight .err {
+  color: #960050;
+}
+.highlight .gr {
+  color: #960050;
+}
+.highlight .gt {
+  color: #960050;
+}
+.highlight .gd {
+  color: #49483e;
+}
+.highlight .gi {
+  color: #49483e;
+}
+.highlight .ge {
+  color: #49483e;
+}
+.highlight .kc {
+  color: #66d9ef;
+}
+.highlight .kd {
+  color: #66d9ef;
+}
+.highlight .kr {
+  color: #66d9ef;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .kt {
+  color: #66d9ef;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .sc {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .ss {
+  color: #ae81ff;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .s {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+}
+.highlight .nd {
+  color: #a6e22e;
+}
+.highlight .ne {
+  color: #a6e22e;
+}
+.highlight .nf {
+  color: #a6e22e;
+}
+.highlight .vc {
+  color: #ffffff;
+}
+.highlight .nn {
+  color: #ffffff;
+}
+.highlight .nl {
+  color: #ffffff;
+}
+.highlight .ni {
+  color: #ffffff;
+}
+.highlight .bp {
+  color: #ffffff;
+}
+.highlight .vg {
+  color: #ffffff;
+}
+.highlight .vi {
+  color: #ffffff;
+}
+.highlight .nv {
+  color: #ffffff;
+}
+.highlight .w {
+  color: #ffffff;
+}
+.highlight {
+  color: #ffffff;
+}
+.highlight .n, .highlight .py, .highlight .nx {
+  color: #ffffff;
+}
+.highlight .ow {
+  color: #f92672;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight .k, .highlight .kv {
+  color: #f92672;
+}
+.highlight .kn {
+  color: #f92672;
+}
+.highlight .kp {
+  color: #f92672;
+}
+.highlight .o {
+  color: #f92672;
+}
+    </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all.js"></script>
+  </head>
+
+  <body class="index" data-languages="[&quot;javascript&quot;]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" alt="Navbar" />
+      </span>
+    </a>
+    <div class="toc-wrapper">
+        <div class="lang-selector">
+              <a href="#" data-language-name="javascript">javascript</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <ul id="toc" class="toc-list-h1">
+          <li>
+            <a href="#welcome-to-ride-my-way-api" class="toc-h1 toc-link" data-title="Welcome to Ride-My-Way API">Welcome to Ride-My-Way API</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#request" class="toc-h2 toc-link" data-title="Request">Request</a>
+                  </li>
+                  <li>
+                    <a href="#response" class="toc-h2 toc-link" data-title="Response">Response</a>
+                  </li>
+                  <li>
+                    <a href="#http-request" class="toc-h2 toc-link" data-title="HTTP Request">HTTP Request</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#sign-up" class="toc-h2 toc-link" data-title="Sign Up">Sign Up</a>
+                  </li>
+                  <li>
+                    <a href="#sign-in" class="toc-h2 toc-link" data-title="Sign in">Sign in</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#ride-offers" class="toc-h1 toc-link" data-title="Ride Offers">Ride Offers</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#create-a-ride-offer" class="toc-h2 toc-link" data-title="Create a Ride offer">Create a Ride offer</a>
+                  </li>
+                  <li>
+                    <a href="#get-all-ride-offers" class="toc-h2 toc-link" data-title="Get all ride offers">Get all ride offers</a>
+                  </li>
+                  <li>
+                    <a href="#get-a-specific-ride-offer" class="toc-h2 toc-link" data-title="Get a Specific ride offer">Get a Specific ride offer</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#requests" class="toc-h1 toc-link" data-title="Requests">Requests</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#request-a-ride" class="toc-h2 toc-link" data-title="Request a Ride">Request a Ride</a>
+                  </li>
+                  <li>
+                    <a href="#get-all-request-for-a-ride" class="toc-h2 toc-link" data-title="Get all request for a ride">Get all request for a ride</a>
+                  </li>
+                  <li>
+                    <a href="#accept-or-reject-a-request-for-a-ride" class="toc-h2 toc-link" data-title="Accept or reject a request for a ride">Accept or reject a request for a ride</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
+          </li>
+      </ul>
+        <ul class="toc-footer">
+            <li><a href='#'>Sign Up for a Developer Key</a></li>
+            <li><a href='https://github.com/lord/slate'>Documentation Powered by Slate</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id='welcome-to-ride-my-way-api'>Welcome to Ride-My-Way API</h1>
+<blockquote>
+<p>Format of the response gotten when you hit the root of the app</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Welcome to Ride-My-Way app! Your one stop place to get rides to your desired destination at reasonable prices"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"endpoints"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"signup"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POST /api/v1/auth/signup"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"login"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POST /api/v1/auth/login"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"getAllRideOffer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET /api/v1/rides"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"getOneRideOffer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET /api/v1/rides/:rideId"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"makeRequestForRide"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POST /api/v1/rides/:rideId/requests"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"createRideOffer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POST /api/v1/users/rides"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"getAllRequestsForRide"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET /api/v1/GET /users/rides/:rideId/requests"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"acceptRejectRequests"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PUT /api/v1//users/rides/:rideId/requests/:requestId"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Welcome to the Ride-My-Way API documentation! This is a carpooling application that provides drivers with the ability to create ride offers and passengers to join available ride offers.
+You can access the Ride-My-Way API endpoints, which allow you to signup as a new user, to login, to create a ride offer, to get information on various various ride offers available, to make a request for a ride offer, and you can also accept or reject a ride offer.</p>
+
+<p>The API was built using Javascript! You can view code examples in the dark area to the right.</p>
+<h3 id='request'>Request</h3>
+<ul>
+<li>Welcome endpoint : GET /api/v1/</li>
+<li>Body (application/json)</li>
+</ul>
+<h3 id='response'>Response</h3>
+<ul>
+<li>Status: 200 OK</li>
+<li>Message: Welcome to Ride-My-Way app! Your one stop place to get rides to your desired destination at reasonable prices</li>
+<li>Body (application/json)</li>
+</ul>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>POST https://ayo-ride-my-way-v1.herokuapp.com/api/v1/</code></p>
+<h1 id='authentication'>Authentication</h1>
+<p>Ride-My-Way app needs users to be authenticated to be able to perform the actions specified above (except for viewing all available rides). On a successful sign up or sign in, a token is generated which gives users access to these privileges.</p>
+<h2 id='sign-up'>Sign Up</h2>
+<blockquote>
+<p>This is the format of the request sent for signup</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"firstname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Norayo"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lastname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Daniel"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"phoneno"</span><span class="p">:</span><span class="w"> </span><span class="mi">7065349542</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kolad3"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Godistoogood4@andela.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Format of the response gotten after successful signup</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"User created successfully"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kolad3"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"godistoogood4@andela.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOjEsImlhdCI6MTUzMTMyNzM0MywiZXhwIjoxNTMxNDEzNzQzfQ.XFOqEUbdkPj0a1fvI5LGCKJ2RKv_hEZo7cbra8UerAU"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint signs up a new user in the app.</p>
+<h3 id='request-2'>Request</h3>
+<ul>
+<li>Sign up endpoint: POST /api/v1/auth/signup</li>
+<li>Body (application/json)</li>
+</ul>
+<h3 id='response-2'>Response</h3>
+<ul>
+<li>Status: 201 Created</li>
+<li>Message: User created successfully</li>
+<li>Body (application/json)</li>
+</ul>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>POST https://ayo-ride-my-way-v1.herokuapp.com/api/v1/auth/signup</code></p>
+<h3 id='response-codes-when-error-occurs-at-sign-up'>Response codes when error occurs at sign up</h3>
+<table><thead>
+<tr>
+<th>HTTP Status code</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>Missing required fields/unsupported type of input.</td>
+</tr>
+<tr>
+<td>406</td>
+<td>Unacceptable input.</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal server error.</td>
+</tr>
+</tbody></table>
+<h2 id='sign-in'>Sign in</h2>
+<blockquote>
+<p>This is the format of the request sent for signin</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"godistoogood4@andela.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Format of the response gotten after successful signin</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"You are logged in!"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"authToken"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOjEsImlhdCI6MTUzMTQzMjg1NSwiZXhwIjoxNTMxNTE5MjU1fQ.Qy3f2a9HShRmTXnfu8ESz0enrm589ETVGMoW2fpKmE8"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"signedInUser"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kolad3"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint signs in a registered user.</p>
+<h3 id='request-3'>Request</h3>
+<ul>
+<li>Sign in endpoint: POST /api/v1/auth/login</li>
+<li>Body (application/json)</li>
+</ul>
+<h3 id='response-3'>Response</h3>
+<ul>
+<li>Status: 200 OK</li>
+<li>Message: You are logged in!</li>
+<li>Body (application/json)</li>
+</ul>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>POST https://ayo-ride-my-way-v1.herokuapp.com/api/v1/auth/login</code></p>
+<h3 id='response-codes-when-error-occurs-at-sign-in'>Response codes when error occurs at sign in</h3>
+<table><thead>
+<tr>
+<th>HTTP Status code</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>Missing required fields/unsupported type of input.</td>
+</tr>
+<tr>
+<td>406</td>
+<td>Unacceptable input.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Login credentials are required / validation errors</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Unregistered user/ User not found.</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal server error.</td>
+</tr>
+</tbody></table>
+<h1 id='ride-offers'>Ride Offers</h1><h2 id='create-a-ride-offer'>Create a Ride offer</h2>
+<blockquote>
+<p>This is the format of the request sent for creating a ride offer</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dave travellers"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"destination"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ajaokuta"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"departurelocation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MMA 2 terminal"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-27"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Format of the response gotten after successful ride creation</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Your ride offer is created successfully"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dave travellers"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"destination"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ajaokuta"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint allows an authenticated user to create a ride offer.</p>
+<h3 id='request-4'>Request</h3>
+<ul>
+<li>Create ride endpoint: POST /api/v1/users/rides</li>
+<li>Body (application/json)</li>
+<li>Requires: Authentication</li>
+</ul>
+<h3 id='response-4'>Response</h3>
+<ul>
+<li>Status: 201 Created</li>
+<li>Message: You are logged in!</li>
+<li>Body (application/json)</li>
+</ul>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>POST https://ayo-ride-my-way-v1.herokuapp.com/api/v1/users/rides</code></p>
+<h3 id='response-codes-when-error-occurs-at-ride-creation'>Response codes when error occurs at ride creation</h3>
+<table><thead>
+<tr>
+<th>HTTP Status code</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>Missing required fields/unsupported type of input.</td>
+</tr>
+<tr>
+<td>409</td>
+<td>Conflict in data.</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal server error.</td>
+</tr>
+</tbody></table>
+
+<aside class="success">
+Remember — a happy ride creator is an authenticated user!
+</aside>
+<h2 id='get-all-ride-offers'>Get all ride offers</h2>
+<blockquote>
+<p>Format of the response gotten after successfully getting all rides</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"These are the ride offers we have"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"rideid"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"userid"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dave travels"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"destination"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Los Angeles"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"departurelocation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MMA 2 terminal"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-26T23:00:00.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"createdat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-11T15:42:47.820Z"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"rideid"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"userid"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dave travels"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"destination"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ohio"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"departurelocation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MMA 2 terminal"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-26T23:00:00.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"createdat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-12T13:49:53.414Z"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"rideid"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"userid"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dave travellers"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"destination"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pennysylvania"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"departurelocation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MMA 2 terminal"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-26T23:00:00.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"createdat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-12T19:00:11.920Z"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint allows any one on the app to get all ride available.</p>
+<h3 id='request-5'>Request</h3>
+<ul>
+<li>Get all ride endpoint: GET /api/v1/rides</li>
+<li>Body (application/json)</li>
+</ul>
+<h3 id='response-5'>Response</h3>
+<ul>
+<li>Status: 200 OK</li>
+<li>Message: These are the ride offers we have</li>
+<li>Body (application/json)</li>
+</ul>
+<h3 id='http-request-5'>HTTP Request</h3>
+<p><code>POST https://ayo-ride-my-way-v1.herokuapp.com/api/v1/rides</code></p>
+<h3 id='response-codes-when-error-occurs-at-getting-all-rides'>Response codes when error occurs at getting all rides</h3>
+<table><thead>
+<tr>
+<th>HTTP Status code</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>500</td>
+<td>Internal server error.</td>
+</tr>
+</tbody></table>
+<h2 id='get-a-specific-ride-offer'>Get a Specific ride offer</h2>
+<blockquote>
+<p>Format of the response gotten after successfully getting one ride offer</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ride offer delivered"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"rideid"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"userid"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dave travellers"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"destination"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Anthony brt"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"departurelocation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MMA 2 terminal"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-26T23:00:00.000Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"createdat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-12T20:55:17.500Z"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint allows an authenticated user to get the detail of a ride.</p>
+<h3 id='request-6'>Request</h3>
+<ul>
+<li>Get one ride endpoint: GET /api/v1/rides/10</li>
+<li>Body (application/json)</li>
+</ul>
+<h3 id='response-6'>Response</h3>
+<ul>
+<li>Status: 200 OK</li>
+<li>Message: Ride offer delivered</li>
+<li>Body (application/json)</li>
+</ul>
+<h3 id='http-request-6'>HTTP Request</h3>
+<p><code>POST https://ayo-ride-my-way-v1.herokuapp.com/api/v1/rides/10</code></p>
+<h3 id='response-codes-when-error-occurs-at-getting-one-ride'>Response codes when error occurs at getting one ride</h3>
+<table><thead>
+<tr>
+<th>HTTP Status code</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>unsupported type of parameter.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>validation errors</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Unregistered ride offer/ ride not found.</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal server error.</td>
+</tr>
+</tbody></table>
+<h1 id='requests'>Requests</h1><h2 id='request-a-ride'>Request a Ride</h2>
+<blockquote>
+<p>Format of the response gotten after successful request for a ride</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Your request for this ride is registered, Pending for acceptance. Thanks a lot!"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint allows an authenticated user to request for a ride offer.</p>
+<h3 id='request-7'>Request</h3>
+<ul>
+<li>Make request for ride endpoint: POST /api/v1/rides/13/requests</li>
+<li>Body (application/json)</li>
+<li>Requires: Authentication</li>
+</ul>
+<h3 id='response-7'>Response</h3>
+<ul>
+<li>Status: 201 Created</li>
+<li>Message: Your request for this ride is registered, Pending for acceptance. Thanks a lot!</li>
+<li>Body (application/json)</li>
+</ul>
+<h3 id='http-request-7'>HTTP Request</h3>
+<p><code>POST https://ayo-ride-my-way-v1.herokuapp.com/api/v1/rides/13/requests</code></p>
+<h3 id='response-codes-when-error-occurs-at-request-ride'>Response codes when error occurs at request ride</h3>
+<table><thead>
+<tr>
+<th>HTTP Status code</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>401</td>
+<td>validation errors</td>
+</tr>
+<tr>
+<td>406</td>
+<td>Unacceptable request/request made by ride creator.</td>
+</tr>
+<tr>
+<td>409</td>
+<td>Conflict in request.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Unregistered ride/ ride not found.</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal server error.</td>
+</tr>
+</tbody></table>
+
+<aside class="success">
+Remember — a happy requester is an authenticated user!
+</aside>
+<h2 id='get-all-request-for-a-ride'>Get all request for a ride</h2>
+<blockquote>
+<p>Format of the response gotten after authenticated user successfully gets all requests for a ride they created</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Your ride has been requested by:"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"requestid"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"userid"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"rideid"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"createdat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-12T20:48:28.851Z"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint allows an authenticated user to check the requests made for a ride he/she created.</p>
+<h3 id='request-8'>Request</h3>
+<ul>
+<li>Get all request endpoint: GET /api/v1/users/rides/5/requests</li>
+<li>Body (application/json)</li>
+<li>Require: Authentication</li>
+</ul>
+<h3 id='response-8'>Response</h3>
+<ul>
+<li>Status: 200 OK</li>
+<li>Message: Your ride has been requested by:</li>
+<li>Body (application/json)</li>
+</ul>
+<h3 id='http-request-8'>HTTP Request</h3>
+<p><code>POST https://ayo-ride-my-way-v1.herokuapp.com/api/v1/users/rides/5/requests</code></p>
+<h3 id='response-codes-when-error-occurs-at-getting-all-rides-2'>Response codes when error occurs at getting all rides</h3>
+<table><thead>
+<tr>
+<th>HTTP Status code</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>403</td>
+<td>Forbidden requests/ User is not the owner of the ride</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal server error.</td>
+</tr>
+</tbody></table>
+<h2 id='accept-or-reject-a-request-for-a-ride'>Accept or reject a request for a ride</h2>
+<blockquote>
+<p>Format of the request when accepting or rejecting a request for a ride (This can only be carried out by the owner of the ride)</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Accepted"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Format of the response gotten after an authenticated user successfully updates the status of the request madde for his ride</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The status of the request has been updated successfully"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint allows an authenticated user to either accept or reject a request made for a ride he/she created.</p>
+<h3 id='request-9'>Request</h3>
+<ul>
+<li>Accept or reject request endpoint: PUT /api/v1/users/rides/3/requests/19</li>
+<li>Body (application/json)</li>
+<li>Require: Authentication</li>
+</ul>
+<h3 id='response-9'>Response</h3>
+<ul>
+<li>Status: 202 Accepted</li>
+<li>Message: The status of the request has been updated successfully</li>
+<li>Body (application/json)</li>
+</ul>
+<h3 id='http-request-9'>HTTP Request</h3>
+<p><code>PUT https://ayo-ride-my-way-v1.herokuapp.com/api/v1/users/rides/3/requests/19</code></p>
+<h3 id='response-codes-when-error-occurs-at-getting-accepting-or-rejecting-rides-requests'>Response codes when error occurs at getting accepting or rejecting rides requests</h3>
+<table><thead>
+<tr>
+<th>HTTP Status code</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>unsupported type of parameter.</td>
+</tr>
+<tr>
+<td>406</td>
+<td>Unacceptable input.</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden requests/ User is not the owner of the ride</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal server error.</td>
+</tr>
+</tbody></table>
+<h1 id='errors'>Errors</h1>
+<p>The Ride-My-Way API uses the following error codes:</p>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>Bad Request -- Your request is invalid.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized -- Your Token is wrong.</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden -- The function requested is for owners of the resource only.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found -- The specified ride/request could not be found.</td>
+</tr>
+<tr>
+<td>406</td>
+<td>Not Acceptable -- You requested a format that isn&#39;t of the right data type.</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
+</tr>
+</tbody></table>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="javascript">javascript</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
