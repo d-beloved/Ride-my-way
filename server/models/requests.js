@@ -12,8 +12,7 @@ const requestModel = `
       userId INTEGER REFERENCES Users(userid),
       rideId INTEGER REFERENCES Ride_offers(rideid),
       status status_allowed NOT NULL DEFAULT 'pending',
-      createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-      UNIQUE(userId,rideId)
+      createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
   );
 `;
 

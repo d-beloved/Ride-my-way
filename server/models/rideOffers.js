@@ -7,8 +7,7 @@ const rideModel = `
       destination VARCHAR(255) NOT NULL,
       departurelocation VARCHAR(255) NOT NULL,
       date DATE NOT NULL,
-      createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-      UNIQUE(destination,date,userId)
+      createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
   );
 `;
 
