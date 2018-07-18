@@ -11,7 +11,7 @@ const clientPool = new Pool(connectionString);
    * @return{Function} next
    */
 const ifRideOfferExists = (req, res, next) => {
-  const checkoffer = `SELECT * FROM Ride_offers
+  const checkoffer = `SELECT * FROM bRide_offers
                         WHERE destination=$1 AND date=$2 AND userId=$3`;
   clientPool.connect()
     .then((client) => {

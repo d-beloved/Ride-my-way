@@ -15,7 +15,7 @@ class rideOfferController {
    * @return{json} registered ride offer details
    */
   static createRideOffer(req, res) {
-    const createRide = `INSERT INTO Ride_offers (userId, message, destination, 
+    const createRide = `INSERT INTO bRide_offers (userId, message, destination, 
                         departurelocation, date)
                         VALUES ($1, $2, $3, $4, $5)
                         RETURNING *`;
@@ -60,7 +60,7 @@ class rideOfferController {
    * @return{json} registered ride offer details
    */
   static getAllRideOffer(req, res) {
-    const getAll = 'SELECT * from Ride_offers';
+    const getAll = 'SELECT * from bRide_offers';
     clientPool.connect()
       .then((client) => {
         client.query({
@@ -100,7 +100,7 @@ class rideOfferController {
    */
   static getOneRideOffer(req, res) {
     const rideOfferId = parseInt(req.params.rideId, 10);
-    const getOne = `select *  from Ride_offers 
+    const getOne = `select *  from bRide_offers 
                     where rideId=$1`;
     clientPool.connect()
       .then((client) => {

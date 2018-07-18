@@ -4,9 +4,9 @@ import { connectionString } from '../config/config';
 
 const hashedPassword = bcrypt.hashSync('ispassword', 10);
 
-const sql = 'INSERT INTO Users (firstname, lastname, phoneno, username, email, password) VALUES($1,$2,$3,$4,$5,$6)';
+const sql = 'INSERT INTO aUsers (firstname, lastname, phoneno, username, email, password) VALUES($1,$2,$3,$4,$5,$6)';
 
-const sql2 = 'INSERT INTO Ride_offers (userId, message, destination, departurelocation, date) VALUES($1,$2,$3,$4,$5)';
+const sql2 = 'INSERT INTO bRide_offers (userId, message, destination, departurelocation, date) VALUES($1,$2,$3,$4,$5)';
 
 const data1 = ['ayodeji', 'moronkeji', 70563224566, 'david', 'morayodeji@gmail.com', hashedPassword];
 
