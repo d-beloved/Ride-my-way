@@ -2,6 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import path from 'path';
 import logger from 'morgan';
+import cors from 'cors';
 import routes from './routes/routes';
 
 
@@ -16,8 +17,10 @@ app.listen(port, () => {
 });
 
 // Parse incoming requests data
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, '../client')));
 app.use('/api-docs', express.static(path.join(__dirname, '../build')));
 
 // Log requests to the console.
