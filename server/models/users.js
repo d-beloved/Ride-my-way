@@ -1,5 +1,5 @@
 const userModel = `
-  DROP TABLE IF EXISTS aUsers CASCADE;
+  DROP TABLE IF EXISTS Users CASCADE;
   CREATE TABLE aUsers (
       userId serial PRIMARY KEY,
       firstname VARCHAR(255) NOT NULL,

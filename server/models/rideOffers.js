@@ -1,5 +1,5 @@
 const rideModel = `
-  DROP TABLE IF EXISTS bRide_offers CASCADE;
+  DROP TABLE IF EXISTS Ride_offers CASCADE;
   CREATE TABLE bRide_offers (
       rideId serial PRIMARY KEY,
       userId INTEGER REFERENCES aUsers(userid),

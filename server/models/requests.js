@@ -1,5 +1,5 @@
 const requestModel = `
-  DROP TABLE IF EXISTS cRequests;
+  DROP TABLE IF EXISTS Requests;
   DROP TYPE IF EXISTS status_allowed;
   CREATE TYPE status_allowed AS ENUM (
     'accepted',
