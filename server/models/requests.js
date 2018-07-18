@@ -1,5 +1,5 @@
 const requestModel = `
-  DROP TABLE IF EXISTS Requests;
+  DROP TABLE IF EXISTS cRequests;
   DROP TYPE IF EXISTS status_allowed;
   CREATE TYPE status_allowed AS ENUM (
     'accepted',
@@ -7,13 +7,14 @@ const requestModel = `
     'rejected'
   );
 
-  CREATE TABLE Requests (
+  CREATE TABLE cRequests (
       requestId serial PRIMARY KEY,
-      userId INTEGER REFERENCES Users(userid),
-      rideId INTEGER REFERENCES Ride_offers(rideid),
+      userId INT NOT NULL,
+      rideId INT NOT NULL,
       status status_allowed NOT NULL DEFAULT 'pending',
       createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-      UNIQUE(userId,rideId)
+      foreign key(userId) REFERENCES aUsers(userId),
+      foreign key(rideId) REFERENCES bRide_offers(rideId)
   );
 `;
 

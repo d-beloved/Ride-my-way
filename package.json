@@ -9,8 +9,7 @@
     "clean:dist": "rimraf ./dist",
     "build:prod": "npm run clean:dist && npm run prod-migrate && babel ./server --out-dir dist",
     "start:dev": "nodemon --watch server --exec babel-node ./server/app.js",
-    "test": "set NODE_ENV=test&& npm run fortest && nyc mocha server/tests/routes/*.test.js --exit --compilers js:babel-register && nyc report",
-    "test2": "mocha server/tests/routes/*.test.js --exit --compilers js:babel-register",
+    "test": "set NODE_ENV=test&& npm run fortest && nyc mocha server/tests/routes/*.test.js --exit --compilers js:babel-register",
     "prod-migrate": "npm run db-migrate --env production",
     "fortest": "npm run db-migrate --env test && npm run seeders --env test",
     "db-migrate": "babel-node ./server/models/db.js",
@@ -18,7 +17,7 @@
     "report-coverage": "cat ./coverage/lcov.info | coveralls",
     "coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test",
     "codeclimate-report": "codeclimate-test-reporter < ./coverage/lcov.info",
-    "seeders": "babel-node ./server/tests/seeder.js"
+    "seeders": "babel-node ./server/tests/seeder.js && babel-node ./server/tests/seedride.js"
   },
   "repository": {
     "type": "git",
@@ -50,8 +49,7 @@
     "morgan": "^1.9.0",
     "path": "^0.12.7",
     "pg": "^7.4.3",
-    "rimraf": "^2.6.2",
-    "swagger-ui-express": "^3.0.10"
+    "rimraf": "^2.6.2"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

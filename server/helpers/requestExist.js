@@ -11,7 +11,7 @@ const clientPool = new Pool(connectionString);
    * @return{Function} next
    */
 const ifRequestExist = (req, res, next) => {
-  const requestExist = `SELECT * FROM Requests
+  const requestExist = `SELECT * FROM cRequests
                         WHERE userId=$1 AND rideId=$2`;
   clientPool.connect()
     .then((client) => {

@@ -14,9 +14,9 @@ class requestRideController {
    * @return{json} message and status code
    */
   static makeRequestForRide(req, res) {
-    const getOne = `select *  from Ride_offers 
+    const getOne = `select *  from bRide_offers 
                     where rideid=$1`;
-    const requestRide = `INSERT INTO Requests (userId, rideId,
+    const requestRide = `INSERT INTO cRequests (userId, rideId,
                           status)
                           VALUES ($1, $2, $3)`;
     clientPool.connect()
@@ -81,9 +81,9 @@ class requestRideController {
    */
   static getAllRequestsForRide(req, res) {
     const offerId = parseInt(req.params.rideId, 10);
-    const checkOwner = `SELECT * FROM Ride_offers
+    const checkOwner = `SELECT * FROM bRide_offers
                         WHERE userId=$1 AND rideId=$2`;
-    const checkRequests = 'SELECT *  FROM requests WHERE rideId=$1';
+    const checkRequests = 'SELECT *  FROM cRequests WHERE rideId=$1';
     clientPool.connect()
       .then((client) => {
         client.query({
@@ -149,9 +149,9 @@ class requestRideController {
     const offerId = parseInt(req.params.rideId, 10);
     const reqId = parseInt(req.params.requestId, 10);
     const newStatus = req.body.status.toLowerCase();
-    const checkOwner = `SELECT * FROM Ride_offers
+    const checkOwner = `SELECT * FROM bRide_offers
                         WHERE userId=$1 AND rideId=$2`;
-    const updateRequests = `UPDATE requests 
+    const updateRequests = `UPDATE cRequests 
                             SET status=$1
                             WHERE requestId=$2`;
     clientPool.connect()

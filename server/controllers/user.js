@@ -37,7 +37,7 @@ class userController {
     // Hash password to save in the database
     const hashPassword = bcrypt.hashSync(req.body.password, 10);
     const email = req.body.email.trim().toLowerCase();
-    const createUser = `INSERT INTO Users (firstname, lastname, phoneno, username, email, password)
+    const createUser = `INSERT INTO aUsers (firstname, lastname, phoneno, username, email, password)
                             VALUES ($1, $2, $3, $4, $5, $6)
                             RETURNING username, email, userId`;
     clientPool.connect()
@@ -92,7 +92,7 @@ class userController {
    */
   static loginUser(req, res) {
     const email = req.body.email.trim().toLowerCase();
-    const findOneUser = `SELECT * FROM Users
+    const findOneUser = `SELECT * FROM aUsers
                           WHERE email = $1`;
     // checks if a token was passed into the request header
     if (req.headers.authorization) {
