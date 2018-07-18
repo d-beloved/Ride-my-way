@@ -6,13 +6,13 @@ const hashedPassword = bcrypt.hashSync('ispassword', 10);
 
 const sql = 'INSERT INTO aUsers (firstname, lastname, phoneno, username, email, password) VALUES($1,$2,$3,$4,$5,$6)';
 
-const sql2 = 'INSERT INTO bRide_offers (userId, message, destination, departurelocation, date) VALUES($1,$2,$3,$4,$5)';
+const sql2 = 'INSERT INTO bRide_offers (message, destination, departurelocation, date, userId) VALUES($1,$2,$3,$4,$5)';
 
 const data1 = ['ayodeji', 'moronkeji', 70563224566, 'david', 'morayodeji@gmail.com', hashedPassword];
 
 const data2 = ['gwen', 'gbenga', 90975434567, 'deji', 'davewritchie@gmail.com', hashedPassword];
 
-const data3 = [1, 'Let\'s take a trip to the Bahamas', 'Bahamas', 'Lagos', '2018-07-27'];
+const data3 = ['Let\'s take a trip to the Bahamas', 'Bahamas', 'Lagos', '2018-07-27', 1];
 
 const client = new Client(connectionString);
 const client2 = new Client(connectionString);

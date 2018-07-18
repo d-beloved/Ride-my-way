@@ -9,10 +9,12 @@ const requestModel = `
 
   CREATE TABLE cRequests (
       requestId serial PRIMARY KEY,
-      userId serial REFERENCES aUsers(userid),
-      rideId serial REFERENCES bRide_offers(rideid),
+      userId INT NOT NULL,
+      rideId INT NOT NULL,
       status status_allowed NOT NULL DEFAULT 'pending',
-      createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+      createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+      foreign key(userId) REFERENCES aUsers(userId),
+      foreign key(rideId) REFERENCES bRide_offers(rideId)
   );
 `;
 
