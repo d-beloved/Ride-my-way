@@ -18,3 +18,5 @@ exclude_paths:
 - node_modules/
 - server/dummyData/
 - UI/
+- client/
+- build/
