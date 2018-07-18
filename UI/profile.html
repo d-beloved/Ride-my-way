@@ -29,10 +29,17 @@
         </nav>
       </header>
       <div class="wrapper">
-        <section class="list">
+          <div id="first" class="card">
+              <img src="./images/placeholder.gif" alt="John" style="width:100%">
+              <h1>Dave</h1>
+              <p class="title">Ayodeji Moronkeji</p>
+              <p>morayodeji@gmail.com</p>
+              <p id="abutton"><button>view you details</button></p>
+            </div>
+        <section id="second" class="list">
           <div class="list-header">
             <h3>My Activities</h3>
-            <label for="filter">Filter By:</label>
+            <label class="ofr" for="filter">Filter By:</label>
             <select id="filter" name="filter">
                       <option value='1'>All</option>
                       <option value='2'>Given rides</option>
@@ -74,13 +81,14 @@
           <div class="view-pending-btn">
             <p class="form-info">view the pending requests <a href="pending-requests.html">here</a></p>
           </div>
-        </section>
         <div class="pagination">
           <a href="#">&laquo;</a>
           <a href="#">1</a>
           <a class="active" href="#">2</a>
           <a href="#">&raquo;</a>
         </div>
+      </section>
+        
     </div>
       <!--End of wrapper-->
 

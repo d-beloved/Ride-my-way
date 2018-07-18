@@ -12,14 +12,14 @@ describe('GET: / Tests for index or unregistered routes', () => {
         done();
       });
   });
-  it('should return status code 200 when user visits the index route', (done) => {
-    request(server)
-      .get('/api/v1/')
-      .end((err, res) => {
-        expect(res.status).to.equal(200);
-        expect(res.body).to.be.a('object');
-        expect(res.body.message).to.equal('Welcome to Ride-My-Way app! Your one stop place to get rides to your desired destination at reasonable prices');
-        done();
-      });
-  });
+  // it('should return status code 200 when user visits the index route', (done) => {
+  //   request(server)
+  //     .get('/api/v1/')
+  //     .end((err, res) => {
+  //       expect(res.status).to.equal(200);
+  //       expect(res.body).to.be.a('object');
+  //       expect(res.body.message).to.equal('Welcome to Ride-My-Way app! Your one stop place to get rides to your desired destination at reasonable prices');
+  //       done();
+  //     });
+  // });
 });
