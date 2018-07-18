@@ -29,6 +29,21 @@ a {
   color: #362130;
 }
 
+#wrapper {
+  width: 500px;
+  border: 1px solid black;
+  overflow: hidden; /* will contain if #first is longer than #second */
+}
+#first {
+  width: 300px;
+  float:left; /* add this */
+  border: 1px solid red;
+}
+#second {
+  border: 1px solid green;
+  overflow: hidden; /* if you don't want #second to wrap below #first */
+}
+
 .content {
   flex: 1 0 auto;
   font-size: 1.0rem;
@@ -67,7 +82,7 @@ header {
 
 .brand {
   text-transform: uppercase;
-  font-size: 26px;
+  font-size: 14px;
   letter-spacing: 5px;
   font-family: 'Ubuntu', sans-serif;
   font-weight: 900;
@@ -94,6 +109,10 @@ nav.nav-bar ul li {
 .list {
   margin: 3em;
   background-color: rgba(255, 255, 255, 0.7);
+}
+
+.ofr {
+  padding-left: 10px;
 }
 
 h3 {
@@ -142,7 +161,7 @@ label {
 }
 
 .btn-default {
-  border: 1px solid `363851;
+  border: 1px solid #363851;
 }
 
 .btn {
@@ -303,6 +322,41 @@ footer p {
   color: #fff;
   padding: 10px;
   font-size: 11px;
+}
+
+/* Profile CSS */
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    margin: auto;
+    text-align: center;
+}
+
+.title {
+    color: grey;
+    font-size: 18px;
+}
+
+#abutton {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    color: white;
+    background-color:  #363851;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+}
+
+a {
+    text-decoration: none;
+    color: rgb(3, 3, 3);
+}
+
+#abutton:hover, a:hover {
+    opacity: 0.7;
 }
 
 /* ----------------------------------------------- */
@@ -488,24 +542,27 @@ tr:nth-child(even) {
 }
 /** Media queries **/
 
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 800px) {
   .landing h1 {
     font-size: 2.85rem;
   }
   .wrapper {
     width: 90%;
   }
-  .table-res {
-    overflow-x: auto;
-  }
 }
 
+@media only screen and (min-width: 500px) {
+  brand {
+    font-size: 26px;
+  }
+}
 @media only screen and (min-width: 900px) {
   header {
     display: inline-block;
     text-align: left;
   }
   .brand {
+    font-size: 26px;
     padding: 30px 60px;
     border: none;
     float: left;
@@ -521,7 +578,7 @@ tr:nth-child(even) {
     display: flex;
     flex-direction: row;
     font-weight: 400;
-    font-size: 1.3rem;
+    font-size: 1.15rem;
     margin-left: 0;
     margin-right: 0; 
   }
@@ -571,7 +628,7 @@ tr:nth-child(even) {
   }
   .col {
     float: left;
-    padding: 10px;
+    padding-left: 4rem;
   }
   .col-1 {
     width: 100%;
