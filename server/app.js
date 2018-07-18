@@ -29,6 +29,10 @@ app.use(logger('dev'));
 // set router for api endpoints
 app.use('/api/v1', routes);
 
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/index.html'));
+});
+
 // This will be our application entry. Our server is setup here.
 
 export default app;
