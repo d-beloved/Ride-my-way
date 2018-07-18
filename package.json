@@ -17,7 +17,7 @@
     "report-coverage": "cat ./coverage/lcov.info | coveralls",
     "coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test",
     "codeclimate-report": "codeclimate-test-reporter < ./coverage/lcov.info",
-    "seeders": "babel-node ./server/tests/seeder.js"
+    "seeders": "babel-node ./server/tests/seeder.js && babel-node ./server/tests/seedride.js"
   },
   "repository": {
     "type": "git",

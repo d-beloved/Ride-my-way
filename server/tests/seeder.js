@@ -34,20 +34,3 @@ client2.query(sql, data2, (err) => {
     console.log('user inserted');
   }
 });
-
-const sql2 = 'INSERT INTO bRide_offers (message, destination, departurelocation, date, userId) VALUES($1,$2,$3,$4,$5)';
-
-const data3 = ['Let\'s take a trip to the Bahamas', 'Bahamas', 'Lagos', '2018-07-27', '1'];
-
-const client3 = new Client(connectionString);
-client3.connect();
-
-client3.query(sql2, data3, (err) => {
-  if (err) {
-    client3.end();
-    console.log(err.stack);
-  } else {
-    client3.end();
-    console.log('Ride offer inserted');
-  }
-});
