@@ -99,7 +99,6 @@ const createAccount = (e) => {
       alertLog.style.display = 'block';
       alertLog.classList.add('fail');
       alertMessage.innerText = 'User with this email and/or username already exist';
-      clearMessage();
     }
     return res.json();
   })
@@ -110,11 +109,10 @@ const createAccount = (e) => {
         alertLog.style.display = 'block';
         alertLog.classList.add('success');
         alertMessage.innerText = res.message;
-        clearMessage();
         redirectUser();
       }
 
-      if (res.status === 'fail') {
+      if (res.status === 406) {
         displayErrorMessages(res.data.errors);
       }
     })
