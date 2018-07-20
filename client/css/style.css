@@ -437,6 +437,13 @@ footer a {
   color: white;
 }
 
+.display-error {
+  background: #e84118;
+  color: #fff;
+  padding: 0.3rem;
+  text-align: right;
+}
+
 /* ********************* */
 /*      Pagination       */
 /* ********************* */
@@ -548,6 +555,11 @@ tr:nth-child(even) {
   }
   .wrapper {
     width: 90%;
+  }
+  .display-error {
+    font-size: 1.9rem;
+    margin-left: 17.2rem;
+    max-width: 39.6rem;
   }
 }
 
