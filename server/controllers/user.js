@@ -28,7 +28,7 @@ class userController {
     };
 
     if (req.body.phoneno.toString().length < 10 || !Number.isInteger(req.body.phoneno)) {
-      return res.status(400).send({
+      return res.status(406).send({
         message: 'The phoneno is too short! - make sure it is at least 10 characters long or you are not entering an integer',
         success: false
       });

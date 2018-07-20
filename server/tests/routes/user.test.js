@@ -81,7 +81,7 @@ describe('The User route', () => {
           done();
         });
     });
-    it('Should return 400 for a wrong phoneno input', (done) => {
+    it('Should return 406 for a wrong phoneno input', (done) => {
       request(server)
         .post('/api/v1/auth/signup')
         .send({
@@ -93,7 +93,7 @@ describe('The User route', () => {
           password: '123456'
         })
         .end((err, res) => {
-          expect(res.status).to.equal(400);
+          expect(res.status).to.equal(406);
           expect(res.body).to.be.an('object');
           expect(res.body.message).to.equal('The phoneno is too short! - make sure it is at least 10 characters long or you are not entering an integer');
           done();
