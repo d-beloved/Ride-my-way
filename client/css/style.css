@@ -368,6 +368,10 @@ a {
 
 .success {
   background-color: #43af32;
+  color: #fff;
+  padding: 0.3rem;
+  font-size: 18px;
+  text-align: center;
 }
 
 .section-form {
@@ -428,7 +432,7 @@ textarea {
 
 .form-info {
   align-self: center;
-  color: rgb(20, 9, 56);
+  color: rgb(237, 237, 238);
   margin-top: 1.0rem;
 }
 
