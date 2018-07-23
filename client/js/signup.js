@@ -1,132 +1,56 @@
 /* eslint-disable no-undef */
-const alertLog = document.getElementById('alertLog');
-const alertMessage = document.getElementById('alertMessage');
-const errorMessage = document.querySelectorAll('.error');
+/* eslint-disable no-alert */
+const errorMessage = document.getElementsByClassName('error');
 const signupBtn = document.getElementById('submitBtn');
-const { signupForm } = document.forms;
-const {
-  Firstname, lastname, Phoneno, username, email,
-  password, confirmPassword
-} = signupForm.elements;
+const signupForm = document.getElementById('signupForm');
+const route = '/api/v1/auth/signup';
 
 const checkPassword = () => {
-  if (confirmPassword.value && (password.value !== confirmPassword.value)) {
-    errorMessage[6].classList.add('display-error');
-    errorMessage[6].innerHTML = 'password does not match';
+  if (signupForm.confirmPassword.value &&
+    (signupForm.password.value !== signupForm.confirmPassword.value)) {
+    errorMessage[0].classList.add('display-error');
+    errorMessage[0].innerHTML = 'password does not match';
     signupBtn.disabled = true;
   }
 
-  if (confirmPassword.value === password.value) {
-    errorMessage[6].innerHTML = '';
-    errorMessage[6].remove('display-error');
+  if (signupForm.confirmPassword.value === signupForm.password.value) {
+    errorMessage[0].innerHTML = '';
+    errorMessage[0].remove('display-error');
     signupBtn.disabled = false;
   }
 };
 
-const displayErrorMessages = (error) => {
-  if (error.Firstname) {
-    const [firstNameError] = error.Firstname;
-    errorMessage[0].classList.add('display-error');
-    errorMessage[0].innerHTML = firstNameError;
-  }
-
-  if (error.lastname) {
-    const [lastNameError] = error.lastname;
-    errorMessage[1].classList.add('display-error');
-    errorMessage[1].innerHTML = lastNameError;
-  }
-
-  if (error.Phoneno) {
-    const [phoneNoError] = error.Phoneno;
-    errorMessage[2].classList.add('display-error');
-    errorMessage[2].innerHTML = phoneNoError;
-  }
-
-  if (error.username) {
-    const [usernameError] = error.username;
-    errorMessage[3].classList.add('display-error');
-    errorMessage[3].innerHTML = usernameError;
-  }
-
-  if (error.email) {
-    const [emailError] = error.email;
-    errorMessage[4].classList.add('display-error');
-    errorMessage[4].innerHTML = emailError;
-  }
-
-  if (error.password) {
-    const [passwordError] = error.password;
-    errorMessage[5].classList.add('display-error');
-    errorMessage[5].innerHTML = passwordError;
-  }
-};
-
-const clearErrorMessage = (e) => {
-  e.target.parentElement.nextElementSibling.innerText = '';
-  e.target.parentElement.nextElementSibling.classList.remove('display-error');
-};
-
-const redirectUser = () => {
-  window.location.href = '/profile.html';
-};
-
-const createAccount = (e) => {
-  e.preventDefault();
-  // Insert values into the request body
+const createAccount = (evt) => {
+  evt.preventDefault();
+  const headers = new Headers({
+    'content-type': 'application/json',
+  });
   const userDetails = {
-    firstname: Firstname.value,
-    lastname: lastname.value,
-    phoneno: Phoneno.value,
-    username: username.value,
-    email: email.value,
-    password: password.value,
+    firstname: signupForm.Firstname.value,
+    lastname: signupForm.lastname.value,
+    phoneno: Number(signupForm.Phoneno.value.split('').splice(1).join('')),
+    username: signupForm.username.value,
+    email: signupForm.email.value,
+    password: signupForm.password.value,
   };
-  console.log(userDetails);
-
-  const option = {
+  
+  fetch(route, {
     method: 'POST',
     body: JSON.stringify(userDetails),
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  };
-
-  fetch(
-    '/api/v1/auth/signup',
-    option,
-  ).then((res) => {
-    if (res.status === 409) {
-      alertLog.style.display = 'block';
-      alertLog.classList.add('fail');
-      alertMessage.innerText = 'User with this email and/or username already exist';
-    }
-    return res.json();
+    headers,
   })
-    .then((res) => {
-      if (res.status === 'success') {
-        localStorage.setItem('token', res.data.token);
-        localStorage.setItem('user', username);
-        alertLog.style.display = 'block';
-        alertLog.classList.add('success');
-        alertMessage.innerText = res.message;
-        redirectUser();
+    .then(res => Promise.all([res.json(), res]))
+    .then(([data, res]) => {
+      if (!res.ok) {
+        return alert(JSON.stringify(data));
       }
-
-      if (res.status === 406) {
-        displayErrorMessages(res.data.errors);
-      }
+      window.location.href = '/profile.html';
+      localStorage.setItem('token', data.data.token);
+      localStorage.setItem('user', JSON.stringify(data.data));
     })
-    .catch((err) => {
-      console.log(err);
-    });
+    .catch(error => alert(error.message));
 };
 
-confirmPassword.addEventListener('input', checkPassword);
-Firstname.addEventListener('focus', clearErrorMessage);
-lastname.addEventListener('focus', clearErrorMessage);
-Phoneno.addEventListener('focus', clearErrorMessage);
-username.addEventListener('focus', clearErrorMessage);
-email.addEventListener('focus', clearErrorMessage);
-password.addEventListener('focus', clearErrorMessage);
-password.addEventListener('input', checkPassword);
+signupForm.confirmPassword.addEventListener('input', checkPassword);
+signupForm.password.addEventListener('input', checkPassword);
 signupForm.addEventListener('submit', createAccount);
