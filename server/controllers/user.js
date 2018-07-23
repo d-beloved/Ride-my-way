@@ -56,12 +56,8 @@ class userController {
             client.release();
             res.status(201).json({
               message: 'User created successfully',
-              data: {
-                userId: createdUser.rows[0].userid,
-                username: createdUser.rows[0].username,
-                email: createdUser.rows[0].email,
-                token: authToken,
-              },
+              user: createdUser.rows[0],
+              token: authToken,
               success: true
             });
           })

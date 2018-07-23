@@ -1,71 +1,33 @@
 /* eslint-disable no-undef */
-const alertLog = document.getElementById('alertLog');
-const alertMessage = document.getElementById('alertMessage');
-const errorMessage = document.querySelectorAll('.error');
-const { signinForm } = document.forms;
-const { email, password } = signinForm.elements;
+/* eslint-disable no-alert */
+const signinForm = document.getElementById('signinForm');
+const route = '/api/v1/auth/login';
 
-const displayErrorMessages = (error) => {
-
-  if (error.email) {
-    const [emailError] = error.email;
-    errorMessage[0].classList.add('display-error');
-    errorMessage[0].innerHTML = emailError;
-  }
-
-  if (error.password) {
-    const [passwordError] = error.password;
-    errorMessage[1].classList.add('display-error');
-    errorMessage[1].innerHTML = passwordError;
-  }
-};
-
-const clearErrorMessage = (e) => {
-  e.target.parentElement.nextElementSibling.innerText = '';
-  e.target.parentElement.nextElementSibling.classList.remove('display-error');
-};
-
-const redirectUser = () => {
-  window.location.href = '/profile.html';
-};
-
-const signinUser = (e) => {
-  e.preventDefault();
-  // Insert values into the request body
-  const userDetails = {
-    email: email.value,
-    password: password.value,
+const signinUser = (evt) => {
+  evt.preventDefault();
+  const headers = new Headers({
+    'content-type': 'application/json',
+  });
+  const loginDetails = {
+    email: signinForm.email.value,
+    password: signinForm.password.value,
   };
-  console.log(userDetails);
-
-  const option = {
+  
+  fetch(route, {
     method: 'POST',
-    body: JSON.stringify(userDetails),
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  };
-
-  fetch(
-    '/api/v1/auth/login',
-    option,
-  ).then(res => res.json())
-    .then((data) => {
-      if (data.status === 'success') {
-        localStorage.setItem('token', data.token);
-        localStorage.setItem('user', username);
-        alertLog.style.display = 'block';
-        alertLog.classList.add('success');
-        alertMessage.innerText = res.message;
+    body: JSON.stringify(loginDetails),
+    headers,
+  })
+    .then(res => Promise.all([res.json(), res]))
+    .then(([data, res]) => {
+      if (!res.ok) {
+        return alert(JSON.stringify(data));
       }
-      redirectUser();
+      window.location.href = '/profile.html';
+      localStorage.setItem('token', data.authToken);
+      localStorage.setItem('user', JSON.stringify(data.signedInUser));
     })
-    .catch((err) => {
-      displayErrorMessages(res.data.errors);
-      console.log(err);
-    });
+    .catch(error => alert(error.message));
 };
 
-email.addEventListener('focus', clearErrorMessage);
-password.addEventListener('focus', clearErrorMessage);
 signinForm.addEventListener('submit', signinUser);

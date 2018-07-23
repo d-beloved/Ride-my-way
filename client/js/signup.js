@@ -45,8 +45,8 @@ const createAccount = (evt) => {
         return alert(JSON.stringify(data));
       }
       window.location.href = '/profile.html';
-      localStorage.setItem('token', data.data.token);
-      localStorage.setItem('user', JSON.stringify(data.data));
+      localStorage.setItem('token', data.token);
+      localStorage.setItem('user', JSON.stringify(data.user));
     })
     .catch(error => alert(error.message));
 };
