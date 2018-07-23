@@ -35,7 +35,7 @@ class rideOfferController {
                 rideId: createdRide.rows[0].rideId,
                 message: createdRide.rows[0].message,
                 destination: createdRide.rows[0].destination,
-                departureLocation: createdRide.rows[0].depart,
+                departurelocation: createdRide.rows[0].depart,
                 time: createdRide.rows[0].time,
                 userId: createdRide.rows[0].userId,
               },

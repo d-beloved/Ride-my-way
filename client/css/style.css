@@ -362,6 +362,18 @@ a {
 /* ----------------------------------------------- */
 /* Forms */
 /* ----------------------------------------------- */
+.fail {
+  background-color: #f44336;
+}
+
+.success {
+  background-color: #43af32;
+  color: #fff;
+  padding: 0.3rem;
+  font-size: 18px;
+  text-align: center;
+}
+
 .section-form {
   margin-bottom: 5.0rem;
   font-size: initial;
@@ -380,7 +392,7 @@ a {
 }
 
 .card-form {
-  background-color: rgba(72, 84, 85, 0.57);
+  background-color: rgb(255, 255, 255);
   max-width: 600px;
   padding-top: 1.6rem;
   padding-bottom: 1.6rem;
@@ -420,12 +432,12 @@ textarea {
 
 .form-info {
   align-self: center;
-  color: #fff;
+  color: rgb(237, 237, 238);
   margin-top: 1.0rem;
 }
 
 .form-info  a {
-  color: #e1b12c;
+  color: #b1850b;
   margin-top: 1.0rem;
 }
 
@@ -556,11 +568,6 @@ tr:nth-child(even) {
   .wrapper {
     width: 90%;
   }
-  .display-error {
-    font-size: 1.9rem;
-    margin-left: 17.2rem;
-    max-width: 39.6rem;
-  }
 }
 
 @media only screen and (min-width: 500px) {
@@ -618,10 +625,11 @@ tr:nth-child(even) {
     justify-content: space-between;
   }
 
-  /* .signup-form .submit-btn {
-    flex-direction: row;
-    justify-content: flex-end;
-  } */
+  .display-error {
+    font-size: 1.9rem;
+    margin-left: 17.2rem;
+    max-width: 39.6rem;
+  }
 
   .update-btn input[type=button]{
     margin-top: 0;

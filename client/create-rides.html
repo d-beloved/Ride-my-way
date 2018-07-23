@@ -18,45 +18,66 @@
           <div class="row">
             <div class="header-logo">
               <a class="brand logo" href="index.html">Ride-My-Way</a>
-              <button type="button" id="navbar-toggler" class="nav-toggle"><i class="mdi mdi-view-sequential"></i></button>
+              <button type="button" id="navbar-toggler" class="nav-toggle">
+                <i class="mdi mdi-view-sequential"></i>
+              </button>
             </div>
             <ul class="main-nav" id="navbar-collapse">
-              <li><a href="profile.html">profile</a></li>
-              <li><a href="view-rides.html">Ride Offers</a></li>
-              <li><a href="index.html">Logout</a></li>
+              <li>
+                <a href="profile.html">profile</a>
+              </li>
+              <li>
+                <a href="view-rides.html">Ride Offers</a>
+              </li>
+              <li>
+                <a href="index.html" id="logout">Logout</a>
+              </li>
             </ul>
           </div>
         </nav>
       </header>
 
       <section class="section-form container">
-          <div class="row card-form">
-            <form method="post" class="signup-form" id="my-form">
-              <div class="form-group">
-                <input class="form-control" type="text" name="message" id="message" placeholder="Drop a nessage" required>
-              </div>
-                <div class="form-group">
-                    <input class="form-control" type="text" name="destination" id="username" placeholder="destination" required>
-                  </div>
-                  <div class="form-group">
-                      <input class="form-control" type="text" name="departure-location" id="departure-location" placeholder="Location od departure" required>
-                    </div>
-                    <div class="form-group">
-                        <input class="form-control" type="date" name="depart-date" id="username" placeholder="date of departure" required>
-                      </div>
-  
-              <div class="submit-btn">
-                <input type="submit" value="create offer">
-              </div>
-            </form>
-          </div>
-        </section>
-  <footer>
-    <p>&copy;2018 <a target="_blank" href="https://github.com/d-beloved">D-Beloved</a></p>
-  </footer>
-</div>
-</div>
+        <div class="row alert" id="alertLog">
+          <p id="alertMessage"></p>
+        </div>
+        <div class="row card-form">
+          <form method="post" class="signup-form" id="createRide">
+            <div class="form-group">
+              <input class="form-control" type="text" name="message" id="message" placeholder="Drop a nessage" required>
+            </div>
+            <p class="error"></p>
+            <div class="form-group">
+              <input class="form-control" type="text" name="destination" id="destination" placeholder="destination" required>
+            </div>
+            <p class="error"></p>
+            <div class="form-group">
+              <input class="form-control" type="text" name="departure-location" id="departureLocation" placeholder="Location of departure"
+                required>
+            </div>
+            <p class="error"></p>
+            <div class="form-group">
+              <input class="form-control" type="text" name="depart-date" id="date" required
+              pattern="(?:20|21)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))"
+              placeholder="Enter a date in this format yyyy-mm-dd"/>
+            </div>
+            <p class="error"></p>
+
+            <div class="submit-btn">
+              <input type="submit" value="create offer">
+            </div>
+          </form>
+        </div>
+      </section>
+      <footer>
+        <p>&copy;2018
+          <a target="_blank" href="https://github.com/d-beloved">D-Beloved</a>
+        </p>
+      </footer>
+    </div>
+  </div>
   <script src="js/main.js"></script>
+  <script src="js/createRide.js"></script>
 </body>
 
 </html>
