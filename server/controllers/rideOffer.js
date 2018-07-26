@@ -16,29 +16,22 @@ class rideOfferController {
    */
   static createRideOffer(req, res) {
     const createRide = `INSERT INTO bRide_offers (userId, message, destination, 
-                        departurelocation, date)
-                        VALUES ($1, $2, $3, $4, $5)
+                        driverDetails, departurelocation, date)
+                        VALUES ($1, $2, $3, $4, $5, $6)
                         RETURNING *`;
     clientPool.connect()
       .then((client) => {
         client.query({
           text: createRide,
-          values: [req.userData, req.body.message, req.body.destination, req.body.departurelocation,
+          values: [req.userData, req.body.message, req.body.destination, req.userInfo, req.body.departurelocation,
             req.body.date
           ]
         })
           .then((createdRide) => {
             client.release();
-            res.status(201).json({
+            res.status(201).send({
               message: 'Your ride offer is created successfully',
-              data: {
-                rideId: createdRide.rows[0].rideId,
-                message: createdRide.rows[0].message,
-                destination: createdRide.rows[0].destination,
-                departurelocation: createdRide.rows[0].depart,
-                time: createdRide.rows[0].time,
-                userId: createdRide.rows[0].userId,
-              },
+              data: createdRide.rows[0],
               success: true
             });
           })
@@ -76,7 +69,7 @@ class rideOfferController {
             }
             return res.status(200).json({
               message: 'These are the ride offers we have',
-              data: result.rows,
+              rides: result.rows,
               success: true
             });
           })

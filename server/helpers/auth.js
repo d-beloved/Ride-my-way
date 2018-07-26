@@ -21,6 +21,7 @@ export default {
           res.status(401).send({ message: 'Authentication failed! Token is Invalid or expired. Please Login again', success: false });
         } else {
           req.userData = decoded.userid;
+          req.userInfo = `${decoded.firstname} ${decoded.lastname}`;
           next();
         }
       });

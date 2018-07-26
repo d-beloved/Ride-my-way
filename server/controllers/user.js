@@ -39,7 +39,7 @@ class userController {
     const email = req.body.email.trim().toLowerCase();
     const createUser = `INSERT INTO aUsers (firstname, lastname, phoneno, username, email, password)
                             VALUES ($1, $2, $3, $4, $5, $6)
-                            RETURNING username, email, userId`;
+                            RETURNING *`;
     clientPool.connect()
       .then((client) => {
         client.query({
@@ -48,15 +48,16 @@ class userController {
             req.body.username, email, hashPassword]
         })
           .then((createdUser) => {
+            const signedupUser = createdUser.rows[0];
             const {
-              userid
+              userid, firstname, lastname
             } = createdUser.rows[0];
             // create the token after all the inputs are certified ok
-            const authToken = createToken.token({ userid }, secretKey);
+            const authToken = createToken.token({ userid, firstname, lastname }, secretKey);
             client.release();
             res.status(201).json({
               message: 'User created successfully',
-              user: createdUser.rows[0],
+              user: signedupUser,
               token: authToken,
               success: true
             });
@@ -115,16 +116,16 @@ class userController {
             client.release();
             if (user.rows[0]) { // If the user exists
               // check if the password is correct
-              const signedInUser = user.rows[0].username;
+              const signedInUser = user.rows[0];
               bcrypt.compare(req.body.password, user.rows[0].password).then((check) => {
                 if (!check) { // If the password does not match
                   res.status(401).send({ message: 'wrong password!', success: false });
                 } else {
                   // creates a token that lasts for 24 hours
                   const {
-                    userid
+                    userid, firstname, lastname
                   } = user.rows[0];
-                  const authToken = createToken.token({ userid }, secretKey);
+                  const authToken = createToken.token({ userid, firstname, lastname }, secretKey);
                   res.status(200).send({
                     message: 'You are logged in!',
                     authToken,
