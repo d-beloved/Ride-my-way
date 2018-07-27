@@ -4,7 +4,7 @@ import { expect } from 'chai';
 import server from '../../app';
 
 const wrongtoken = 'wrong secret';
-const authToken1 = jwt.sign({ userid: 1 }, process.env.JWT_SECRET);
+const authToken1 = jwt.sign({ userid: 1, firstname: 'David', lastname: 'Keji' }, process.env.JWT_SECRET);
 const token = `Bearer ${authToken1}`;
 
 describe('The Ride Offer routes', () => {
