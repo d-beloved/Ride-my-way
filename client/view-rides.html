@@ -15,216 +15,84 @@
 <body>
 	<div class="content">
 		<img src="images/cabbie.jpg" class="bg">
-			<header>
-				<nav class="container">
-					<div class="row">
-						<div class="header-logo">
-							<a class="brand logo" href="index.html">Ride-My-Way</a>
-							<button type="button" id="navbar-toggler" class="nav-toggle">
-								<i class="mdi mdi-view-sequential"></i>
-							</button>
-						</div>
-						<ul class="main-nav" id="navbar-collapse">
-							<li>
-								<a href="view-rides.html" class="active">Ride offers</a>
-							</li>
-							<li>
-								<a href="profile.html">My profile</a>
-							</li>
-						</ul>
+		<header>
+			<nav class="container">
+				<div class="row">
+					<div class="header-logo">
+						<a class="brand logo" href="index.html">Ride-My-Way</a>
+						<button type="button" id="navbar-toggler" class="nav-toggle">
+							<i class="mdi mdi-view-sequential"></i>
+						</button>
 					</div>
-				</nav>
-			</header>
-
-
-			<section class="ride">
-				<div class="container">
-					<h1 class="center" style="color: white">Available Ride Offers</h1>
-					<hr>
-					<div class="card2">
-						<div class="card2-header">
-							<nav>
-								<ul>
-									<li>
-										<input type="search" name="search" id="search=" "" placeholder="search rides.." class="search-ride">
-									</li>
-								</ul>
-							</nav>
-						</div>
-						<div class="rides-list">
-							<div class="error" id="alert"></div>
-							<table id="rides">
-								<tr class="row">
-									<th>Driver name</th>
-									<th>Destination</th>
-									<th>Departure terminal</th>
-									<th>Departure date</th>
-									<th>View details</th>
-								</tr>
-							</table>
-						</div>
-					</div>
-
-					<!-- <div class="table-res">
-			<table class="table">
-				<thead>
-					<tr>
-						<th>Title</th>
-						<th>Driver</th>
-						<th>Destination</th>
-						<th>date</th>
-						<th>Role</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>Trip to Obudu ranch</td>
-						<td>EPIC Transports</td>
-						<td>Crossriver state, Nigeria</td>
-						<td>27th July, 2017 </td>
-						<td>Given Ride</td>
-					</tr>
-					<tr>
-						<td>Trip to Badagry beach</td>
-						<td>EPIC Transports</td>
-						<td>Lagos, Nigeria</td>
-						<td>27th Dec., 2017 </td>
-						<td>Taken Ride</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-</section> -->
-
-					<!-- <form class="search">
-        <input class="searchTerm" id="mySearch" placeholder="Search by destination...">
-        <input class="searchButton" type="submit">
-        <span class="searchIcon"></span>
-      </form> -->
-
-					<!-- <div class="cards">
-            <article class="card">
-                <a href="view-details.html">
-                    <picture class="thumbnail">
-                        <img src="images/cab1.jpg" alt="A banana that looks like a bird">
-                    </picture>
-                    <div class="card-content">
-
-                        <h2>Ride to VI</h2>
-                        <p>I will give you an exciting traffic free ride to the Island.</p>
-                    </div><!-- .card-content --
-                </a>
-            </article><!-- .card --
-
-            <article class="card">
-                <a href="view-details.html">
-                    <picture class="thumbnail">
-                        <img src="images/cab2.jpg" alt="A banana that looks like a bird">
-                    </picture>
-                    <div class="card-content">
-
-                        <h2>Vacation Image 01</h2>
-                        <p>TUX re-inventing the wheel, and move the needle. Feature creep dogpile that but diversify kpis but market-facing.</p>
-                    </div><!-- .card-content --
-                </a>
-            </article><!-- .card --
-						
-            <article class="card">
-                <a href="view-details.html">
-                    <picture class="thumbnail">
-                        <img src="images/cab3.jpg" alt="A banana that looks like a bird">
-                    </picture>
-                    <div class="card-content">
-
-                        <h2>Vacation Image 01</h2>
-                        <p>TUX re-inventing the wheel, and move the needle. Feature creep dogpile that but diversify kpis but market-facing.</p>
-                    </div><!-- .card-content --
-                </a>
-						</article><!-- .card --
-							
-            <article class="card">
-                <a href="view-details.html">
-                    <picture class="thumbnail">
-                        <img src="images/cab4.jpg" alt="A banana that looks like a bird">
-                    </picture>
-                    <div class="card-content">
-
-                        <h2>Vacation Image 01</h2>
-                        <p>TUX re-inventing the wheel, and move the needle. Feature creep dogpile that but diversify kpis but market-facing.</p>
-                    </div><!-- .card-content --
-                </a>
-            </article><!-- .card --
-
-            <article class="card">
-                <a href="view-details.html">
-                    <picture class="thumbnail">
-                        <img src="images/cab5.jpg" alt="A banana that looks like a bird">
-                    </picture>
-                    <div class="card-content">
-
-                        <h2>Vacation Image 01</h2>
-                        <p>TUX re-inventing the wheel, and move the needle. Feature creep dogpile that but diversify kpis but market-facing.</p>
-                    </div><!-- .card-content --
-                </a>
-						</article><!-- .card --
-							
-            <article class="card">
-                <a href="view-details.html">
-                    <picture class="thumbnail">
-                        <img src="images/cab6.jpg" alt="A banana that looks like a bird">
-                    </picture>
-                    <div class="card-content">
-
-                        <h2>Vacation Image 01</h2>
-                        <p>TUX re-inventing the wheel, and move the needle. Feature creep dogpile that but diversify kpis but market-facing.</p>
-                    </div><!-- .card-content --
-                </a>
-            </article><!-- .card --
-
-            <article class="card">
-                <a href="view-details.html">
-                    <picture class="thumbnail">
-                        <img src="images/cab3.jpg" alt="A banana that looks like a bird">
-                    </picture>
-                    <div class="card-content">
-
-                        <h2>Vacation Image 01</h2>
-                        <p>TUX re-inventing the wheel, and move the needle. Feature creep dogpile that but diversify kpis but market-facing.</p>
-                    </div><!-- .card-content --
-                </a>
-            </article><!-- .card --
-
-            <article class="card">
-                <a href="view-details.html">
-                    <picture class="thumbnail">
-                        <img src="images/cab3.jpg" alt="A banana that looks like a bird">
-                    </picture>
-                    <div class="card-content">
-
-                        <h2>Vacation Image 01</h2>
-                        <p>TUX re-inventing the wheel, and move the needle. Feature creep dogpile that but diversify kpis but market-facing.</p>
-                    </div><!-- .card-content --
-                </a>
-            </article><!-- .card --
-        </div> -->
-
-					<!-- <div class="rows center">
-        <div class="pagination">
-          <a href="#">&laquo;</a>
-          <a class="active" href="#">1</a>
-          <a href="#">2</a>
-          <a href="#">3</a>
-          <a href="#">&raquo;</a>
-        </div>
-      </div> -->
+					<ul class="main-nav" id="navbar-collapse">
+						<li>
+							<a href="view-rides.html" class="active">Ride offers</a>
+						</li>
+						<li>
+							<a href="profile.html">My profile</a>
+						</li>
+					</ul>
 				</div>
-			</section>
-			<footer>
-				<p>&copy;2018
-					<a target="_blank" href="https://github.com/d-beloved">D-Beloved</a>
-				</p>
-			</footer>
+			</nav>
+		</header>
+
+
+		<section class="ride">
+			<div class="container">
+				<h1 class="center" style="color: white">Available Ride Offers</h1>
+				<hr>
+				<div class="card2">
+					<div class="card2-header">
+						<nav>
+							<ul>
+								<li>
+									<input type="search" name="search" id="search=" "" placeholder="search rides.." class="search-ride">
+								</li>
+							</ul>
+						</nav>
+					</div>
+					<div class="rides-list">
+						<div class="error" id="alert"></div>
+						<table id="rides">
+							<tr class="row">
+								<th>Driver name</th>
+								<th>Destination</th>
+								<th>Departure terminal</th>
+								<th>Departure date</th>
+								<th>View details</th>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div class="pagination">
+					<a href="#">&laquo;</a>
+					<a class="active" href="#">1</a>
+					<a href="#">2</a>
+					<a href="#">3</a>
+					<a href="#">&raquo;</a>
+				</div>
+
+				<div id="myModal" class="modal">
+					<!-- Modal content -->
+					<div class="modal-content">
+						<span class="close" id="close">&times;</span>
+							<div class="modal-title">
+								<h1 class="text-center" style="color: #333;">Ride Details</h1>
+							</div>
+							<div id="errMessage"></div>
+							<div class="modal-table" id="details"></div>
+					</div>
+				</div>
+			</div>
 	</div>
+	</section>
+	<footer>
+		<p>&copy;2018
+			<a target="_blank" href="https://github.com/d-beloved">D-Beloved</a>
+		</p>
+	</footer>
+	</div>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
 	<script src="js/main.js"></script>
 	<script src="js/allRides.js"></script>
 </body>

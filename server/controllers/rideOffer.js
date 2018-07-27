@@ -111,7 +111,7 @@ class rideOfferController {
             }
             return res.status(200).json({
               message: 'Ride offer delivered',
-              data: result.rows[0],
+              ride: result.rows[0],
               success: true
             });
           })
