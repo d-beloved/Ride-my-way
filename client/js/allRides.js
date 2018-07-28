@@ -127,9 +127,12 @@ const requestRide = (rideId) => {
           icon: 'success',
         });
       } else {
-        errMessage.setAttribute('style', 'display: block; margin: 5px; background: red; color: white;');
-        errMessage.innerHTML = `<i class="fa fa-times"></i> You may have requested for this ride before 
-        or you are requesting for a ride you created`;
+        errMessage.setAttribute('style', 'display: none;');
+        swal({
+          title: 'Error!',
+          text: 'You have requested for this ride already, or you own this ride',
+          icon: 'error',
+        });
       }
     });
 };
