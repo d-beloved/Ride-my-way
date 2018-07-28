@@ -1,4 +1,5 @@
 /* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
 const modalTable = document.querySelector('#details');
 const modal = document.querySelector('.modal');
 const span = document.querySelector('.close');
@@ -18,8 +19,7 @@ const getAllRides = () => {
       if (data.rides.length < 1) {
         alertMsg.classList.add('fail');
         alertMsg.innerHTML = 'No Ride available at the moment. Check back later please';
-      }
-      else {
+      } else {
         const rideOffer = data.rides;
         return rideOffer.map((ride) => {
           let rideDetails = '';
@@ -101,6 +101,35 @@ const getSpecificRide = (rideId) => {
           <button class="trip-btn modal-btn" onclick="requestRide(${rideId})">Request Ride</button>
         `;
         modalTable.innerHTML = rideDetails;
+      } else {
+        window.location.href = 'sign-in.html';
+      }
+    });
+};
+
+const requestRide = (rideId) => {
+  const token = localStorage.getItem('token');
+  const request = `api/v1/rides/${rideId}/requests`;
+  fetch(request, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${token}`,
+    },
+  })
+    .then(res => res.json())
+    .then((data) => {
+      if (data.success) {
+        errMessage.setAttribute('style', 'display: none;');
+        swal({
+          title: 'Congrats!',
+          text: data.message,
+          icon: 'success',
+        });
+      } else {
+        errMessage.setAttribute('style', 'display: block; margin: 5px; background: red; color: white;');
+        errMessage.innerHTML = `<i class="fa fa-times"></i> You may have requested for this ride before 
+        or you are requesting for a ride you created`;
       }
     });
 };
