@@ -31,7 +31,7 @@ const getAllRides = () => {
               <td> ${ride.departurelocation}</td>
               <td> ${moment(ride.date).format('MMM Do YY')}</td>
               <td>
-                <button class="button" onclick="getSpecificRide(${ride.rideid})">View Details</button>
+                <button class="button" onclick="getSpecificRide(${ride.rideid})">View</button>
               </td>
                 </tr>
             </table>
