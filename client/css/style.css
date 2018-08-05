@@ -73,11 +73,9 @@ img.bg {
 
 header {
   position: relative;
-  background: #ffffffc2;
   display: block;
   width: 100%;
   text-align: center;
-  border-bottom: 1px solid #362130;
   min-height: 50px;
 }
 
@@ -88,6 +86,7 @@ header {
 }
 
 .brand {
+  color: white;
   text-transform: uppercase;
   font-size: 14px;
   letter-spacing: 5px;
@@ -180,7 +179,11 @@ label {
 
 .btn-landing {
   border: 1px solid #ffffffc2;
-  background: #ffffffc2;
+  padding: 10px 30px;
+  border-radius: 10px;
+  font-size: 18px;
+  font-style: oblique;
+  background: white;
 }
 
 .btn-sm {
@@ -253,7 +256,7 @@ nav .row {
 .main-nav li a:link,
 .main-nav li a:visited {
   border-bottom: 2px solid transparent;
-  color: black;
+  color: white;
   padding: 8px 0;
   text-decoration: none;
   text-transform: uppercase;
@@ -277,6 +280,7 @@ input[type="text"],
 input[type="password"],
 input[type="email"],
 textarea, select {
+    background-color: rgb(245, 243, 243);
     font-size: 15px;
     margin: 10px 0;
     border: none;
@@ -319,12 +323,11 @@ input[type=button]:active {
 }
 
 footer {
-  position: absolute;
+  position: relative;
   width: 100%;
   right: 0;
   bottom: 0;
   left: 0;
-  background: #363851;
 }
 
 footer p {
@@ -459,9 +462,9 @@ a {
 }
 
 .card-form {
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(245, 243, 243);
   max-width: 600px;
-  padding-top: 1.6rem;
+  border-radius: 30px;
   padding-bottom: 1.6rem;
 }
 
@@ -499,7 +502,6 @@ textarea {
 
 .form-info {
   align-self: center;
-  color: rgb(237, 237, 238);
   margin-top: 1.0rem;
 }
 
@@ -562,12 +564,22 @@ footer a {
   background: #ffffffd9;
   width: 90%;
   margin: 40px;
+}
+
+.rides-list {
   overflow-x: auto;
 }
+
+.error {
+  color: #cc0033;
+  font-size: 12px;
+  line-height: 15px;
+  margin: 0 0;
+}
 .card2-header {
-  background: #0f2844c6;
+  background: #05111fc6;
   color: #ffffff;
-  padding: 30px;
+  padding: 20px;
   cursor: pointer;
   text-align: right;
 }
@@ -576,11 +588,33 @@ footer a {
   color: #ffffff;
 }
 .search-ride {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
   border-radius: 5px;
-  padding: 15px;
+  padding: 10px;
   border: none;
   outline: none;
-  width: 50%;
+  width: 70%;
+}
+
+.nav-toggle {
+  background: transparent;
+}
+
+.button {
+  text-align: center;
+}
+
+button {
+  border: none;
+  background: #05111fc6;
+  width: 7.0rem;
+  height: 2.50rem;
+  color: #ffffff;
+  border-radius: 9px;
+  font-size: 18px;
+  cursor: pointer;
 }
 
 img {
@@ -593,9 +627,10 @@ h3 {
 }
 
 table {
-  font-size: 1.2rem;
   border-collapse: collapse;
+  border-spacing: 0;
   width: 100%;
+  border: 1px solid #ddd;
 }
 
 td, th {
@@ -628,6 +663,20 @@ tr:nth-child(even) {
     font-size: 26px;
   }
 }
+
+@media only screen and (max-width: 640px) {
+  .card2 {
+    width: 90%;
+    margin: 10px;
+  }
+}
+
+@media only screen and (max-width: 720px) {
+  .search-ride {
+    width: 100%;
+  }
+}
+
 @media only screen and (min-width: 900px) {
   header {
     display: inline-block;
