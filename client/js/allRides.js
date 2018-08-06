@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
+const profileLink = document.getElementById('prof');
 const modalTable = document.querySelector('#details');
 const modal = document.querySelector('.modal');
 const span = document.querySelector('.close');
@@ -135,4 +136,15 @@ const requestRide = (rideId) => {
         });
       }
     });
+};
+
+// Doesn't allow checking of profile except when signed in 
+profileLink.onclick = (evt) => {
+  evt.preventDefault();
+  const token = localStorage.getItem('token');
+  if (!token) {
+    window.location.href = 'sign-in.html';
+  } else {
+    window.location.href = 'profile.html';
+  }
 };
