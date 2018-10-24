@@ -20,7 +20,7 @@ app.listen(port, () => {
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, '../client')));
+app.use(express.static(path.join(__dirname, '../nativeClient')));
 app.use('/api-docs', express.static(path.join(__dirname, '../build')));
 
 // Log requests to the console.
