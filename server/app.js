@@ -30,7 +30,7 @@ app.use(logger('dev'));
 app.use('/api/v1', routes);
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/index.html'));
+  res.sendFile(path.join(__dirname, '../nativeClient/index.html'));
 });
 
 // This will be our application entry. Our server is setup here.

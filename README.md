@@ -5,7 +5,7 @@ A carpooling application that provides drivers with the ability to create ride o
 [![Build Status](https://travis-ci.org/d-beloved/Ride-my-way.svg?branch=develop)](https://travis-ci.org/d-beloved/Ride-my-way) [![Coverage Status](https://coveralls.io/repos/github/d-beloved/Ride-my-way/badge.svg?branch=develop)](https://coveralls.io/github/d-beloved/Ride-my-way?branch=develop) [![Maintainability](https://api.codeclimate.com/v1/badges/9a71cfbdbaa14210a7b6/maintainability)](https://codeclimate.com/github/d-beloved/Ride-my-way/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/9a71cfbdbaa14210a7b6/test_coverage)](https://codeclimate.com/github/d-beloved/Ride-my-way/test_coverage)
 
 
-The UI template for the app can be accessed [ here ](https://d-beloved.github.io/Ride-my-way/UI/).
+The App is hosted on heroku [ here ](https://my-ridemyway.herokuapp.com/).
 
 The endpoints are hosted on heroku [ here ](https://ayo-ride-my-way-v1.herokuapp.com/api/v1).
 
