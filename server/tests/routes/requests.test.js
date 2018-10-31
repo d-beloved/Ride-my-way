@@ -46,7 +46,7 @@ describe('The request for ride routes', () => {
     });
     it('Should return 404 if ride offer is not found', (done) => {
       request(server)
-        .post('/api/v1/rides/2/requests')
+        .post('/api/v1/rides/10/requests')
         .set({ authorization: token2 })
         .end((err, res) => {
           expect(res.status).to.equal(404);
@@ -62,7 +62,7 @@ describe('The request for ride routes', () => {
         .end((err, res) => {
           expect(res.status).to.equal(406);
           expect(res.body).to.be.an('object');
-          expect(res.body.message).to.equal('You cannot request for your ride, calm down');
+          expect(res.body.message).to.equal('You cannot request for your ride');
           done();
         });
     });
@@ -84,7 +84,7 @@ describe('The request for ride routes', () => {
         .end((err, res) => {
           expect(res.status).to.equal(409);
           expect(res.body).to.be.an('object');
-          expect(res.body.message).to.equal('You have requested for this ride before, be patient for the reply by the ride owner');
+          expect(res.body.message).to.equal('You have a pending request for this ride');
           done();
         });
     });

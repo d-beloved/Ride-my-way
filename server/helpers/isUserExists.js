@@ -26,6 +26,7 @@ const ifUserExist = (req, res, next) => {
           }
           return res.status(409).json({
             message: 'A user with same username and/or email is already registered',
+            success: false
           });
         })
         .catch((err) => {

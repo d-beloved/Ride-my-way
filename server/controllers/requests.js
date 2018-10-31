@@ -35,7 +35,7 @@ class requestRideController {
             }
             if ((foundRide.rows[0]).userid === req.userData) {
               return res.status(406).json({
-                message: 'You cannot request for your ride, calm down',
+                message: 'You cannot request for your ride',
                 success: false
               });
             }

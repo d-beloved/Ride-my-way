@@ -23,7 +23,12 @@ class rideOfferController {
       .then((client) => {
         client.query({
           text: createRide,
-          values: [req.userData, req.body.message, req.body.destination, req.userInfo, req.body.departurelocation,
+          values: [
+            req.userData,
+            req.body.message,
+            req.body.destination,
+            req.userInfo,
+            req.body.departurelocation,
             req.body.date
           ]
         })
@@ -61,12 +66,6 @@ class rideOfferController {
         })
           .then((result) => {
             client.release();
-            if (result.rows.length === 0) {
-              return res.status(200).json({
-                message: 'We don\'t have any ride offers yet, check back later please',
-                success: true
-              });
-            }
             return res.status(200).json({
               message: 'These are the ride offers we have',
               rides: result.rows,

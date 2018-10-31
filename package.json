@@ -9,15 +9,16 @@
     "clean:dist": "rimraf ./dist",
     "build:prod": "npm run clean:dist && npm run prod-migrate && babel ./server --out-dir dist",
     "start:dev": "nodemon --watch server --exec babel-node ./server/app.js",
-    "test": "NODE_ENV=test npm run fortest && nyc mocha server/tests/routes/*.test.js --exit --compilers js:babel-register",
     "prod-migrate": "npm run db-migrate --env production",
-    "fortest": "npm run db-migrate && npm run seeders",
     "db-migrate": "babel-node ./server/models/db.js",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "report-coverage": "cat ./coverage/lcov.info | coveralls",
     "coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test",
     "codeclimate-report": "codeclimate-test-reporter < ./coverage/lcov.info",
-    "seeders": "babel-node ./server/tests/seeder.js && babel-node ./server/tests/seedride.js"
+    "test": "npm run fortest && NODE_ENV=test nyc mocha server/tests/routes/*.test.js --timeout 3000 --exit --compilers js:babel-register",
+    "fortest": "npm run test-db-migrate && npm run seeders",
+    "test-db-migrate": "NODE_ENV=test babel-node ./server/models/db.js",
+    "seeders": "NODE_ENV=test babel-node ./server/tests/seeder.js && NODE_ENV=test babel-node ./server/tests/seedride.js"
   },
   "repository": {
     "type": "git",

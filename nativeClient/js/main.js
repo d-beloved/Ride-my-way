@@ -6,7 +6,7 @@ const navCollapse = document.getElementById('navbar-collapse');
 const toggleNav = () => {
   console.log('clicked');
   navCollapse.classList.toggle('navbar-show');
-}
+};
 
 const clearMessage = () => {
   window.setTimeout(() => {

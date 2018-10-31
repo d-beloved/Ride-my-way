@@ -25,7 +25,7 @@ const ifRequestExist = (req, res, next) => {
             return next();
           }
           return res.status(409).json({
-            message: 'You have requested for this ride before, be patient for the reply by the ride owner',
+            message: 'You have a pending request for this ride',
           });
         })
         .catch((err) => {

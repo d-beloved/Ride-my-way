@@ -18,7 +18,6 @@ client2.connect();
 client.query(sql, data1, (err) => {
   if (err) {
     client.end();
-    console.log(err.stack);
   } else {
     client.end();
     console.log('user inserted');
@@ -28,7 +27,6 @@ client.query(sql, data1, (err) => {
 client2.query(sql, data2, (err) => {
   if (err) {
     client2.end();
-    console.log(err.stack);
   } else {
     client2.end();
     console.log('user inserted');

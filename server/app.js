@@ -8,7 +8,11 @@ import routes from './routes/routes';
 
 // Set up the express app
 const app = express();
-
+app.use((req, res, next) => {
+  setTimeout(() => {
+    next();
+  }, 2000);
+});
 // set the port for the server
 const port = process.env.PORT || 3110;
 app.listen(port, () => {
